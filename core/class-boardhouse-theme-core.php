@@ -12,7 +12,6 @@ final class BoardhouseThemeCore
         $this->includes();
 
     }
-
     public function hooks()
     {
         add_action('after_setup_theme', array($this, 'setup'));
