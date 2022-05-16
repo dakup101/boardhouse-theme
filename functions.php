@@ -22,6 +22,5 @@ function Boardhouse_theme(): ? BoardhouseThemeCore
     /** @return */
     return BoardhouseThemeCore::get_instance();
 }
-
 Boardhouse_theme();
 
