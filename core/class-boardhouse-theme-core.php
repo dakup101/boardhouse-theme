@@ -35,6 +35,9 @@ final class BoardhouseThemeCore
         add_theme_support('automatic-feed-links');
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
+	    add_theme_support( 'woocommerce' );
+
+	    wp_enqueue_style( 'tailwind', THEME_URI.'assets/compiled/tailwind.css');
         require THEME_DIR . 'core/register-menus.php';
     }
 }
