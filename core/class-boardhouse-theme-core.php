@@ -38,6 +38,12 @@ final class BoardhouseThemeCore
 	    add_theme_support( 'woocommerce' );
 
 	    wp_enqueue_style( 'tailwind', THEME_URI.'assets/compiled/tailwind.css');
-        require THEME_DIR . 'core/register-menus.php';
+	    wp_enqueue_style( 'theme', THEME_URI.'assets/compiled/theme.css');
+		wp_enqueue_script('theme', THEME_URI.'assets/compiled/theme.js');
+
+
+	    require THEME_DIR . 'core/register-menus.php';
+	    require THEME_DIR . 'core/menu-array.php';
+	    require THEME_DIR . 'core/remove-jquery-migrate.php';
     }
 }

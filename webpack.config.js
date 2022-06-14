@@ -33,11 +33,11 @@ module.exports = {
         ]
     },
     optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin()],
+        // minimize: true,
+        // minimizer: [new TerserPlugin()],
       },
     output: {
         filename: 'theme.js',
-        path: path.resolve(__dirname, '/assets/compiled'),
+        path: path.resolve(__dirname, './assets/compiled'),
     },
 };

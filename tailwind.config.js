@@ -12,6 +12,7 @@ module.exports = {
             'dark' : '#333333',
             'white' : '#ffffff',
             'green' : '#47c061',
+            'light-gray' : '#dbdcdd',
             'current' : 'currentColor'
         },
         container: {

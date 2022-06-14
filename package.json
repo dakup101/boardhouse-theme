@@ -4,7 +4,7 @@
   "description": "Board House WooCommerce Theme",
   "main": "/assets/js/theme.ts",
   "scripts": {
-    "dev": "npm-run-all --parallel webpack tailwind-watch",
+    "dev": "npm-run-all --parallel webpack tailwind-watch scss",
     "webpack": "webpack",
     "scss": "sass ./assets/sass/theme.scss ./assets/compiled/theme.css -w",
     "tailwind-watch": "tailwind -i ./assets/sass/tailwind.css -o ./assets/compiled/tailwind.css --watch"

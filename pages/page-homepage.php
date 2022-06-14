@@ -1,8 +1,8 @@
 <?php /* Template Name: Strona Główna */ ?>
 <?php get_header() ?>
-<main class="text-3xl">
-    <div class="container mx-auto bg-orange">
-        <p class="text-xl">Gawno</p>
-    </div>
+<main>
+    <section class="container mx-auto">
+        <?php echo get_template_part('/components/boardhouse-hero'); ?>
+    </section>
 </main>
 <?php get_footer() ?>

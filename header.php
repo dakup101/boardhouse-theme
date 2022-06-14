@@ -8,6 +8,6 @@
 	<title>Boardhouse</title>
 	<?php wp_head(); ?>
 </head>
-<body>
+<body class="text-dark">
 
 <?php get_template_part('/components/boardhouse-header'); ?>

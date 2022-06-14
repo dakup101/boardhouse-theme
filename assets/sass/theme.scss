@@ -1,9 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "../sass/sub/variables";
 
-*{
-  color: $color-dark;
+.hero{
+  & .swiper{
+    &-pagination-bullet{
+      position: relative;
+      opacity: .7;
+      cursor: pointer;
+      //padding-bottom: 2px;
+      &:before{
+        content: '';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border-bottom: 2px solid transparent;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+      }
+      &-active{
+        opacity: 1;
+        &:before{
+          border-bottom: 2px solid white;
+          opacity: 1;
+        }
+      }
+    }
+    &-button{
+      &-next, &-prev{
+        opacity: 1;
+      }
+      &-disabled{
+        opacity: .5;
+      }
+    }
+  }
 }
