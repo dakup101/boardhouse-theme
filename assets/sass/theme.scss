@@ -35,3 +35,27 @@
     }
   }
 }
+.product-carousel{
+  & .swiper{
+    &-pagination{
+      &-bullet{
+        width: 15px;
+        height: 15px;
+        border-radius: 1000px;
+        background: #dbdcdd;
+        &-active{
+          background: #ff6600;
+        }
+      }
+    }
+  }
+}
+.cat-box{
+  & > a:hover + img{
+    transform: scale(1.15);
+  }
+}
+
+.swiper-slide{
+  height: auto !important;
+}

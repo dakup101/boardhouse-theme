@@ -9,17 +9,10 @@ final class BoardhouseThemeCore
     public function __construct()
     {
         $this->hooks();
-        $this->includes();
-
     }
     public function hooks()
     {
-        add_action('after_setup_theme', array($this, 'setup'));
-    }
-
-    public function includes()
-    {
-// not avaliable
+	    add_action('after_setup_theme', array($this, 'setup'));
     }
 
     public static function get_instance(): ?BoardhouseThemeCore
@@ -36,14 +29,15 @@ final class BoardhouseThemeCore
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
 	    add_theme_support( 'woocommerce' );
-
-	    wp_enqueue_style( 'tailwind', THEME_URI.'assets/compiled/tailwind.css');
-	    wp_enqueue_style( 'theme', THEME_URI.'assets/compiled/theme.css');
-		wp_enqueue_script('theme', THEME_URI.'assets/compiled/theme.js');
-
-
 	    require THEME_DIR . 'core/register-menus.php';
 	    require THEME_DIR . 'core/menu-array.php';
 	    require THEME_DIR . 'core/remove-jquery-migrate.php';
+	    require THEME_DIR . 'core/manufacturer-taxonomy.php';
     }
+
+	function theme_scripts(){
+		wp_enqueue_style( 'tailwind', THEME_URI.'assets/compiled/tailwind.css');
+		wp_enqueue_style( 'theme', THEME_URI.'assets/compiled/theme.css');
+		wp_enqueue_script('theme', THEME_URI.'assets/compiled/theme.js');
+	}
 }

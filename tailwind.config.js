@@ -1,6 +1,9 @@
 module.exports = {
     content: [
+        './components/*.php',
         './components/**/*.php',
+        './woocommerce/*.php',
+        './woocommerce/**/*.php',
         './pages/**/*.php',
         './index.php',
         './footer.php',
@@ -13,6 +16,7 @@ module.exports = {
             'white' : '#ffffff',
             'green' : '#47c061',
             'light-gray' : '#dbdcdd',
+            'gray' : '#5c5c5c',
             'current' : 'currentColor'
         },
         container: {
