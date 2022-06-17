@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="w-2/5 py-10 flex justify-center">
-            <div class="w-80 bg-white text-dark shadow shadow-lg">
+            <div class="w-64 bg-white text-dark shadow shadow-lg">
 	            <?php
 	            $args = array(
 		            'post_type' => 'product',

@@ -20,5 +20,11 @@
         <h2 class="text-center font-medium uppercase tracking-wider text-2xl mb-8">Promocyjne produkty</h2>
 		<?php get_template_part('/components/boardhouse-products-carousel', null, array("id"=>1, "amount"=>18, "sale"=>true)); ?>
     </section>
+    <section class="mt-10">
+		<?php get_template_part('/components/boardhouse-cta'); ?>
+    </section>
+    <section class="my-28 container mx-auto">
+	    <?php get_template_part('/components/boardhouse-icons-row'); ?>
+    </section>
 </main>
 <?php get_footer() ?>
