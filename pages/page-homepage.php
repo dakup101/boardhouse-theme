@@ -1,6 +1,6 @@
 <?php /* Template Name: Strona Główna */ ?>
 <?php get_header() ?>
-<main class="mb-40">
+<main>
     <section class="container mx-auto">
         <?php get_template_part('/components/boardhouse-hero'); ?>
     </section>

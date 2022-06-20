@@ -22,12 +22,8 @@ Q
 header.php,6\3\6314feee14ea09173c34632864f7659d9d5a5a84
 F
 assets/sass/theme.scss,5\6\56bdb94e76125298412f953523adf0e599997ee9
-T
-$components/header/boardhouse-nav.php,9\3\93a08845249228ee47abe16f944a6a64814e4ec2
 P
  components/boardhouse-header.php,d\1\d1acefd4af5b4a3c7b2438a3d85a4ee1512cc1cd
-B
-assets/js/theme.ts,d\e\de56378333f29fac65382f5d49e0ac3ba7bb149e
 [
 +components/boardhouse-products-carousel.php,0\c\0c2d44fc70f2f3ea71bf64389181d9479fc723cd
 O

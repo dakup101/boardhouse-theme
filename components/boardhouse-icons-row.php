@@ -1,5 +1,5 @@
 <div class="grid grid-cols-4">
-    <div class="flex gap-8 items-start">
+    <div class="flex gap-8 items-start jusitfy-center">
         <img src="<?php echo THEME_IMG . '/lorry.svg' ?>" alt="" class="h-16 w-24">
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="flex gap-8 items-start">
+    <div class="flex gap-8 items-start justify-center">
         <img src="<?php echo THEME_IMG . '/smartphone.svg' ?>" alt="" class="h-16 w-24">
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="flex gap-8 items-start">
+    <div class="flex gap-8 items-start justify-center">
         <img src="<?php echo THEME_IMG . '/return.svg' ?>" alt="" class="h-16 w-24">
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="flex gap-8 items-start">
+    <div class="flex gap-8 items-start justify-center">
         <img src="<?php echo THEME_IMG . '/fast.svg' ?>" alt="" class="h-16 w-24">
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
