@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $post;
-
+$id                = $post->ID;
 $short_description = apply_filters( 'woocommerce_short_description', $post->post_excerpt );
 
 if ( ! $short_description ) {
@@ -28,6 +28,8 @@ if ( ! $short_description ) {
 }
 
 ?>
-<div class="woocommerce-product-details__short-description">
+
+<div class="woocommerce-product-details__short-description mb-5">
+    <div class="text-lg font-bold mb-3 uppercase">Krótki opis</div>
 	<?php echo $short_description; // WPCS: XSS ok. ?>
 </div>

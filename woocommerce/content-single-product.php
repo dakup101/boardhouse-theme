@@ -28,38 +28,70 @@ do_action( 'woocommerce_before_single_product' );
 
 if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
+
 	return;
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
+    <div class="grid grid-cols-2">
+        <div class="product-images">
+			<?php
+			/**
+			 * Hook: woocommerce_before_single_product_summary.
+			 *
+			 * @hooked woocommerce_show_product_sale_flash - 10
+			 * @hooked woocommerce_show_product_images - 20
+			 */
+			do_action( 'woocommerce_before_single_product_summary' );
+			?>
+        </div>
+        <div class="summary entry-summary flex">
+            <div class="w-3/5 pr-20">
+				<?php
+				/**
+				 * Hook: woocommerce_single_product_summary.
+				 *
+				 * @hooked woocommerce_template_single_title - 5
+				 * @hooked woocommerce_template_single_rating - 10
+				 * @hooked woocommerce_template_single_price - 10
+				 * @hooked woocommerce_template_single_excerpt - 20
+				 * @hooked woocommerce_template_single_add_to_cart - 30
+				 * @hooked woocommerce_template_single_meta - 40
+				 * @hooked woocommerce_template_single_sharing - 50
+				 * @hooked WC_Structured_Data::generate_product_data() - 60
+				 */
+				do_action( 'woocommerce_single_product_summary' );
+				?>
 
-	<?php
-	/**
-	 * Hook: woocommerce_before_single_product_summary.
-	 *
-	 * @hooked woocommerce_show_product_sale_flash - 10
-	 * @hooked woocommerce_show_product_images - 20
-	 */
-	do_action( 'woocommerce_before_single_product_summary' );
-	?>
+<!--                --><?php //if ($product->get_type() == 'variable') : ?>
+<!--                    --><?php
+//                    $variations = $product->get_children();
+//                    $is_sale = false;
+//                    foreach ($variations as $variation_id){
+//                        $variation = wc_get_product($variation_id);
+//                        if ($variation->get_sale_price()) $is_sale = true;
+//                    }
+//                    ?>
+<!--                    --><?php //if ($is_sale) : ?>
+<!--                        <div class="text-orange">CHUJ</div>-->
+<!--                    --><?php //endif; ?>
+<!--                --><?php //else : ?>
+<!--	                --><?php //if ( $product->get_sale_price() ) : ?>
+<!--                        <div class="text-orange">CHUJ</div>-->
+<!--	                --><?php //endif; ?>
+<!--                --><?php //endif; ?>
 
-	<div class="summary entry-summary">
-		<?php
-		/**
-		 * Hook: woocommerce_single_product_summary.
-		 *
-		 * @hooked woocommerce_template_single_title - 5
-		 * @hooked woocommerce_template_single_rating - 10
-		 * @hooked woocommerce_template_single_price - 10
-		 * @hooked woocommerce_template_single_excerpt - 20
-		 * @hooked woocommerce_template_single_add_to_cart - 30
-		 * @hooked woocommerce_template_single_meta - 40
-		 * @hooked woocommerce_template_single_sharing - 50
-		 * @hooked WC_Structured_Data::generate_product_data() - 60
-		 */
-		do_action( 'woocommerce_single_product_summary' );
-		?>
-	</div>
+
+
+
+            </div>
+            <div class="w-2/5">
+                <?php get_template_part('/components/product/we-recommend') ?>
+                <a href="#"><img src="<?php echo THEME_IMG . '/baner_product.png' ?>" alt="" class="mt-3 w-full"></a>
+            </div>
+        </div>
+    </div>
+
 
 	<?php
 	/**
@@ -73,4 +105,4 @@ if ( post_password_required() ) {
 	?>
 </div>
 
-<?php do_action( 'woocommerce_after_single_product' ); ?>
+<?php //do_action( 'woocommerce_after_single_product' ); ?>

@@ -7,7 +7,8 @@ module.exports = {
         './pages/**/*.php',
         './index.php',
         './footer.php',
-        './header.php'
+        './header.php',
+        './functions.php'
     ],
     theme: {
         colors: {

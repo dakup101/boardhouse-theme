@@ -27,6 +27,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 <?php
 
 $product->get_type() == 'variable' ? $is_variable = true : $is_variable = false;
+$id = $product->get_id();
 $is_sale      = false;
 $sale         = null;
 $price_string = null;
@@ -34,19 +35,21 @@ $img_id       = $product->get_image_id();
 $img          = wp_get_attachment_image( $img_id, 'large', '', array( "class" => "absolute min-w-full min-h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10" ) );
 $name         = $product->get_name();
 $url          = $product->get_permalink();
-$manufacturer = get_field( 'manufacturer', $product->get_id() )->name;
+$manufacturer = get_field( 'manufacturer', $product->get_id() );
 if ( $is_variable ) {
 	$variations = $product->get_children();
 	$counter    = 0;
 	$min        = 0;
 	$max        = 0;
+	$variation_sale = null;
+    $variation_reg = null;
 	foreach ( $variations as $variation_id ) {
 		$variation     = wc_get_product( $variation_id );
-		$variation_reg = number_format( (float) $variation->get_regular_price(), 2 );
+		$variation_reg = str_replace(',', '', number_format( (float) $variation->get_regular_price(), 2 ));
 		if ( $variation->get_sale_price() ) {
 			$is_sale        = true;
-			$variation_sale = (float) $variation->get_sale_price();
-			$sale           = floor( ( $variation_reg - $variation_sale ) / $variation_reg * 100 );
+			$variation_sale = str_replace(',', '', number_format((float) $variation->get_sale_price(), 2));
+			$sale           = floor( ( (float) $variation_reg - (float) $variation_sale ) / (float) $variation_reg * 100 );
 			if ( $counter == 0 ) {
 				$min = $variation_sale;
 				$max = $variation_sale;
@@ -74,26 +77,30 @@ if ( $is_variable ) {
 
 		$counter ++;
 	}
-	$price_string = number_format( (float) $min, 2 ) .
+	$price_string = '<span class="w-full text-center">' . number_format( (float) $min, 2 ) .
 	                ' zł - ' . number_format( (float) $max, 2 ) .
-	                ' zł';
+	                ' zł' . '</span>';
+    if ($min == $max) $price_string = '<span class="w-full text-center">' . number_format((float)$min, 2) . 'zł </span>';
+    if ($min == $max && $variation_sale) $price_string = '<s class="text-gray">' . str_replace(',', '', number_format( (float)$variation_reg, 2 )) .
+                                                         'zł </s> <span class="text-green">' . str_replace(',', '', number_format( (float)$variation_sale, 2 )) .
+                                                         'zł </span>';
 } else {
 	if ( $product->get_sale_price() ) {
 		$is_sale      = true;
 		$sale         = floor( ( (float) $product->get_regular_price() - (float) $product->get_sale_price() ) / (float) $product->get_regular_price() * 100 );
-		$price_string = '<s class="text-gray">' . number_format( (float) $product->get_regular_price(), 2 ) .
-		                'zł </s> <span class="text-green">' . number_format( (float) $product->get_sale_price(), 2 ) .
+		$price_string = '<s class="text-gray">' . str_replace(',', '', number_format( (float) $product->get_regular_price(), 2 )) .
+		                'zł </s> <span class="text-green">' . str_replace(',', '', number_format( (float) $product->get_sale_price(), 2 )) .
 		                'zł </span>';
 	}
 	if ( ! $price_string ) {
-		$price_string = '<span class="w-full text-center">' . number_format( (float) $product->get_regular_price(), 2 ) . ' zł </span>';
+		$price_string = '<span class="w-full text-center">' . str_replace(',', '', number_format( (float) $product->get_regular_price(), 2 )) . ' zł </span>';
 	}
 }
 ?>
-<div class="border-light-gray relative border flex flex-col h-full">
+<div class="product-card border-light-gray relative border flex flex-col h-full">
     <div class="relative w-full h-80 shrink-0 bg-light-gray overflow-hidden">
         <a href="<?php echo $url ?>"
-           class="z-20 absolute w-full h-full bg-gray/40 opacity-0 hover:opacity-100 transition-all flex items-center justify-center">
+           class="z-20 absolute w-full h-full bg-gray/30 opacity-0 hover:opacity-100 transition-all flex items-center justify-center">
             <span class="px-5 py-2 border-2 border-white text-white hover:bg-white hover:text-dark transition-all uppercase">Dodaj do koszyka</span>
         </a>
 		<?php echo $img; ?>
@@ -104,9 +111,10 @@ if ( $is_variable ) {
 		<?php endif; ?>
         <div class="z-30 absolute flex gap-3 top-5 right-3">
             <a href="#"
-               class="p-2 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
+               class="woosq-btn woosq-btn-<?php echo $id ?> p-2 shadow-sm shadow-light-gray bg-white rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
                data-product="<?php echo $product->get_id(); ?>"
                data-quick_view
+               data-id="<?php echo $id ?>"
             >
                 <svg xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 18 18"
@@ -116,8 +124,11 @@ if ( $is_variable ) {
                 </svg>
             </a>
             <a href="#"
-               class="p-2 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
+               class="woosw-btn woosw-btn-<?php echo $id ?> shadow-sm shadow-light-gray p-2 text-sm flex items-center justify-center bg-white rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
                data-product="<?php echo $product->get_id(); ?>"
+               data-id="<?php echo $id?>"
+               data-product_name="<?php echo $name ?>"
+               data-product_image="<?php echo wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'single-post-thumbnail' )[0] ?>"
                data-whishlist_add
             >
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -129,9 +140,9 @@ if ( $is_variable ) {
             </a>
         </div>
     </div>
-    <div class="px-10 py-5 flex h-full flex-col gap-3 justify-between">
-        <span class="text-center block w-full text-gray font-light"><?php echo $manufacturer ?></span>
-        <span class="text-center block w-full font-medium text-lg"><?php echo $name ?></span>
-        <span class="flex font-medium text-lg <?php echo ! $is_variable ? 'justify-between' : 'justify-center' ?>"><?php echo $price_string; ?></span>
+    <div class="px-5 py-5 flex h-full flex-col justify-between">
+        <span class="text-center block w-full text-gray font-medium text-sm tracking-wider"><?php echo $manufacturer ?></span>
+        <span class="text-center tracking-wider block mt-1 w-full font-medium text-md"><?php echo $name ?></span>
+        <span class="flex px-5 font-medium mt-2 text-md text-gray <?php echo ! $is_variable  ? 'justify-between' : 'justify-center' ?> justify-between"><?php echo $price_string; ?></span>
     </div>
 </div>

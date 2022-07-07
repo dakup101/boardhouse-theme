@@ -11,18 +11,18 @@
             </div>
         </div>
         <div class="w-2/5 py-10 flex justify-center">
-            <div class="w-64 bg-white text-dark shadow shadow-lg">
+            <div class="w-80 p-5 bg-white text-dark shadow shadow-lg">
 	            <?php
 	            $args = array(
 		            'post_type' => 'product',
 		            'posts_per_page' => 1,
-                    'id' => 46
+                    'post__in' => array(46)
 	            );
 	            $loop = new WP_Query( $args );
 	            if ( $loop->have_posts() ) {
 		            while ( $loop->have_posts() ) : $loop->the_post();
 			            ?>
-                        <div class="swiper-slide h-auto">
+                        <div class="no-border">
 				            <?php wc_get_template_part( 'content', 'product' ); ?>
                         </div>
 		            <?php

@@ -23,15 +23,10 @@ if ( $related_products ) : ?>
 
 	<section class="related products">
 
-		<?php
-		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
+        <h2 class="text-center font-medium uppercase tracking-wider text-2xl my-8">Do tego produktu Polecamy</h2>
 
-		if ( $heading ) :
-			?>
-			<h2><?php echo esc_html( $heading ); ?></h2>
-		<?php endif; ?>
-		
-		<?php woocommerce_product_loop_start(); ?>
+
+        <?php woocommerce_product_loop_start(); ?>
 
 			<?php foreach ( $related_products as $related_product ) : ?>
 
