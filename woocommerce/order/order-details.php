@@ -40,10 +40,10 @@ if ( $show_downloads ) {
 }
 ?>
 <section class="woocommerce-order-details">
-	<?php do_action( 'woocommerce_order_details_before_order_table', $order ); ?>
-	<table class="w-full">
-		<tbody>
-			<?php
+    <?php do_action( 'woocommerce_order_details_before_order_table', $order ); ?>
+    <table class="w-full">
+        <tbody>
+            <?php
 			do_action( 'woocommerce_order_details_before_order_table_items', $order );
 
 			foreach ( $order_items as $item_id => $item ) {
@@ -64,29 +64,35 @@ if ( $show_downloads ) {
 
 			do_action( 'woocommerce_order_details_after_order_table_items', $order );
 			?>
-		</tbody>
+        </tbody>
 
-<!--		<tfoot>-->
-<!--			--><?php
-//			foreach ( $order->get_order_item_totals() as $key => $total ) {
-//				?>
-<!--					<tr>-->
-<!--						<th scope="row">--><?php //echo esc_html( $total['label'] ); ?><!--</th>-->
-<!--						<td>--><?php //echo ( 'payment_method' === $key ) ? esc_html( $total['value'] ) : wp_kses_post( $total['value'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><!--</td>-->
-<!--					</tr>-->
-<!--					--><?php
-//			}
-//			?>
-<!--			--><?php //if ( $order->get_customer_note() ) : ?>
-<!--				<tr>-->
-<!--					<th>--><?php //esc_html_e( 'Note:', 'woocommerce' ); ?><!--</th>-->
-<!--					<td>--><?php //echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?><!--</td>-->
-<!--				</tr>-->
-<!--			--><?php //endif; ?>
-<!--		</tfoot>-->
-	</table>
+        <tfoot class="bg-light-gray/30 px-5 py-5 flex flex-col justify-between mb-5">
+            <?php
+			foreach ( $order->get_order_item_totals() as $key => $total ) {
+				?>
+            <?php if ('payment_method' !== $key) : ?>
+            <tr class="w-full flex flex-row justify-between mb-2">
+                <th scope="row"
+                    class="text-left font-light <?php echo ('order_total' === $key) ? 'text-xl' : 'text-sm' ?>">
+                    <?php echo esc_html( $total['label'] ); ?></th>
+                <td class="<?php echo ('order_total' === $key) ? 'font-bold text-xl' : 'text-sm' ?>">
+                    <?php echo ( 'payment_method' === $key ) ? esc_html( $total['value'] ) : wp_kses_post( $total['value'] ); ?>
+                </td>
+            </tr>
+            <?php endif; ?>
+            <?php
+			}
+			?>
+            <?php if ( $order->get_customer_note() ) : ?>
+            <tr>
+                <th><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
+                <td><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
+            </tr>
+            <?php endif; ?>
+        </tfoot>
+    </table>
 
-	<?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?>
+    <?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?>
 </section>
 
 <?php
