@@ -2,29 +2,49 @@
 <?php get_header() ?>
 <main>
     <section class="container mx-auto">
-        <?php get_template_part('/components/boardhouse-hero'); ?>
+		<?php get_template_part( '/components/boardhouse-hero' ); ?>
     </section>
     <section class="container mx-auto mt-10">
         <div class="grid grid-cols-4 gap-8">
-            <?php get_template_part('/components/boardhouse-cat-box'); ?>
+			<?php get_template_part( '/components/boardhouse-cat-box' ); ?>
         </div>
     </section>
-    <section class="container mx-auto mt-10">
-        <h2 class="text-center font-medium uppercase tracking-wider text-2xl mb-8">Ostatnio dodane Produkty</h2>
-			<?php get_template_part('/components/boardhouse-products-carousel', null, array("id"=>1, "amount"=>18, "sale"=>false)); ?>
+    <section class="container mx-auto mt-12">
+        <div class="grid grid-cols-3 align-middle items-center mb-12">
+            <div class=""></div>
+            <h2 class="text-center font-medium uppercase tracking-wider text-2xl ">Ostatnio dodane Produkty</h2>
+            <div class="flex justify-end">
+                <a class="font-light underline text-orange hover:text-green transition-all"
+                   href="<?php echo get_home_url() . '/sklep' ?>">Zobacz wszystkie produkty</a>
+            </div>
+        </div>
+		<?php get_template_part( '/components/boardhouse-products-carousel', null, array( "id"     => 1,
+		                                                                                  "amount" => 18,
+		                                                                                  "sale"   => false
+		) ); ?>
     </section>
     <section class="mt-10">
-	    <?php get_template_part('/components/boardhouse-product-promo'); ?>
+		<?php get_template_part( '/components/boardhouse-product-promo' ); ?>
     </section>
-    <section class="container mx-auto mt-10">
-        <h2 class="text-center font-medium uppercase tracking-wider text-2xl mb-8">Promocyjne produkty</h2>
-		<?php get_template_part('/components/boardhouse-products-carousel', null, array("id"=>1, "amount"=>18, "sale"=>true)); ?>
+    <section class="container mx-auto mt-12">
+        <div class="grid grid-cols-3 align-middle items-center mb-12">
+            <div class=""></div>
+            <h2 class="text-center font-medium uppercase tracking-wider text-2xl ">Promocyjne produkty</h2>
+            <div class="flex justify-end">
+                <a class="font-light underline text-orange hover:text-green transition-all"
+                   href="<?php echo get_home_url() . '/sklep' ?>">Zobacz wszystkie produkty</a>
+            </div>
+        </div>
+		<?php get_template_part( '/components/boardhouse-products-carousel', null, array( "id"     => 1,
+		                                                                                  "amount" => 18,
+		                                                                                  "sale"   => true
+		) ); ?>
     </section>
     <section class="mt-10">
-		<?php get_template_part('/components/boardhouse-cta'); ?>
+		<?php get_template_part( '/components/boardhouse-cta' ); ?>
     </section>
     <section class="my-28 container mx-auto">
-	    <?php get_template_part('/components/boardhouse-icons-row'); ?>
+		<?php get_template_part( '/components/boardhouse-icons-row' ); ?>
     </section>
 </main>
 <?php get_footer() ?>

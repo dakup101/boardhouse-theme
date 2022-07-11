@@ -13,11 +13,12 @@ module.exports = {
     theme: {
         colors: {
             'orange' : '#ff6600',
-            'dark' : '#333333',
+            'dark' : '#212121',
             'white' : '#ffffff',
             'green' : '#47c061',
             'light-gray' : '#dbdcdd',
             'gray' : '#5c5c5c',
+            'dark-gray' : '#5D5D5D',
             'current' : 'currentColor'
         },
         container: {
@@ -27,7 +28,7 @@ module.exports = {
                 md: '991px',
                 lg: '1240px',
                 xl: '1440px',
-                '2xl': '1740px',
+                '2xl': '1760px',
             }
         }
     },

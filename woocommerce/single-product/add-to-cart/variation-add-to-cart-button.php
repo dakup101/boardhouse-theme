@@ -28,7 +28,7 @@ global $product;
 	do_action( 'woocommerce_after_add_to_cart_quantity' );
 	?>
 
-	<button type="submit" class="mt-5 single_add_to_cart_button button alt border-dark border-2 uppercase text-xl tracking-wider px-4 font-bold py-2 mb-5 hover:border-green hover:bg-green hover:text-white focus:opacity-60 transition-all w-full">
+	<button type="submit" class="mt-5 single_add_to_cart_button button alt border-dark border-2 uppercase tracking-wider px-4 font-bold py-2 mb-5 hover:border-green hover:bg-green hover:text-white focus:opacity-60 transition-all w-full">
         <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
     </button>
 

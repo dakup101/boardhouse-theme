@@ -1,3 +1,7 @@
+<div class="mt-8 mb-12">
+	<?php  woocommerce_breadcrumb() ?>
+</div>
+
 <section class="w-10/12 mx-auto">
 	<?php
 	/**
@@ -22,7 +26,7 @@
 
     <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 		<?php do_action( 'woocommerce_before_cart_table' ); ?>
-        <h1 class="text-5xl my-10 w-full text-center">Twój Koszyk</h1>
+        <h1 class="text-5xl my-10 w-full font-bold text-center">Twój Koszyk</h1>
         <div class="flex flex-col border-t border-light-gray">
 			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
@@ -30,42 +34,37 @@
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+				$variation = wc_get_product($_product->get_id());
+				$product = wc_get_product($variation->get_parent_id()) ;
 
 				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 					?>
                     <div class="flex py-3 mb-3 items-center justify-between border-b border-light-gray woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
                         <div class="flex gap-4 items-center">
-                            <div class="product-thumbnail w-40">
-								<?php
-								$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-
-								if ( ! $product_permalink ) {
-									echo $thumbnail; // PHPCS: XSS ok.
-								} else {
-									printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
-								}
-								?>
+                            <div class="product-img w-32">
+		                        <?php
+		                        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'single-post-thumbnail' );
+		                        ?>
+                                <img class="w-full" src="<?php echo $image[0] ?>" alt="">
                             </div>
 
-                            <div class="product-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
-								<?php
-								if ( ! $product_permalink ) {
-									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
-								} else {
-									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
-								}
+                            <div>
+                                <p class="tracking-wider font-bold text-gray"><?php echo $product->get_attribute('pa_marka') ?></p>
+		                        <?php echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a class="tracking-wider mb-3 font-bold text-xl mb-1" href="%s">%s</a>', $product_permalink, $product->get_name() ) : $product->get_name(), $cart_item ) ); ?>
+                                <div class="item-dec text-gray">
+                                    <div class="font-light mb-3">
+				                        <?php
+				                        $pkgDesc= apply_filters( 'woocommerce_cart_item_product_id', $cart_item['variation'], $cart_item, $cart_item_key );
+				                        foreach ($pkgDesc as $key => $attr){
+                                            $label = wc_attribute_label(str_replace('attribute_', '', $key));
+                                            echo $label . ': ' . $attr;
+				                        }
+				                        ?>
+                                    </div>
+                                    <p class="font-light">Ilość: <?php echo $cart_item['quantity']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>
+                                </div>
 
-								do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
-
-								// Meta data.
-								echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
-
-								// Backorder notification.
-								if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
-									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>', $product_id ) );
-								}
-								?>
                             </div>
                         </div>
 

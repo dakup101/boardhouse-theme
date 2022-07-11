@@ -65,8 +65,11 @@ add_filter( 'woocommerce_page_title', function( $title = '' ) {
 add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_delimiter' );
 function wcc_change_breadcrumb_delimiter( $defaults ) {
     // Change the breadcrumb delimeter from '/' to '>'
-    $defaults['delimiter'] = '';
+    $defaults['delimiter'] = '<svg class="rotate-180 fill-light-gray" xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>';
     return $defaults;
 }
 
 add_action( 'woocommerce_checkout_after_order_review', 'woocommerce_checkout_payment', 20 );
+
+
+

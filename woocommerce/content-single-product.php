@@ -32,7 +32,7 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'mt-14', $product ); ?>>
     <div class="grid grid-cols-2">
         <div class="product-images">
 			<?php
@@ -46,7 +46,7 @@ if ( post_password_required() ) {
 			?>
         </div>
         <div class="summary entry-summary flex">
-            <div class="w-3/5 pr-20">
+            <div class="w-3/6 pr-20">
 				<?php
 				/**
 				 * Hook: woocommerce_single_product_summary.
@@ -62,30 +62,8 @@ if ( post_password_required() ) {
 				 */
 				do_action( 'woocommerce_single_product_summary' );
 				?>
-
-<!--                --><?php //if ($product->get_type() == 'variable') : ?>
-<!--                    --><?php
-//                    $variations = $product->get_children();
-//                    $is_sale = false;
-//                    foreach ($variations as $variation_id){
-//                        $variation = wc_get_product($variation_id);
-//                        if ($variation->get_sale_price()) $is_sale = true;
-//                    }
-//                    ?>
-<!--                    --><?php //if ($is_sale) : ?>
-<!--                        <div class="text-orange">CHUJ</div>-->
-<!--                    --><?php //endif; ?>
-<!--                --><?php //else : ?>
-<!--	                --><?php //if ( $product->get_sale_price() ) : ?>
-<!--                        <div class="text-orange">CHUJ</div>-->
-<!--	                --><?php //endif; ?>
-<!--                --><?php //endif; ?>
-
-
-
-
             </div>
-            <div class="w-2/5">
+            <div class="w-3/6">
                 <?php get_template_part('/components/product/we-recommend') ?>
                 <a href="#"><img src="<?php echo THEME_IMG . '/baner_product.png' ?>" alt="" class="mt-3 w-full"></a>
             </div>

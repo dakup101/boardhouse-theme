@@ -79,7 +79,7 @@ if ( ! comments_open() ) {
 					'title_reply_after'   => '</span>',
 					'comment_notes_after' => '',
 					'label_submit'        => esc_html__( 'Submit', 'woocommerce' ),
-                    'class_submit'        => 'mt-5 single_add_to_cart_button button alt border-dark border-2 uppercase text-xl tracking-wider px-4 font-bold py-2 mb-5 hover:border-green hover:bg-green hover:text-white focus:border-green focus:bg-green focus:text-white transition-all w-full cursor-pointer',
+                    'class_submit'        => 'mt-5 single_add_to_cart_button button alt border-dark border-2 uppercase tracking-wider px-4 font-bold py-2 mb-5 hover:border-green hover:bg-green hover:text-white focus:border-green focus:bg-green focus:text-white transition-all w-full cursor-pointer',
 					'logged_in_as'        => '',
 					'comment_field'       => '',
 				);

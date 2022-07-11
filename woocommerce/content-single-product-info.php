@@ -7,16 +7,16 @@ $attrs['pa_dla-kogo'] ? $is_for = $attrs['pa_dla-kogo'] : $is_for = null;
 $attrs['pa_rocznik'] ? $is_from = $attrs['pa_rocznik'] : $is_from = null;
 ?>
 
-<div class="grid grid-cols-2 mb-5">
+<div class="grid grid-cols-2 mb-5 mt-5">
 	<div class="lefty flex flex-col gap-10">
 		<?php if (!empty($is_for)) : ?>
-            <div class="flex flex-col gap-3">
-                <span class="uppercase text-lg font-bold">Dla kogo</span>
-                <div class="flex gap-6">
+            <div class="flex flex-col gap-2">
+                <span class="uppercase text-sm font-bold">Dla kogo</span>
+                <div class="flex gap-3 flex-wrap">
                     <?php foreach( wc_get_product_terms( $product->get_id(), 'pa_dla-kogo' ) as $attribute ) : ?>
                                                     <div>
 
-                        <img class="h-10 w-auto" src="<?php echo get_field('img', $attribute); ?>" alt="<?php echo $attribute->name; ?>">
+                        <img class="h-8 w-auto" src="<?php echo get_field('img', $attribute); ?>" alt="<?php echo $attribute->name; ?>">
                                                     </div>
                     <?php endforeach; ?>
 
@@ -28,9 +28,9 @@ $attrs['pa_rocznik'] ? $is_from = $attrs['pa_rocznik'] : $is_from = null;
         <?php endif; ?>
 		<?php if (!empty($is_from)) : ?>
             <div class="flex flex-col gap-1">
-                <span class="uppercase text-lg font-bold">Rocznik</span>
-                <img src="<?php echo THEME_IMG . '/calendar.svg' ?>" alt="" class="h-10 w-10">
-                <span>
+                <span class="uppercase text-sm font-bold">Rocznik</span>
+                <img src="<?php echo THEME_IMG . '/calendar.svg' ?>" alt="" class="h-8 w-8">
+                <span class="text-sm font-light">
                     <?php
                     $is_from_vals = array();
                     foreach( wc_get_product_terms( $product->get_id(), 'pa_rocznik' ) as $attribute ){
@@ -61,13 +61,13 @@ $attrs['pa_rocznik'] ? $is_from = $attrs['pa_rocznik'] : $is_from = null;
                 ?>
                 <?php if (!is_not_hidden_attr($term_name)) : ?>
                 <div class="flex flex-col gap-1 relative <?php if ( $has_desc ) echo 'has-tooltip' ?>">
-                    <span class="uppercase text-lg font-bold w-full flex gap-4 items-center ">
+                    <span class="uppercase text-sm font-bold w-full flex gap-4 items-center ">
                         <?php echo $term_label ?>
                             <?php if ( $has_desc ) : ?>
-                                <img src="<?php echo THEME_IMG . '/info.svg' ?>" alt="" class="h-4 mb-1 cursor-pointer" data-tooltip_trigger>
+                                <img src="<?php echo THEME_IMG . '/info.svg' ?>" alt="" class="h-3 mb-1 cursor-pointer" data-tooltip_trigger>
                             <?php endif; ?>
                     </span>
-                    <span><?php echo implode(", ", $term_items) ?></span>
+                    <span class="text-sm font-light"><?php echo implode(", ", $term_items) ?></span>
                     <?php if ($has_desc && $terms) : ?>
                         <div class="hidden flex-col p-3 pb-0 shadow-md absolute w-96 mt-9 right-0 bg-white z-30" data-tooltip>
                             <?php  foreach ($terms as $term) : ?>

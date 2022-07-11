@@ -38,13 +38,15 @@ html {
 }
 
 .product-carousel .swiper-pagination-bullet {
-  width: 15px;
-  height: 15px;
+  width: 7px;
+  height: 7px;
   border-radius: 1000px;
   background: #dbdcdd;
 }
 .product-carousel .swiper-pagination-bullet-active {
   background: #ff6600;
+  width: 10px;
+  height: 10px;
 }
 
 .cat-box > a:hover + img {
@@ -279,7 +281,7 @@ input[type=number] {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.75rem;
   padding: 0.5rem 1rem;
   width: 100%;
@@ -302,7 +304,7 @@ input[type=number] {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.75rem;
   padding: 0.5rem 1rem;
   width: 100%;
@@ -358,7 +360,7 @@ a[data-make_search].active {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.75rem;
   padding: 0.5rem 1rem;
   width: 100%;
@@ -636,6 +638,44 @@ select {
 }
 .shipping-box.active > div > div > svg {
   fill: #47c061;
+}
+
+.product-promo .main-text {
+  font-size: 78px;
+  line-height: 100%;
+}
+
+.woocommerce-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 300;
+  font-size: 14px;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.woocommerce-validated input, .woocommerce-validated select {
+  border-color: #212121 !important;
+}
+
+.woocommerce-invalid input, .woocommerce-invalid select {
+  border-color: #ff6600 !important;
+}
+
+.woocommerce-invalid .error {
+  display: block !important;
+}
+
+.form-row label {
+  color: #212121 !important;
+}
+.form-row label * {
+  color: #212121 !important;
+}
+.form-row label .error {
+  color: red !important;
+  font-weight: 300;
 }
 
 /*# sourceMappingURL=theme.css.map */

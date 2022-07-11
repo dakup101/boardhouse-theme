@@ -31,5 +31,5 @@ $data = wp_parse_args($args, array(
 		wp_reset_postdata();
 		?>
     </div>
-    <div class="swiper-pagination mt-6 flex items-center justify-center gap-3 carousel-pagination-<?php echo $data['id'] ?>"></div>
+    <div class="swiper-pagination mt-10 flex items-center justify-center gap-3 carousel-pagination-<?php echo $data['id'] ?>"></div>
 </div>

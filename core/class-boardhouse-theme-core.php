@@ -46,11 +46,13 @@ final class BoardhouseThemeCore
 		require THEME_DIR . 'core/register-widgets.php';
         require THEME_DIR . 'core/wc-jquery-events-to-dom.php';
         require THEME_DIR . 'core/wc-shipping-icons.php';
+		require THEME_DIR . 'core/wc-fields-validation.php';
 
 
 
 
-        add_filter ( 'woocommerce_product_thumbnails_columns', 'bbloomer_change_gallery_columns' );
+
+		add_filter ( 'woocommerce_product_thumbnails_columns', 'bbloomer_change_gallery_columns' );
 
 		function bbloomer_change_gallery_columns() {
 			return 1;

@@ -32,23 +32,35 @@ defined( 'ABSPATH' ) || exit;
                         <?php
                         $variation = wc_get_product($_product->get_id());
                         $product = wc_get_product($variation->get_parent_id()) ;
+                        $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+
                         ?>
                         <div class="flex gap-6 py-2">
-                            <div class="product-img w-40">
-                                <?php
-                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $_product->id ), 'single-post-thumbnail' );
-                                ?>
+                            <div class="product-img w-32">
+		                        <?php
+		                        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'single-post-thumbnail' );
+		                        ?>
                                 <img class="w-full" src="<?php echo $image[0] ?>" alt="">
                             </div>
-                            <div class="product-content flex flex-col">
-                                <p class="tracking-wider mb-2 font-bold text-gray"><?php echo $product->get_attribute('pa_marka') ?></p>
-                                <p class="tracking-wider mb-2 font-bold text-xl"><?php echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) ) . '&nbsp;'; ?></p>
-                                <p class="font-light text-gray">Ilość: <?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <span class="product-quantity">' . sprintf( '%s', $cart_item['quantity'] ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-                                <div>
-                                    <?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+
+                            <div>
+                                <p class="tracking-wider font-bold text-gray"><?php echo $product->get_attribute('pa_marka') ?></p>
+		                        <?php echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a class="tracking-wider mb-3 font-bold text-xl mb-1" href="%s">%s</a>', $product_permalink, $product->get_name() ) : $product->get_name(), $cart_item ) ); ?>
+                                <div class="item-dec text-gray">
+                                    <div class="font-light mb-3">
+				                        <?php
+				                        $pkgDesc= apply_filters( 'woocommerce_cart_item_product_id', $cart_item['variation'], $cart_item, $cart_item_key );
+				                        foreach ($pkgDesc as $key => $attr){
+					                        $label = wc_attribute_label(str_replace('attribute_', '', $key));
+					                        echo $label . ': ' . $attr;
+				                        }
+				                        ?>
+                                    </div>
+                                    <p class="font-light">Ilość: <?php echo $cart_item['quantity']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>
                                 </div>
-                                <div class="mt-5 font-bold text-xl">
-                                    <?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                <div class="tracking-wider mt-5 font-bold text-xl ">
+                                    <?php 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+                                    ?>
                                 </div>
                             </div>
                         </div>

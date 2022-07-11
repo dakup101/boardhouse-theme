@@ -20,12 +20,12 @@
         <div class="flex items-center shrink-0 gap-4">
             <img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
             <div class="flex flex-col">
-                <a href="tel:+48733797093" class="font-medium text-lg">500 600 700</a>
+                <a href="tel:+48733797093" class="font-bold text-lg">500 600 700</a>
                 <span>(Dzwońcie 8:00 - 17:00)</span>
             </div>
         </div>
         <!--  User Nav  -->
-        <div class="flex gap-1 items-center pl-10 border-l-2 border-l-light-gray shrink-0 relative">
+        <div class="flex gap-0.5 items-center pl-5 border-l-2 border-l-light-gray shrink-0 relative">
             <a href="#"
                class="p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
                 data-make_search

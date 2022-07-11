@@ -22,9 +22,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $related_products ) : ?>
 
 	<section class="related products">
-
-        <h2 class="text-center font-medium uppercase tracking-wider text-2xl my-8">Do tego produktu Polecamy</h2>
-
+        <div class="grid grid-cols-3 align-middle items-center my-12">
+            <div class=""></div>
+            <h2 class="text-center font-medium uppercase tracking-wider text-2xl ">Do tego produktu Polecamy</h2>
+            <div class="flex justify-end">
+                <a class="font-light underline text-orange hover:text-green transition-all"
+                   href="<?php echo get_home_url() . '/sklep' ?>">Zobacz wszystkie produkty</a>
+            </div>
+        </div>
 
         <?php woocommerce_product_loop_start(); ?>
 

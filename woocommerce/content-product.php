@@ -105,26 +105,13 @@ if ( $is_variable ) {
         </a>
 		<?php echo $img; ?>
 		<?php if ( $is_sale ): ?>
-            <span class="bg-green z-30 w-14 h-14 absolute left-4 top-3 rounded-full shadow-light-gray text-white font-bold text-md flex items-center justify-center">
+            <span class="bg-green z-30 w-14 h-14 absolute left-4 top-3 rounded-full text-sm shadow-light-gray text-white font-bold flex items-center justify-center">
             <?php echo '-' . $sale . '%' ?>
         </span>
 		<?php endif; ?>
-        <div class="z-30 absolute flex gap-3 top-5 right-3">
+        <div class="z-30 absolute flex gap-2 top-5 right-3">
             <a href="#"
-               class="woosq-btn woosq-btn-<?php echo $id ?> p-2 shadow-sm shadow-light-gray bg-white rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
-               data-product="<?php echo $product->get_id(); ?>"
-               data-quick_view
-               data-id="<?php echo $id ?>"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 18 18"
-                     class="fill-current h-5 w-5"
-                >
-                    <path d="M15.01,10.51c-.29,.77-.7,1.47-1.21,2.1l4.08,4.08c.16,.16,.16,.43,0,.59l-.59,.59c-.16,.16-.43,.16-.59,0l-4.08-4.08c-.63,.51-1.33,.92-2.1,1.21-.86,.33-1.78,.51-2.75,.51-2.14,0-4.08-.87-5.48-2.27C.87,11.84,0,9.9,0,7.76S.87,3.68,2.27,2.27C3.68,.87,5.61,0,7.76,0s4.08,.87,5.48,2.27,2.27,3.34,2.27,5.48c0,.97-.18,1.9-.51,2.75h0Zm-11.55,1.54c1.1,1.1,2.62,1.78,4.3,1.78s3.2-.68,4.3-1.78c1.1-1.1,1.78-2.62,1.78-4.3s-.68-3.2-1.78-4.3c-1.1-1.1-2.62-1.78-4.3-1.78s-3.2,.68-4.3,1.78c-1.1,1.1-1.78,2.62-1.78,4.3s.68,3.2,1.78,4.3Z"/>
-                </svg>
-            </a>
-            <a href="#"
-               class="woosw-btn woosw-btn-<?php echo $id ?> shadow-sm shadow-light-gray p-2 text-sm flex items-center justify-center bg-white rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
+               class="woosw-btn woosw-btn-<?php echo $id ?> shadow-sm shadow-light-gray p-1 text-sm flex items-center justify-center bg-white rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
                data-product="<?php echo $product->get_id(); ?>"
                data-id="<?php echo $id?>"
                data-product_name="<?php echo $name ?>"
@@ -133,16 +120,30 @@ if ( $is_variable ) {
             >
                 <svg xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 21.2 18"
-                     class="fill-current w-5 h-5"
+                     class="fill-current w-4 h-4"
                 >
                     <path d="M17.69,.31c.59,.22,1.09,.55,1.51,.91,.82,.69,1.39,1.54,1.71,2.5,.32,.97,.39,2.05,.2,3.2-.37,2.21-2.85,4.34-5.66,6.74-1.52,1.3-3.14,2.69-4.54,4.19l-.02,.02c-.17,.16-.44,.15-.6-.02-1.39-1.5-3-2.88-4.51-4.18C2.96,11.28,.48,9.14,.11,6.93-.08,5.77-.02,4.68,.29,3.71c.31-.95,.87-1.79,1.69-2.48h0c.42-.37,.92-.7,1.52-.92,.52-.2,1.1-.31,1.74-.31,.96,0,2.04,.27,3.11,.93,.76,.48,1.52,1.16,2.24,2.1,.71-.94,1.47-1.62,2.24-2.1,1.08-.67,2.16-.94,3.13-.94,.64,0,1.21,.12,1.73,.31h0Zm-2.83,11.62c2.29-1.95,4.3-3.66,4.54-5.14,.14-.87,.11-1.71-.13-2.46-.22-.69-.6-1.3-1.16-1.78l-.03-.03c-.3-.26-.63-.47-.99-.6-.35-.13-.73-.2-1.13-.2-.6,0-1.41,.15-2.27,.7-.66,.42-1.36,1.08-2.04,2.07l-.7,1.04s-.07,.09-.12,.12c-.2,.13-.46,.08-.59-.12l-.71-1.04c-.68-1-1.37-1.66-2.03-2.08-.86-.55-1.65-.7-2.25-.7h0c-.4,0-.79,.07-1.14,.21-.36,.14-.7,.34-.98,.59h0c-.58,.49-.96,1.11-1.18,1.8-.23,.75-.27,1.6-.12,2.48,.25,1.5,2.28,3.23,4.6,5.22l.4,.34c.69,.59,1.39,1.19,2.06,1.78,.58,.52,1.15,1.05,1.71,1.6,.56-.55,1.14-1.09,1.71-1.6,.66-.59,1.37-1.19,2.06-1.78l.49-.42Z"/>
                 </svg>
             </a>
+            <a href="#"
+               class="woosq-btn woosq-btn-<?php echo $id ?> p-1 shadow-sm shadow-light-gray bg-white rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
+               data-product="<?php echo $product->get_id(); ?>"
+               data-quick_view
+               data-id="<?php echo $id ?>"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 18 18"
+                     class="fill-current h-4 w-4"
+                >
+                    <path d="M15.01,10.51c-.29,.77-.7,1.47-1.21,2.1l4.08,4.08c.16,.16,.16,.43,0,.59l-.59,.59c-.16,.16-.43,.16-.59,0l-4.08-4.08c-.63,.51-1.33,.92-2.1,1.21-.86,.33-1.78,.51-2.75,.51-2.14,0-4.08-.87-5.48-2.27C.87,11.84,0,9.9,0,7.76S.87,3.68,2.27,2.27C3.68,.87,5.61,0,7.76,0s4.08,.87,5.48,2.27,2.27,3.34,2.27,5.48c0,.97-.18,1.9-.51,2.75h0Zm-11.55,1.54c1.1,1.1,2.62,1.78,4.3,1.78s3.2-.68,4.3-1.78c1.1-1.1,1.78-2.62,1.78-4.3s-.68-3.2-1.78-4.3c-1.1-1.1-2.62-1.78-4.3-1.78s-3.2,.68-4.3,1.78c-1.1,1.1-1.78,2.62-1.78,4.3s.68,3.2,1.78,4.3Z"/>
+                </svg>
+            </a>
+
         </div>
     </div>
-    <div class="px-5 py-5 flex h-full flex-col justify-between">
-        <span class="text-center block w-full text-gray font-medium text-sm tracking-wider"><?php echo $manufacturer ?></span>
+    <div class="px-5 pt-3 pb-5 flex h-full flex-col justify-between">
+        <span class="text-center block w-full text-dark-gray font-bold text-xs tracking-wider"><?php echo $manufacturer ?></span>
         <span class="text-center tracking-wider block mt-1 w-full font-medium text-md"><?php echo $name ?></span>
-        <span class="flex px-5 font-medium mt-2 text-md text-gray <?php echo ! $is_variable  ? 'justify-between' : 'justify-center' ?> justify-between"><?php echo $price_string; ?></span>
+        <span class="flex tracking-wider px-5 font-bold mt-5 text-sm text-dark-gray <?php echo ! $is_variable  ? 'justify-between' : 'justify-center' ?> justify-between"><?php echo $price_string; ?></span>
     </div>
 </div>
