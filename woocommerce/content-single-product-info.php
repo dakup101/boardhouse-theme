@@ -58,7 +58,7 @@ $attrs['pa_rocznik'] ? $is_from = $attrs['pa_rocznik'] : $is_from = null;
                 }
             ?>
         <?php if (!is_not_hidden_attr($term_name)) : ?>
-        <div class="flex flex-col gap-1 relative <?php if ( $has_desc ) echo 'has-tooltip' ?>">
+        <div class="flex flex-col gap-1 relative <?php if ( $has_desc ) {echo 'has-tooltip';} ?>">
             <span class="uppercase text-sm font-bold w-full flex gap-4 items-center ">
                 <?php echo $term_label ?>
                 <?php if ( $has_desc ) : ?>
