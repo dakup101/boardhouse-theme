@@ -21,17 +21,9 @@ defined( 'ABSPATH' ) || exit;
 
 $notes = $order->get_customer_order_notes();
 ?>
-<p>
-<?php
-printf(
-	/* translators: 1: order number 2: order date 3: order status */
-	esc_html__( 'Order #%1$s was placed on %2$s and is currently %3$s.', 'woocommerce' ),
-	'<mark class="order-number">' . $order->get_order_number() . '</mark>', // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	'<mark class="order-date">' . wc_format_datetime( $order->get_date_created() ) . '</mark>', // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	'<mark class="order-status">' . wc_get_order_status_name( $order->get_status() ) . '</mark>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-);
-?>
-</p>
+<h2 class="text-2xl border-b-2 mb-5 border-dark w-full font-bold">Zamówienie #<?php echo $order->get_order_number(); ?></h2>
+<p><strong>Data: </strong><?php echo  wc_format_datetime( $order->get_date_created() )?></p>
+<p><strong>Status: </strong><?php echo  wc_get_order_status_name( $order->get_status() )?></p>
 
 <?php if ( $notes ) : ?>
 	<h2><?php esc_html_e( 'Order updates', 'woocommerce' ); ?></h2>

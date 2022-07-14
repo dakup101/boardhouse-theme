@@ -29,11 +29,11 @@ if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 		<?php
 		$is_visible        = $product && $product->is_visible();
 		$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
-
-
-
-        $variation = wc_get_product($product->get_id());
-        $product = wc_get_product($variation->get_parent_id()) ;
+		if ($product->get_type() == 'variable'){
+			
+			$variation = wc_get_product($product->get_id());
+			$product = wc_get_product($variation->get_parent_id()) ;
+		}
 		$qty          = $item->get_quantity();
 		$refunded_qty = $order->get_qty_refunded_for_item( $item_id );
 

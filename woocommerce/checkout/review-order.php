@@ -30,8 +30,13 @@ defined( 'ABSPATH' ) || exit;
 				<tr class="order-review-product border-top border-light-gray<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 					<td class="product-name">
                         <?php
-                        $variation = wc_get_product($_product->get_id());
-                        $product = wc_get_product($variation->get_parent_id()) ;
+						if ($_product->get_type() == 'variable'){
+							$variation = wc_get_product($_product->get_id());
+							$product = wc_get_product($variation->get_parent_id()) ;
+						}
+                        else{
+							$product = $_product;
+						}
                         $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 
                         ?>
@@ -50,10 +55,12 @@ defined( 'ABSPATH' ) || exit;
                                     <div class="font-light mb-3">
 				                        <?php
 				                        $pkgDesc= apply_filters( 'woocommerce_cart_item_product_id', $cart_item['variation'], $cart_item, $cart_item_key );
-				                        foreach ($pkgDesc as $key => $attr){
-					                        $label = wc_attribute_label(str_replace('attribute_', '', $key));
-					                        echo $label . ': ' . $attr;
-				                        }
+				                        if ($pkgDesc){
+											foreach ($pkgDesc as $key => $attr){
+												$label = wc_attribute_label(str_replace('attribute_', '', $key));
+												echo $label . ': ' . $attr;
+											}
+										}
 				                        ?>
                                     </div>
                                     <p class="font-light">Ilość: <?php echo $cart_item['quantity']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>

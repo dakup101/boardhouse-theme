@@ -22,13 +22,15 @@ defined( 'ABSPATH' ) || exit;
 do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 
 <?php if ( $has_orders ) : ?>
-
-	<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+	<h2 class="text-2xl border-b-2 mb-5 border-dark w-full font-bold">Moje zamówienia</h2>
+	<table class="w-full">
 		<thead>
-			<tr>
-				<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-					<th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
-				<?php endforeach; ?>
+			<tr class="border-b border-light-gray">
+				<th class="text-gray text-sm font-bold py-3"><span class="nobr">nr zamówienia</span></th>
+				<th class="text-gray text-sm font-bold py-3"><span class="nobr">data</span></th>
+				<th class="text-gray text-sm font-bold py-3"><span class="nobr">suma zamówienia</span></th>
+				<th class="text-gray text-sm font-bold py-3"><span class="nobr">status zamówienia</span></th>
+				<th></th>
 			</tr>
 		</thead>
 
@@ -38,9 +40,9 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 				$order      = wc_get_order( $customer_order ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 				$item_count = $order->get_item_count() - $order->get_item_count_refunded();
 				?>
-				<tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr( $order->get_status() ); ?> order">
+				<tr class="text-sm font-light border-b border-light-gray">
 					<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-						<td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
+						<td class="text-center py-3">
 							<?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
 								<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
 
@@ -58,7 +60,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 							<?php elseif ( 'order-total' === $column_id ) : ?>
 								<?php
 								/* translators: 1: formatted order total 2: total order items */
-								echo wp_kses_post( sprintf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count ) );
+								echo wp_kses_post( sprintf( _n( '%1$s', '%1$s', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count ) );
 								?>
 
 							<?php elseif ( 'order-actions' === $column_id ) : ?>
@@ -67,7 +69,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 
 								if ( ! empty( $actions ) ) {
 									foreach ( $actions as $key => $action ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-										echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
+										echo '<a href="' . esc_url( $action['url'] ) . '" class="text-green underline font-bold">szczegóły</a>';
 									}
 								}
 								?>

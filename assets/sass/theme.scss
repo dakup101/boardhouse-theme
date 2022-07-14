@@ -2,8 +2,6 @@
 
 * {
   outline: none !important;
-  vertical-align: baseline;
-  line-height: normal;
 }
 
 .hero {
@@ -457,7 +455,7 @@ a[data-make_search].active {
   }
 }
 
-input[type="text"], input[type="tel"], input[type="email"], textarea {
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], textarea {
   border: 1px solid #c6c6c6;
   font-weight: 300;
   padding: .75rem 1.25rem;

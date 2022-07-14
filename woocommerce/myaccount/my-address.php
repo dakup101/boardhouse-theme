@@ -41,8 +41,9 @@ if ( ! wc_ship_to_billing_address_only() && wc_shipping_enabled() ) {
 $oldcol = 1;
 $col    = 1;
 ?>
+	<h2 class="text-2xl border-b-2 mb-5 border-dark w-full font-bold">Moje dane</h2>
 
-<p>
+<p class="font-light">
 	<?php echo apply_filters( 'woocommerce_my_account_my_address_description', esc_html__( 'The following addresses will be used on the checkout page by default.', 'woocommerce' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </p>
 
@@ -58,11 +59,11 @@ $col    = 1;
 	?>
 
 	<div class="u-column<?php echo $col < 0 ? 1 : 2; ?> col-<?php echo $oldcol < 0 ? 1 : 2; ?> woocommerce-Address">
-		<header class="woocommerce-Address-title title">
+		<header class="flex justify-between items-center font-bold my-3">
 			<h3><?php echo esc_html( $address_title ); ?></h3>
-			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit"><?php echo $address ? esc_html__( 'Edit', 'woocommerce' ) : esc_html__( 'Add', 'woocommerce' ); ?></a>
+			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit text-green font-bold underline"><?php echo $address ? esc_html__( 'edytuj adres', 'woocommerce' ) : esc_html__( 'Add', 'woocommerce' ); ?></a>
 		</header>
-		<address>
+		<address class="font-light not-italic">
 			<?php
 				echo $address ? wp_kses_post( $address ) : esc_html_e( 'You have not set up this type of address yet.', 'woocommerce' );
 			?>

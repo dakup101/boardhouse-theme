@@ -47,9 +47,7 @@ final class BoardhouseThemeCore
         require THEME_DIR . 'core/wc-jquery-events-to-dom.php';
         require THEME_DIR . 'core/wc-shipping-icons.php';
 		require THEME_DIR . 'core/wc-fields-validation.php';
-
-
-
+		require THEME_DIR . 'core/wc-profile-menu.php';
 
 
 		add_filter ( 'woocommerce_product_thumbnails_columns', 'bbloomer_change_gallery_columns' );

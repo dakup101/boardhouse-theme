@@ -2,8 +2,6 @@
 console.log('--- Site Loaded ---')
 import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
 // Rendered
 window.addEventListener('DOMContentLoaded', ()=>{
     console.log('--- Site Rendered ---');
@@ -111,7 +109,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
     let deliveryAddr = document.querySelector('[data-delivery_addr]');
     let backToAddr = document.querySelector('[data-back_to_cust]');
 
-    goToPaymet.addEventListener('click', e=>{
+    if (goToPaymet){
+        goToPaymet.addEventListener('click', e=>{
         e.preventDefault();
         updateCheckoutProps();
         if (validateCustomer()){
@@ -265,5 +264,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
             return false;
         }
         return true;
+    }
     }
 })

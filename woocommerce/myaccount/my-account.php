@@ -22,10 +22,20 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since 2.6.0
  */
-do_action( 'woocommerce_account_navigation' ); ?>
+?>
+<div class="mt-8 mb-12">
+	<?php  woocommerce_breadcrumb() ?>
+</div>
 
-<div class="woocommerce-MyAccount-content">
-	<?php
+<section class="w-10/12 mx-auto mb-10">
+	<h1 class="text-5xl my-10 w-full font-bold text-center">Twoje Konto</h1>
+	<div class="flex">
+		<div class="w-2/12 pr-3 border-r border-gray">
+		<?php do_action( 'woocommerce_account_navigation' ); ?>
+		</div>
+		<div class="w-1/12"></div>
+		<div class="w-6/12">
+		<?php
 		/**
 		 * My Account content.
 		 *
@@ -33,4 +43,11 @@ do_action( 'woocommerce_account_navigation' ); ?>
 		 */
 		do_action( 'woocommerce_account_content' );
 	?>
+		</div>
+	</div>
+</section>
+
+
+<div class="woocommerce-MyAccount-content">
+
 </div>

@@ -6,8 +6,6 @@ html {
 
 * {
   outline: none !important;
-  vertical-align: baseline;
-  line-height: normal;
 }
 
 .hero .swiper-pagination-bullet {
@@ -379,7 +377,7 @@ a[data-make_search].active {
   border-color: #47c061;
 }
 
-input[type=text], input[type=tel], input[type=email], textarea {
+input[type=text], input[type=tel], input[type=email], input[type=password], textarea {
   border: 1px solid #c6c6c6;
   font-weight: 300;
   padding: 0.75rem 1.25rem;

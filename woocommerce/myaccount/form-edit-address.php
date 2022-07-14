@@ -27,7 +27,7 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 
 	<form method="post">
 
-		<h3><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title, $load_address ); ?></h3><?php // @codingStandardsIgnoreLine ?>
+		<h2 class="text-2xl border-b-2 mb-5 border-dark w-full font-bold"><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title, $load_address ); ?></h2><?php // @codingStandardsIgnoreLine ?>
 
 		<div class="woocommerce-address-fields">
 			<?php do_action( "woocommerce_before_edit_address_form_{$load_address}" ); ?>
@@ -43,7 +43,7 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 			<?php do_action( "woocommerce_after_edit_address_form_{$load_address}" ); ?>
 
 			<p>
-				<button type="submit" class="button" name="save_address" value="<?php esc_attr_e( 'Save address', 'woocommerce' ); ?>"><?php esc_html_e( 'Save address', 'woocommerce' ); ?></button>
+				<button type="submit" class="px-10 mt-2 py-2 text-white bg-green uppercase transition-all hover:bg-orange" name="save_address" value="<?php esc_attr_e( 'Save address', 'woocommerce' ); ?>"><?php esc_html_e( 'Save address', 'woocommerce' ); ?></button>
 				<?php wp_nonce_field( 'woocommerce-edit_address', 'woocommerce-edit-address-nonce' ); ?>
 				<input type="hidden" name="action" value="edit_address" />
 			</p>

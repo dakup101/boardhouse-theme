@@ -34,8 +34,14 @@
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-				$variation = wc_get_product($_product->get_id());
-				$product = wc_get_product($variation->get_parent_id()) ;
+				if ($_product -> get_type() == 'variable'){
+					$variation = wc_get_product($_product->get_id());
+					$product = wc_get_product($variation->get_parent_id()) ;
+				}
+				else{
+					$product = $_product;
+				}
+				
 
 				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
@@ -48,7 +54,6 @@
 		                        ?>
                                 <img class="w-full" src="<?php echo $image[0] ?>" alt="">
                             </div>
-
                             <div>
                                 <p class="tracking-wider font-bold text-gray"><?php echo $product->get_attribute('pa_marka') ?></p>
 		                        <?php echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a class="tracking-wider mb-3 font-bold text-xl mb-1" href="%s">%s</a>', $product_permalink, $product->get_name() ) : $product->get_name(), $cart_item ) ); ?>
