@@ -35,7 +35,7 @@ $img_id       = $product->get_image_id();
 $img          = wp_get_attachment_image( $img_id, 'large', '', array( "class" => "absolute min-w-full min-h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10" ) );
 $name         = $product->get_name();
 $url          = $product->get_permalink();
-$manufacturer = get_field( 'manufacturer', $product->get_id() );
+$manufacturer = $product->get_attribute('pa_marka');
 if ( $is_variable ) {
 	$variations = $product->get_children();
 	$counter    = 0;
@@ -101,7 +101,7 @@ if ( $is_variable ) {
     <div class="relative w-full h-80 shrink-0 bg-light-gray overflow-hidden">
         <a href="<?php echo $url ?>"
            class="z-20 absolute w-full h-full bg-gray/30 opacity-0 hover:opacity-100 transition-all flex items-center justify-center">
-            <span class="px-5 py-2 border-2 border-white text-white hover:bg-white hover:text-dark transition-all uppercase">Dodaj do koszyka</span>
+            <span class="px-5 py-2 border-2 border-white text-white hover:bg-white hover:text-dark transition-all uppercase">Sprawdź produkt</span>
         </a>
 		<?php echo $img; ?>
 		<?php if ( $is_sale ): ?>

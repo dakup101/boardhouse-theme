@@ -13,6 +13,7 @@
         <div class="w-2/5 py-10 pl-8 flex justify-center">
             <div class="w-80 p-5 bg-white text-dark shadow shadow-lg">
 	            <?php
+                wp_reset_postdata();
 	            $args = array(
 		            'post_type' => 'product',
 		            'posts_per_page' => 1,

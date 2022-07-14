@@ -8,7 +8,7 @@ $img_id       = $product->get_image_id();
 $img          = wp_get_attachment_image( $img_id, 'large', '', array( "class" => "absolute min-w-full min-h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10" ) );
 $name         = $product->get_name();
 $url          = $product->get_permalink();
-$manufacturer = get_field( 'manufacturer', $product->get_id() );
+$manufacturer = $product->get_attribute('pa_marka');
 if ( $is_variable ) {
 	$variations = $product->get_children();
 	$counter    = 0;
