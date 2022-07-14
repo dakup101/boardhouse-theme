@@ -68,6 +68,6 @@ final class BoardhouseThemeCore
 			$data['notices'] = wc_print_notices(true) ;
 			wp_send_json( $data );
 			wc_clear_notices();
-		};
+		}
 	}
 }

@@ -44,7 +44,6 @@ $attrs['pa_rocznik'] ? $is_from = $attrs['pa_rocznik'] : $is_from = null;
         <?php foreach ($attrs as $attr) : ?>
         <?php
             $term_name = $attr->get_name();
-            // print_r($attr);
             $term_label = wc_attribute_label($term_name);
             $terms = null;
             $term_desc = null;
@@ -72,7 +71,6 @@ $attrs['pa_rocznik'] ? $is_from = $attrs['pa_rocznik'] : $is_from = null;
             <div class="hidden flex-col p-3 pb-0 shadow-md absolute w-96 mt-9 right-0 bg-white z-30" data-tooltip>
                 <?php  foreach ($terms as $term) : ?>
                 <?php if ($term->description) : ?>
-                <?php print_r($term) ?>
                 <span class="font-bold text-md mb-2"><?php echo $term->name; ?></span>
                 <span class="mb-5 font-light"><?php echo $term->description ?></span>
                 <?php endif;?>

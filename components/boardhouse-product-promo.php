@@ -6,12 +6,12 @@
                 <span class="main-text uppercase">FRUGAL IMPULSE</span>
                 <span class="uppercase tracking-wider leading-4">SEZOWONA WYPRZEDAŻ 50% OFF</span>
                 <a href="#"
-                   class="px-5 py-2 border-2 border-white mt-10 uppercase hover:bg-white hover:text-dark transition-all uppercase"
+                   class="px-5 py-2 border-2 border-white mt-10 hover:bg-white hover:text-dark transition-all uppercase"
                 >Dodaj do koszyka</a>
             </div>
         </div>
         <div class="w-2/5 py-10 pl-8 flex justify-center">
-            <div class="w-80 p-5 bg-white text-dark shadow shadow-lg">
+            <div class="w-80 p-5 bg-white text-dark shadow-lg">
 	            <?php
                 wp_reset_postdata();
 	            $args = array(
