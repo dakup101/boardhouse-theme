@@ -24,7 +24,7 @@ global $product;
  *
  * @hooked woocommerce_output_all_notices - 10
  */
-do_action( 'woocommerce_before_single_product' );
+// do_action( 'woocommerce_before_single_product' );
 
 if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
@@ -35,7 +35,7 @@ if ( post_password_required() ) {
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'mt-14', $product ); ?>>
     <div class="grid grid-cols-2">
         <div class="product-images">
-			<?php
+            <?php
 			/**
 			 * Hook: woocommerce_before_single_product_summary.
 			 *
@@ -47,7 +47,7 @@ if ( post_password_required() ) {
         </div>
         <div class="summary entry-summary flex">
             <div class="w-3/6 pr-20">
-				<?php
+                <?php
 				/**
 				 * Hook: woocommerce_single_product_summary.
 				 *
@@ -71,7 +71,7 @@ if ( post_password_required() ) {
     </div>
 
 
-	<?php
+    <?php
 	/**
 	 * Hook: woocommerce_after_single_product_summary.
 	 *
@@ -83,4 +83,5 @@ if ( post_password_required() ) {
 	?>
 </div>
 
+<?php get_template_part( '/components/boardhouse-cart-popup', name ) ?>
 <?php //do_action( 'woocommerce_after_single_product' ); ?>

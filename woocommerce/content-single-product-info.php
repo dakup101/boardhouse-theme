@@ -8,6 +8,14 @@ $attrs['pa_dla-kogo'] ? $is_for = $attrs['pa_dla-kogo'] : $is_for = null;
 $attrs['pa_rocznik'] ? $is_from = $attrs['pa_rocznik'] : $is_from = null;
 ?>
 
+<div class="mb-2">
+    Przewidywana dostawa: <?php
+    $datetime = new DateTime();
+    $datetime->modify('+2 day');
+    echo '<strong>' . $datetime->format('d/m/Y') . '</strong>';
+    ?> 
+</div>
+
 <div class="grid grid-cols-2 gap-5 mt-5 mb-5">
     <div class="lefty flex flex-col gap-10">
         <?php if (!empty($is_for)) : ?>

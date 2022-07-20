@@ -68,6 +68,8 @@ if ( $is_variable ) {
 <div class="border-light-gray relative border flex flex-col h-full p-5">
     <div class="flex items-center gap-6">
         <div class="w-4/5 flex flex-col gap-1">
+		<span class="text-left block w-full text-dark-gray font-bold text-xs tracking-wider"><?php echo $manufacturer ?></span>
+
             <span class="font-bold text-lg"><?php echo $name ?></span>
             <div class="font-bold text-lg text-orange"><?php echo $price_string ?></div>
             <a target="_blank" class="underline text-green font-light" href="<?php echo $url ?>">specyfikacja</a>

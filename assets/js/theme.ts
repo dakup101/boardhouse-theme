@@ -2,9 +2,18 @@
 console.log('--- Site Loaded ---')
 import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
+
+// let ajaxUrl = 'http://localhost/boardhouse/wp-admin/admin-ajax.php'
+let ajaxUrl = 'https://everywhere.pl/www/bh/wp-admin/admin-ajax.php'
+
 // Rendered
 window.addEventListener('DOMContentLoaded', ()=>{
     console.log('--- Site Rendered ---');
+    
+    handleAddToCart();
+    handleQuantityInputs();
+    cartStatusUpd();
+
     // Main Slider
     const hero = new Swiper('.hero', {
         modules: [Pagination, Navigation],
@@ -47,28 +56,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     let carousels = document.querySelectorAll('.product-carousel');
     carousels.forEach(carousel => buildCarousels(carousel));
 
-    let quantityWrappers = document.querySelectorAll('.product .quantity');
-    if (quantityWrappers.length>0){
-        for(let quantityWrapper of quantityWrappers){
-            let quantityInput = quantityWrapper.getElementsByTagName('input')[0] as HTMLInputElement;
-            let quantityUp = quantityWrapper.querySelector('[data-up]');
-            let quantityDown = quantityWrapper.querySelector('[data-down]');
-
-            quantityUp.addEventListener('click', e => {
-                e.preventDefault();
-                let currentValue = parseInt(quantityInput.value);
-                currentValue ++;
-                quantityInput.value = currentValue.toString();
-            })
-
-            quantityDown.addEventListener('click', e => {
-                e.preventDefault();
-                let currentValue = parseInt(quantityInput.value);
-                if (currentValue > 1) currentValue--;
-                quantityInput.value = currentValue.toString();
-            })
-        }
-    }
+    
 
     let tooltipsParents = document.querySelectorAll('.has-tooltip');
     for (let tooltipParent of tooltipsParents){
@@ -266,4 +254,155 @@ window.addEventListener('DOMContentLoaded', ()=>{
         return true;
     }
     }
+
+    document.addEventListener('updated_wc_div', ()=>{
+        cartStatusUpd();
+        handleQuantityInputs();
+    })
 })
+
+
+
+function cartStatusUpd(){
+    let statusWrapper = document.querySelector('[data_cart-status]');
+    if (!statusWrapper) return null;
+
+    let statusBar = statusWrapper.querySelector('[data-status_bar]') as HTMLElement;
+    let statusSvg = statusWrapper.querySelector('[data-cart_status_svg]');
+    let statusText = statusWrapper.querySelector('[data-status_bar_text]');
+    
+    statusSvg.classList.add('shakey');
+    statusWrapper.classList.add('opacity-50')
+    const data = new FormData();
+    data.append('action', 'fetch_status');
+    fetch(ajaxUrl, {
+        method: "POST",
+        body: data,
+        credentials: 'same-origin',
+    })
+    .then(response => response.json()) 
+    .then(json => {
+        handleStatus(json)
+        statusWrapper.classList.remove('opacity-50')
+        statusSvg.classList.remove('shakey');
+    });
+
+    function handleStatus(status){
+        if (status.remains == 0) {
+            statusText.textContent = 'Obowiązuje Cię darmowa wysyłka'
+            statusBar.classList.remove('bg-orange')
+            statusBar.classList.add('bg-green')
+        }
+        else{
+            statusBar.classList.add('bg-orange')
+            statusBar.classList.remove('bg-green')
+            statusText.textContent = 'Do darmowej dostawy brakuje ' + status.remains + ' zł'
+        }
+        statusBar.style.width=status.percent+"%";
+    }
+}
+
+function handleQuantityInputs(){
+    let quantityWrappers = document.querySelectorAll('.product .quantity');
+    if (quantityWrappers.length>0){
+        for(let quantityWrapper of quantityWrappers){
+            let quantityInput = quantityWrapper.getElementsByTagName('input')[0] ;
+            let quantityUp = quantityWrapper.querySelector('[data-up]');
+            let quantityDown = quantityWrapper.querySelector('[data-down]');
+
+            quantityUp.addEventListener('click', e => {
+                e.preventDefault();
+                let currentValue = parseInt(quantityInput.value);
+                currentValue ++;
+                quantityInput.value = currentValue.toString();
+                let updBtn = document.getElementsByName('update_cart')[0];
+                if (updBtn) updBtn.removeAttribute('disabled');
+            })
+
+            quantityDown.addEventListener('click', e => {
+                e.preventDefault();
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) currentValue--;
+                quantityInput.value = currentValue.toString();
+                let updBtn = document.getElementsByName('update_cart')[0];
+                if (updBtn) updBtn.removeAttribute('disabled');
+            })
+        }
+    }
+}
+function handleAddToCart(){
+    let btn = document.querySelector('.single_add_to_cart_button');
+    if (!btn) return
+
+    btn.addEventListener('click', e=>{
+        e.preventDefault();
+        let target = e.currentTarget as HTMLButtonElement;
+        let targetParent = target.parentNode;
+        let isVariable = target.value ? false : true;
+        let quantity = targetParent.querySelector('[name="quantity"]');
+        if (isVariable) {
+            let productId = targetParent.querySelector('[name="product_id"]');
+            let variationId = targetParent.querySelector('[name="variation_id"]');
+            if (!productId && !variationId) return;
+            addVariableProduct((productId as HTMLInputElement).value, (variationId as HTMLInputElement).value, (quantity as HTMLInputElement).value, btn)
+        }
+    })
+
+    let closeBtn = document.querySelector('[data-close_cart_popup]');
+    closeBtn.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector('[data-cart_popup]').classList.add('hidden');
+    })
+}
+function addVariableProduct(product_id, variation_id, quantity, btn){
+    btn.textContent = "Dodaję produkt..."
+    console.log('--- Add Variable Product to Cart ---');
+    const data = new FormData();
+    data.append('action', 'add_variable');
+    data.append('product_id', product_id);
+    data.append('variation_id', variation_id);
+    data.append('quantity', quantity)
+    fetch(ajaxUrl, {
+        method: "POST",
+        body: data,
+        credentials: 'same-origin',
+    })
+    .then(response => response.json()) 
+    .then(json => {
+        handleCartPopup(json, quantity, btn);
+    });
+}
+function addProduct(add_to_cart){
+    console.log('--- Add Simple Product to Cart ---')
+}
+function handleCartPopup(add_response, quantity, btn){
+    if (!add_response[0]) {
+        console.log('--- Product NOT added to cart ');
+        btn.textContent = "Dodaj do koszyka"
+        return;
+    }
+    console.log('--- Product Added To Cart ---');
+    btn.textContent = "Dodano produkt"
+    btn.blur()
+    console.log('--- Handle Cart PopUp ---');
+    let addToCartPopup = document.querySelector('[data-cart_popup]');
+    addToCartPopup.classList.remove('hidden');
+    let popupCart = addToCartPopup.querySelector('[data-cp_cart]');
+    popupCart.classList.add('loading');
+    const data = new FormData();
+    data.append('action', 'html_cart');
+    fetch(ajaxUrl, {
+        method: "POST",
+        body: data,
+        credentials: 'same-origin',
+    })
+    .then(response => response.text()) 
+    .then(text => {
+        popupCart.innerHTML = text;
+        popupCart.classList.remove('loading');
+        cartStatusUpd();
+    });
+}
+function getUserCartItems(){
+    console.log('--- Get User Cart Items ---')
+}

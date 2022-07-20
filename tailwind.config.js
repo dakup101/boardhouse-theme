@@ -1,5 +1,6 @@
 module.exports = {
     content: [
+        './core/global/*.php',
         './components/*.php',
         './components/**/*.php',
         './woocommerce/*.php',

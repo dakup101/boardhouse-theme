@@ -17,9 +17,15 @@ function trigger_for_ajax_add_to_cart() {
                 );
             });
             $('body').on( 'payment_method_selected', function(){
-                console.log('--- updated_checkout ---');
+                console.log('--- payment_method_selected ---');
                 document.dispatchEvent(
                     new CustomEvent('payment_method_selected')
+                );
+            });
+            $('body').on( 'updated_wc_div', function(){
+                console.log('--- updated_wc_div ---');
+                document.dispatchEvent(
+                    new CustomEvent('updated_wc_div')
                 );
             });
         })(jQuery);

@@ -1,9 +1,9 @@
 <div class="mt-8 mb-12">
-	<?php  woocommerce_breadcrumb() ?>
+    <?php  woocommerce_breadcrumb() ?>
 </div>
 
 <section class="w-10/12 mx-auto">
-	<?php
+    <?php
 	/**
 	 * Cart Page
 	 *
@@ -25,16 +25,16 @@
 	do_action( 'woocommerce_before_cart' ); ?>
 
     <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
-		<?php do_action( 'woocommerce_before_cart_table' ); ?>
+        <?php do_action( 'woocommerce_before_cart_table' ); ?>
         <h1 class="text-5xl my-10 w-full font-bold text-center">Twój Koszyk</h1>
         <div class="flex flex-col border-t border-light-gray">
-			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
+            <?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
-			<?php
+            <?php
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-				if ($_product -> get_type() == 'variable'){
+				if ($_product -> get_type() == 'variable' || $_product -> get_type() == 'variation'){
 					$variation = wc_get_product($_product->get_id());
 					$product = wc_get_product($variation->get_parent_id()) ;
 				}
@@ -46,36 +46,68 @@
 				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 					?>
-                    <div class="flex py-3 mb-3 items-center justify-between border-b border-light-gray woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
-                        <div class="flex gap-4 items-center">
-                            <div class="product-img w-32">
-		                        <?php
+            <div
+                class="flex py-3 mb-3 items-center justify-between border-b border-light-gray woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+                <div class="flex gap-4 items-center">
+                    <div class="product-img w-32">
+                        <?php
 		                        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'single-post-thumbnail' );
 		                        ?>
-                                <img class="w-full" src="<?php echo $image[0] ?>" alt="">
-                            </div>
-                            <div>
-                                <p class="tracking-wider font-bold text-gray"><?php echo $product->get_attribute('pa_marka') ?></p>
-		                        <?php echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a class="tracking-wider mb-3 font-bold text-xl mb-1" href="%s">%s</a>', $product_permalink, $product->get_name() ) : $product->get_name(), $cart_item ) ); ?>
-                                <div class="item-dec text-gray">
-                                    <div class="font-light mb-3">
-				                        <?php
+                        <img class="w-full" src="<?php echo $image[0] ?>" alt="">
+                    </div>
+                    <div>
+                        <p class="tracking-wider font-bold text-gray"><?php echo $product->get_attribute('pa_marka') ?>
+                        </p>
+                        <?php echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a class="tracking-wider mb-3 font-bold text-xl mb-1" href="%s">%s</a>', $product_permalink, $product->get_name() ) : $product->get_name(), $cart_item ) ); ?>
+                        <div class="item-dec text-gray">
+                            <div class="font-light mb-3">
+                                <?php
 				                        $pkgDesc= apply_filters( 'woocommerce_cart_item_product_id', $cart_item['variation'], $cart_item, $cart_item_key );
 				                        foreach ($pkgDesc as $key => $attr){
                                             $label = wc_attribute_label(str_replace('attribute_', '', $key));
                                             echo $label . ': ' . $attr;
 				                        }
 				                        ?>
-                                    </div>
-                                    <p class="font-light">Ilość: <?php echo $cart_item['quantity']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>
-                                </div>
-
                             </div>
+                            <p class="font-light">Ilość:
+                                <?php echo $cart_item['quantity']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
+                            </p>
                         </div>
 
-                        <div class="flex gap-10 items-center">
-                            <div class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
-								<?php
+                    </div>
+                </div>
+
+                <div class="flex gap-10 items-center">
+                    <?php 
+						$stock = $_product ->get_stock_quantity();
+						$stock < 0 ? $instkoc = false : $instkoc = true;
+					?>
+                    <?php if ($instkoc) : ?>
+                    <div class="flex gap-1 items-center text-green uppercase">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path
+                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                        </svg>
+                        <p>W magazynie</p>
+                    </div>
+                    <?php else : ?>
+                    <div class="flex gap-1 flex-col justify-center items-center" style="color: red">
+                        <div class="flex gap-1 items-centeruppercase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-check-lg" viewBox="0 0 16 16">
+                                <path
+                                    d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                            </svg>
+                            <p>Niedostępne</p>
+                        </div>
+                        <p class="w-32 text-sm font-light">czas dostawy wydłuży się o 3-4 dni</p>
+                    </div>
+
+                    <p>Chuj</p>
+                    <?php endif;?>
+                    <div class="product-quantity product quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
+                        <?php
 								if ( $_product->is_sold_individually() ) {
 									$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
 								} else {
@@ -94,16 +126,17 @@
 
 								echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
 								?>
-                            </div>
+                    </div>
 
-                            <div class="product-subtotal text-xl font-bold" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
-								<?php
+                    <div class="product-subtotal text-xl font-bold"
+                        data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
+                        <?php
 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 								?>
-                            </div>
+                    </div>
 
-                            <div class="product-remove">
-								<?php
+                    <div class="product-remove">
+                        <?php
 								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									'woocommerce_cart_item_remove_link',
 									sprintf(
@@ -116,50 +149,61 @@
 									$cart_item_key
 								);
 								?>
-                            </div>
-                        </div>
                     </div>
-					<?php
+                </div>
+            </div>
+            <?php
 				}
 			}
 			?>
-			<?php do_action( 'woocommerce_cart_contents' ); ?>
+            <?php do_action( 'woocommerce_cart_contents' ); ?>
+            <div class="flex justify-between gap-4">
+                <div class="w-full my-5 max-w-sm self-start">
+                    <?php get_template_part( '/components/boardhouse-cart-status'); ?>
+                </div>
+                <div class="flex flex-col gap-5 w-96 self-end my-5">
+                    <div class="actions">
 
-            <div class="flex flex-col gap-5 w-96 self-end my-5">
-                <div class="actions">
-
-					<?php if ( wc_coupons_enabled() ) { ?>
+                        <?php if ( wc_coupons_enabled() ) { ?>
                         <div class="coupon flex">
-                            <input type="text" name="coupon_code" class="input-text border-light-gray border h-12 px-3 w-1/2" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" />
-                            <button type="submit" class="w-1/2 rounded-none uppercase bg-dark text-white hover:bg-green transition-all" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?></button>
-							<?php do_action( 'woocommerce_cart_coupon' ); ?>
+                            <input type="text" name="coupon_code"
+                                class="input-text border-light-gray border h-12 px-3 w-1/2" id="coupon_code" value=""
+                                placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" />
+                            <button type="submit"
+                                class="w-1/2 rounded-none uppercase bg-dark text-white hover:bg-green transition-all pointer-events-auto"
+                                name="apply_coupon"
+                                value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?></button>
+                            <?php do_action( 'woocommerce_cart_coupon' ); ?>
                         </div>
-					<?php } ?>
+                        <?php } ?>
 
 
-					<?php do_action( 'woocommerce_cart_actions' ); ?>
+                        <?php do_action( 'woocommerce_cart_actions' ); ?>
 
-					<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+                        <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+                    </div>
+                    <div>
+                        <button type="submit" class="h-12 border-2 border-dark hover:bg-green hover:text-white hover:border-green uppercase w-full transition-all cursor-pointer" name="update_cart"
+                            value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+                    </div>
+                    <?php do_action( 'woocommerce_after_cart_contents' ); ?>
                 </div>
-                <div>
-                    <button type="submit" class="h-12 border-2 border-dark uppercase w-full" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
-                </div>
-				<?php do_action( 'woocommerce_after_cart_contents' ); ?>
             </div>
         </div>
-		<?php do_action( 'woocommerce_after_cart_table' ); ?>
+        <?php do_action( 'woocommerce_after_cart_table' ); ?>
     </form>
 
-	<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
+    <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
     <div class="flex justify-between items-end mb-10">
         <div class="w-96">
-            <a href="<?php echo get_home_url() ?>" class="bg-white border-dark border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase">
+            <a href="<?php echo get_home_url() ?>"
+                class="bg-white border-dark border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase">
                 Kontynuj zakupy
             </a>
         </div>
         <div class="w-96">
-			<?php
+            <?php
 			/**
 			 * Cart collaterals hook.
 			 *
@@ -171,15 +215,17 @@
         </div>
     </div>
 
-	<?php do_action( 'woocommerce_after_cart' ); ?>
+    <?php do_action( 'woocommerce_after_cart' ); ?>
 
 </section>
+
+
 
 <section class="container mx-auto mt-10">
     <h2 class="text-center font-medium uppercase tracking-wider text-2xl mb-8">Mogą cię również zainteresować</h2>
-	<?php get_template_part('/components/boardhouse-products-carousel', null, array("id"=>1, "amount"=>18, "sale"=>true)); ?>
+    <?php get_template_part('/components/boardhouse-products-carousel', null, array("id"=>1, "amount"=>18, "sale"=>true)); ?>
 </section>
 
 <section class="my-28 container mx-auto">
-	<?php get_template_part('/components/boardhouse-icons-row'); ?>
+    <?php get_template_part( '/components/boardhouse-icons-row' ); ?>
 </section>

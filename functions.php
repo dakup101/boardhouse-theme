@@ -25,25 +25,11 @@ function Boardhouse_theme(): ? BoardhouseThemeCore
 }
 Boardhouse_theme();
 
+add_action('wp_enqueue_scripts', 'theme_scripts');
 function theme_scripts(){
 	wp_enqueue_style( 'tailwind', THEME_URI.'assets/compiled/tailwind.css');
 	wp_enqueue_style( 'theme', THEME_URI.'assets/compiled/theme.css');
 	wp_enqueue_script('theme', THEME_URI.'assets/compiled/theme.js');
-}
-add_action('wp_enqueue_scripts', 'theme_scripts');
-
-
-add_action( 'wp_footer', 'cart_update_qty_script' );
-function cart_update_qty_script() {
-	if (is_cart()) :
-		?>
-		<script>
-            jQuery( 'div.woocommerce' ).on( 'change', '.qty', function () {
-                jQuery( "[name='update_cart']" ).trigger( "click" );
-            } );
-		</script>
-	<?php
-	endif;
 }
 
 function is_not_hidden_attr($term_name): bool {

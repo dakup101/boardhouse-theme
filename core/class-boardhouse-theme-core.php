@@ -48,6 +48,17 @@ final class BoardhouseThemeCore
         require THEME_DIR . 'core/wc-shipping-icons.php';
 		require THEME_DIR . 'core/wc-fields-validation.php';
 		require THEME_DIR . 'core/wc-profile-menu.php';
+		
+		// Not actions functions
+
+		require THEME_DIR . 'core/global/count-cart.php';
+		require THEME_DIR . 'core/global/show-cart.php';
+
+		// Ajaxes
+
+		require THEME_DIR . 'core/wc-cart-status-ajax.php';
+		require THEME_DIR . 'core/wc-add-to-cart-ajax.php';
+		require THEME_DIR . 'core/ajax-return-html-cart.php';
 
 
 		add_filter ( 'woocommerce_product_thumbnails_columns', 'bbloomer_change_gallery_columns' );

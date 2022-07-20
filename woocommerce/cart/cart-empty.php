@@ -20,20 +20,29 @@ defined( 'ABSPATH' ) || exit;
 /*
  * @hooked wc_empty_cart_message - 10
  */
-do_action( 'woocommerce_cart_is_empty' );
+?>
+<div class="mt-8 mb-12">
+    <?php  woocommerce_breadcrumb() ?>
+</div>
 
+<section class="w-10/12 mx-auto">
+    <h1 class="text-5xl my-10 w-full font-bold text-center">Twój Koszyk</h1>
+	<p class="text-center text-xl font-light">Twój koszyk jest aktualnie pusty</p>
+    <?php 
 if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
-	<p class="return-to-shop">
-		<a class="button wc-backward" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php
+    <p class="return-to-shop text-center">
+        <a class="block mx-auto w-fit mt-5 mb-10 px-5 py-2 bg-green uppercase font-bold text-white transition-all hover:bg-orange"
+            href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
+            <?php
 				/**
 				 * Filter "Return To Shop" text.
 				 *
 				 * @since 4.6.0
 				 * @param string $default_text Default text.
 				 */
-				echo esc_html( apply_filters( 'woocommerce_return_to_shop_text', __( 'Return to shop', 'woocommerce' ) ) );
+				echo esc_html( apply_filters( 'woocommerce_return_to_shop_text', __( 'Idź na zakupy', 'woocommerce' ) ) );
 			?>
-		</a>
-	</p>
-<?php endif; ?>
+        </a>
+    </p>
+    <?php endif; ?>
+</section>
