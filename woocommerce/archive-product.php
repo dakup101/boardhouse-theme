@@ -44,11 +44,14 @@ do_action( 'woocommerce_before_main_content' );
 	do_action( 'woocommerce_archive_description' );
 	?>
 </header>
-<div class="boardhouse-sidebar">
-	<?php dynamic_sidebar('sidebar'); 	do_action( 'woocommerce_before_shop_loop' );
+
+<?php echo do_shortcode( '[yith_wcan_filters slug="draft-preset"]') ?>
+
+<!-- <div class="boardhouse-sidebar">
+	<?php // dynamic_sidebar('sidebar'); 	do_action( 'woocommerce_before_shop_loop' );
 	?>
 
-</div>
+</div> -->
 <div class="before-products grid grid-cols-3 items-center mb-10">
     <div>
         <?php

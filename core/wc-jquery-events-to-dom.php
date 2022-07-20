@@ -22,6 +22,12 @@ function trigger_for_ajax_add_to_cart() {
                     new CustomEvent('payment_method_selected')
                 );
             });
+            $('body').on( 'wc_cart_emptied', function(){
+                console.log('--- wc_cart_emptied ---');
+                document.dispatchEvent(
+                    new CustomEvent('wc_cart_emptied')
+                );
+            });
             $('body').on( 'updated_wc_div', function(){
                 console.log('--- updated_wc_div ---');
                 document.dispatchEvent(

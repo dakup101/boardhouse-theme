@@ -59,3 +59,4 @@ add_action( 'woocommerce_checkout_after_order_review', 'woocommerce_checkout_pay
 
 
 
+add_filter( 'yith_wcan_skip_layered_nav_query', '__return_true' );

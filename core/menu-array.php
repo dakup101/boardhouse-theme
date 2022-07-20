@@ -24,5 +24,8 @@ function wp_get_menu_array($current_menu): array {
 			$menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
 		}
 	}
-	return $menu;
+	return array(
+		'menus' => $menu,
+		'submenus' => $submenu
+	);
 }

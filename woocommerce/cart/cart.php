@@ -22,10 +22,10 @@
 
 	defined( 'ABSPATH' ) || exit;
 
-	do_action( 'woocommerce_before_cart' ); ?>
+    ?>
 
     <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
-        <?php do_action( 'woocommerce_before_cart_table' ); ?>
+        
         <h1 class="text-5xl my-10 w-full font-bold text-center">Twój Koszyk</h1>
         <div class="flex flex-col border-t border-light-gray">
             <?php do_action( 'woocommerce_before_cart_contents' ); ?>
@@ -103,8 +103,6 @@
                         </div>
                         <p class="w-32 text-sm font-light">czas dostawy wydłuży się o 3-4 dni</p>
                     </div>
-
-                    <p>Chuj</p>
                     <?php endif;?>
                     <div class="product-quantity product quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
                         <?php

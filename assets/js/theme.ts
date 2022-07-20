@@ -3,8 +3,8 @@ console.log('--- Site Loaded ---')
 import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 
-// let ajaxUrl = 'http://localhost/boardhouse/wp-admin/admin-ajax.php'
-let ajaxUrl = 'https://everywhere.pl/www/bh/wp-admin/admin-ajax.php'
+let ajaxUrl = 'http://localhost/boardhouse/wp-admin/admin-ajax.php'
+// let ajaxUrl = 'https://everywhere.pl/www/bh/wp-admin/admin-ajax.php'
 
 // Rendered
 window.addEventListener('DOMContentLoaded', ()=>{
@@ -13,6 +13,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
     handleAddToCart();
     handleQuantityInputs();
     cartStatusUpd();
+
+
 
     // Main Slider
     const hero = new Swiper('.hero', {
@@ -259,6 +261,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
         cartStatusUpd();
         handleQuantityInputs();
     })
+
+    document.addEventListener('updated_wc_div', ()=>{
+        window.location.reload();
+    })
 })
 
 
@@ -304,13 +310,14 @@ function cartStatusUpd(){
 
 function handleQuantityInputs(){
     let quantityWrappers = document.querySelectorAll('.product .quantity');
+    if (!quantityWrappers) return;
     if (quantityWrappers.length>0){
         for(let quantityWrapper of quantityWrappers){
             let quantityInput = quantityWrapper.getElementsByTagName('input')[0] ;
             let quantityUp = quantityWrapper.querySelector('[data-up]');
             let quantityDown = quantityWrapper.querySelector('[data-down]');
 
-            quantityUp.addEventListener('click', e => {
+            if (quantityUp) quantityUp.addEventListener('click', e => {
                 e.preventDefault();
                 let currentValue = parseInt(quantityInput.value);
                 currentValue ++;
@@ -319,7 +326,7 @@ function handleQuantityInputs(){
                 if (updBtn) updBtn.removeAttribute('disabled');
             })
 
-            quantityDown.addEventListener('click', e => {
+            if (quantityDown) quantityDown.addEventListener('click', e => {
                 e.preventDefault();
                 let currentValue = parseInt(quantityInput.value);
                 if (currentValue > 1) currentValue--;
@@ -345,6 +352,9 @@ function handleAddToCart(){
             let variationId = targetParent.querySelector('[name="variation_id"]');
             if (!productId && !variationId) return;
             addVariableProduct((productId as HTMLInputElement).value, (variationId as HTMLInputElement).value, (quantity as HTMLInputElement).value, btn)
+        }
+        else{
+            addProduct((btn as HTMLButtonElement).value, (quantity as HTMLInputElement).value, btn)
         }
     })
 
@@ -372,8 +382,22 @@ function addVariableProduct(product_id, variation_id, quantity, btn){
         handleCartPopup(json, quantity, btn);
     });
 }
-function addProduct(add_to_cart){
+function addProduct(add_to_cart, quantity, btn){
     console.log('--- Add Simple Product to Cart ---')
+    console.log(add_to_cart, quantity)
+    btn.textContent = "Dodaję produkt..."
+    const data = new FormData();
+    data.append('action', 'add_variable');
+    data.append('product_id', add_to_cart);
+    fetch(ajaxUrl, {
+        method: "POST",
+        body: data,
+        credentials: 'same-origin',
+    })
+    .then(response => response.json()) 
+    .then(json => {
+        handleCartPopup(json, quantity, btn);
+    });
 }
 function handleCartPopup(add_response, quantity, btn){
     if (!add_response[0]) {
@@ -389,6 +413,7 @@ function handleCartPopup(add_response, quantity, btn){
     addToCartPopup.classList.remove('hidden');
     let popupCart = addToCartPopup.querySelector('[data-cp_cart]');
     popupCart.classList.add('loading');
+    document.querySelector('[data-cp_amount]').textContent=quantity;
     const data = new FormData();
     data.append('action', 'html_cart');
     fetch(ajaxUrl, {
@@ -406,3 +431,4 @@ function handleCartPopup(add_response, quantity, btn){
 function getUserCartItems(){
     console.log('--- Get User Cart Items ---')
 }
+
