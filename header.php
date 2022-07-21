@@ -11,3 +11,4 @@
 <body class="text-dark">
 
 <?php get_template_part('/components/boardhouse-header'); ?>
+<?php get_template_part('/components/header/boardhouse-sticky-header'); ?>

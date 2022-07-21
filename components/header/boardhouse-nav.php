@@ -63,13 +63,16 @@
                 </svg>
             </a>
             <a href="<?php echo get_home_url() . '/koszyk'; ?>"
-                class="p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark">
+                class="p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark relative">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.92 20" class="fill-current w-5 h-5">
                     <path
                         d="M15.86,15.02c.53-.53,1.26-.86,2.06-.86s1.53,.33,2.06,.86c.53,.53,.86,1.26,.86,2.06s-.33,1.53-.86,2.06c-.53,.53-1.26,.86-2.06,.86s-1.53-.33-2.06-.86c-.53-.53-.86-1.26-.86-2.06s.33-1.53,.86-2.06h0Zm1.18,2.94c.23,.23,.54,.37,.88,.37s.64-.13,.87-.35l.02-.02c.23-.23,.37-.54,.37-.88s-.14-.66-.37-.88c-.23-.23-.54-.37-.88-.37s-.64,.13-.87,.35l-.02,.02c-.23,.23-.37,.54-.37,.88s.14,.66,.37,.88h0ZM22.89,3.9l-3.33,8.73c-.05,.17-.21,.29-.4,.29H8.33c-.16,0-.32-.1-.39-.26L3.47,1.67H.42c-.23,0-.42-.19-.42-.42V.42c0-.23,.19-.42,.42-.42h3.75c.15,0,.3,.09,.37,.23l1.55,3.1H22.5s.1,0,.15,.03c.21,.08,.32,.32,.24,.54h0Zm-4.43,7.35l2.21-6.25H6.45l2.57,6.25h9.43Zm-9.68,3.77c.53-.53,1.26-.86,2.06-.86s1.53,.33,2.06,.86c.53,.53,.86,1.26,.86,2.06s-.33,1.53-.86,2.06c-.53,.53-1.26,.86-2.06,.86s-1.51-.32-2.04-.83l-.02-.02c-.53-.53-.86-1.26-.86-2.06s.33-1.53,.86-2.06h0Zm1.18,2.94c.23,.23,.54,.37,.88,.37s.64-.13,.87-.35l.02-.02c.23-.23,.37-.54,.37-.88s-.14-.66-.37-.88h0c-.23-.23-.54-.37-.88-.37s-.66,.14-.88,.37c-.23,.23-.37,.54-.37,.88s.14,.66,.37,.88Z" />
                 </svg>
+                <div class="flex h-5 w-5 items-center justify-center text-sm font-bold bg-green text-white rounded-full absolute -top-1.5 -right-1.5 opacity-0 transition-all" data-cart_counter>
+                    1
+                </div>
             </a>
-            <div class="searchform hidden absolute top-16 w-80 right-0 shadow-light-gray shadow-md z-50 transition-all"
+            <div class="searchform hidden absolute top-16 w-80 right-0 border-dark border z-50 transition-all"
                 data-searchform>
                 <?php echo do_shortcode('[fibosearch]'); ?>
             </div>

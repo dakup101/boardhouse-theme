@@ -34,6 +34,18 @@ function trigger_for_ajax_add_to_cart() {
                     new CustomEvent('updated_wc_div')
                 );
             });
+            $('body').on( 'added_to_cart', function(){
+                console.log('--- added_to_cart ---');
+                document.dispatchEvent(
+                    new CustomEvent('added_to_cart')
+                );
+            });
+            $('body').on( 'removed_from_cart', function(){
+                console.log('--- removed_from_cart ---');
+                document.dispatchEvent(
+                    new CustomEvent('removed_from_cart')
+                );
+            });
         })(jQuery);
     </script>
     <?php

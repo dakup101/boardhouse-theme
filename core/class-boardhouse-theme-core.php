@@ -59,6 +59,7 @@ final class BoardhouseThemeCore
 		require THEME_DIR . 'core/wc-cart-status-ajax.php';
 		require THEME_DIR . 'core/wc-add-to-cart-ajax.php';
 		require THEME_DIR . 'core/ajax-return-html-cart.php';
+		require THEME_DIR . 'core/ajax-count-cart-items.php';
 
 
 		add_filter ( 'woocommerce_product_thumbnails_columns', 'bbloomer_change_gallery_columns' );

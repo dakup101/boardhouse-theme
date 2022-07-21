@@ -75,19 +75,17 @@ window.addEventListener('DOMContentLoaded', ()=>{
         })
     }
 
-    let searchBtn = document.querySelector('[data-make_search]');
-    let searchBar = document.querySelector('[data-searchform]');
-    searchBtn.addEventListener('click', e => {
-        e.preventDefault();
-        searchBar.classList.toggle('hidden');
-        if (!searchBar.classList.contains('hidden')){
-            searchBtn.classList.add('active')
-        }
-        else{
-            searchBtn.classList.remove('active')
-        }
+    let searchBtn = document.querySelectorAll('[data-make_search]');
+    searchBtn.forEach((el) => {
+        el.addEventListener('click', ev => {
+            ev.preventDefault();
+            let target = ev.currentTarget as HTMLAnchorElement;
+            let searchBar = target.parentNode.querySelector('[data-searchform]');
+            searchBar.classList.toggle('hidden');
+            if (!searchBar.classList.contains('hidden')) target.classList.add('active');
+            else target.classList.remove('hidden');
+        })
     })
-
 
     let goToPaymet = document.querySelector('[data-go_to_payment]');
     let placeOrder = document.querySelector('[data-place_order]');
@@ -265,6 +263,24 @@ window.addEventListener('DOMContentLoaded', ()=>{
     document.addEventListener('updated_wc_div', ()=>{
         window.location.reload();
     })
+
+    document.addEventListener('removed_from_cart', ()=>{
+        cartCount()
+    });
+
+    document.addEventListener('added_to_cart', ()=>{
+        cartCount()
+    })
+
+    cartCount()
+
+    document.addEventListener('scroll', () => {
+        console.log(window.scrollY)
+        let stickyHeader = document.querySelector('[data-sticky_header]');
+        console.log(stickyHeader);
+        if (window.scrollY > 300) stickyHeader.classList.remove('-translate-y-full');
+        else stickyHeader.classList.add('-translate-y-full');
+    })
 })
 
 
@@ -432,3 +448,26 @@ function getUserCartItems(){
     console.log('--- Get User Cart Items ---')
 }
 
+function cartCount(){
+    let cartCounter = document.querySelectorAll('[data-cart_counter]');
+    if (!cartCounter) return
+
+    const data = new FormData();
+    data.append('action', 'cart_count');
+    fetch(ajaxUrl, {
+        method: "POST",
+        body: data,
+        credentials: 'same-origin',
+    })
+    .then(response => response.text()) 
+    .then(text => {
+        renderCount(text);
+    });
+
+    function renderCount(count){
+        cartCounter.forEach((counter) => {
+            counter.classList.remove('opacity-0');
+            counter.innerHTML = count;
+        })
+    }
+}
