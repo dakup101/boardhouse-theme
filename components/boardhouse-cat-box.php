@@ -1,14 +1,14 @@
 <?php
-$zalupas = [1,2,3,4,5,6,7,8];
-foreach ($zalupas as $zalupa):
+$cats = get_field('cats');
+foreach ($cats as $el):
 ?>
 
 <div class="cat-box relative aspect-square w-full overflow-hidden">
-    <a href="<?php echo get_home_url() . '/kategoria-produktu/deski/'; ?>" class="absolute w-full h-full top-0 left-0 bg-dark/40 flex items-center justify-center gap-10 flex-col z-20 hover:bg-green/60 focus:bg-dark/20 transition-all">
-        <img src="<?php echo THEME_IMG . '/deska.svg' ?>" alt="" class="w-1/2 h-1/3">
-        <div class="text-white font-medium uppercase text-4xl">Deski</div>
+    <a href="<?php echo $el['link']; ?>" class="absolute w-full h-full top-0 left-0 flex items-center justify-center gap-10 flex-col z-20 hover:bg-green/60 focus:bg-dark/20 transition-all">
+        <img src="<?php echo $el['img'] ?>" alt="" class="w-auto h-1/2">
+        <div class="text-white font-medium uppercase text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl"><?php echo $el['name']; ?></div>
     </a>
-    <img src="<?php echo THEME_IMG . '/thumb.jpg'?>" alt="" class="absolute top-0 left-0 w-full h-full z-10 transition-all">
+    <img src="<?php echo $el['bg'] ?>" alt="" class="absolute top-0 left-0 w-full h-full z-10 transition-all">
 </div>
 
 <?php endforeach; ?>

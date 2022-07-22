@@ -3,8 +3,8 @@ console.log('--- Site Loaded ---')
 import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 
-// let ajaxUrl = 'http://localhost/boardhouse/wp-admin/admin-ajax.php'
-let ajaxUrl = 'https://everywhere.pl/www/bh/wp-admin/admin-ajax.php'
+let ajaxUrl = 'http://localhost/boardhouse/wp-admin/admin-ajax.php'
+// let ajaxUrl = 'https://everywhere.pl/www/bh/wp-admin/admin-ajax.php'
 
 // Rendered
 window.addEventListener('DOMContentLoaded', ()=>{
@@ -39,26 +39,53 @@ window.addEventListener('DOMContentLoaded', ()=>{
         let container = '.product-carousel-' + carouselId;
         let paginationContainer = '.carousel-pagination-' + carouselId;
         console.log(container);
-        const test = new Swiper(container, {
-            modules: [Pagination],
+        const carousel = new Swiper(container, {
+            modules: [Pagination, Navigation],
             direction: "horizontal",
-            slidesPerView: 6,
-            slidesPerGroup: 6,
+            slidesPerView: 1,
+            slidesPerGroup: 1,
             loop: false,
             spaceBetween: 30,
+            hashNavigation: {
+                watchState: true,
+            },
             pagination: {
                 el: paginationContainer,
                 clickable: true,
                 renderBullet: function (index, className) {
-                    return '<span class="transition-all hover:cursor-pointer ' + className + '"></span>';
+                    return '<button class="transition-all hover:cursor-pointer ' + className + '"></button>';
+                }
+            },
+            breakpoints: {
+                400:{
+                    slidesPerView: 2,
+                    slidesPerGroup: 2
+                },
+                640: {
+                    slidesPerView: 2,
+                    slidesPerGroup: 2
+                },
+                991: {
+                    slidesPerView: 3,
+                    slidesPerGroup: 3
+                },
+                1240: {
+                    slidesPerView: 4,
+                    slidesPerGroup: 4
+                },
+                1440: {
+                    slidesPerView: 5,
+                    slidesPerGroup: 5
+                },
+                1760: {
+                    slidesPerView: 6,
+                    slidesPerGroup: 6
                 }
             }
         })
     }
     let carousels = document.querySelectorAll('.product-carousel');
     carousels.forEach(carousel => buildCarousels(carousel));
-
-    
 
     let tooltipsParents = document.querySelectorAll('.has-tooltip');
     for (let tooltipParent of tooltipsParents){

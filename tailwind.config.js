@@ -22,14 +22,21 @@ module.exports = {
             'dark-gray' : '#5D5D5D',
             'current' : 'currentColor'
         },
+        screens: {
+            sm: '640px',
+            md: '991px',
+            lg: '1240px',
+            xl: '1440px',
+            '2xl': '1760px'
+        },
         container: {
             padding: '1rem',
             screens: {
-                sm: '640px',
+                sm: '768px',
                 md: '991px',
                 lg: '1240px',
                 xl: '1440px',
-                '2xl': '1760px',
+                '2xl': '1760px'
             }
         }
     },

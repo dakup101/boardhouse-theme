@@ -5,6 +5,7 @@ $data = wp_parse_args($args, array(
         'sale' => null
 	)
 );
+$data_count = 1;
 ?>
 <div class="overflow-hidden relative product-carousel product-carousel-<?php echo $data['id'] ?>" data-slider="<?php echo $data['id'] ?>">
 	<div class="swiper-wrapper">
@@ -20,10 +21,11 @@ $data = wp_parse_args($args, array(
 		if ( $loop->have_posts() ) {
 			while ( $loop->have_posts() ) : $loop->the_post();
 				?>
-            <div class="swiper-slide h-auto">
+            <div class="swiper-slide h-auto" data-hash="slide<?php echo $data_count; ?>">
                 <?php wc_get_template_part( 'content', 'product' ); ?>
             </div>
         <?php
+			$data_count++;
 			endwhile;
 		} else {
 			echo __( 'No products found' );

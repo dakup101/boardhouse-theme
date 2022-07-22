@@ -1,9 +1,19 @@
-<div data-sticky_header class="w-full fixed top-0 left-0 bg-white border-b border-dark/30 py-4 z-30 transition-all -translate-y-full">
+<div data-sticky_header
+    class="w-full fixed top-0 left-0 bg-white border-b border-dark/30 py-4 z-50 transition-all -translate-y-full">
     <div class="container mx-auto flex gap-10 justify-between">
-        <a href="<?php echo get_home_url(); ?>" class="w-16">
-        <img src="<?php echo THEME_IMG . '/small_logo.svg' ?>" alt="">
+        <div class="flex shrink-0 items-center gap-3">
+        <a href="#" class="block lg:none h-8 w-8 sm:w-10 sm:h-10">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16"
+                class="w-8 h-8">
+                <path fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
         </a>
-        <div class="flex items-center justify-start gap-10 w-full" data-nav>
+        <a href="<?php echo get_home_url(); ?>" class="w-auto h-8 lg:h-auto lg:w-16">
+            <img src="<?php echo THEME_IMG . '/small_logo.svg' ?>" alt="" class="w-auto h-full">
+        </a>
+        </div>
+        <div class="hidden lg:flex items-center justify-start gap-10 w-full" data-nav>
             <?php
 			$menu = wp_get_menu_array( 'primary' );
 			?>
@@ -31,7 +41,7 @@
         </div>
         <div class="flex gap-0.5 items-center pl-5 border-l-2 border-l-light-gray shrink-0 relative">
             <a href="#"
-                class="p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
+                class="hidden lg:block p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
                 data-make_search>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" class="fill-current h-5 w-5">
                     <path
@@ -58,7 +68,8 @@
                     <path
                         d="M15.86,15.02c.53-.53,1.26-.86,2.06-.86s1.53,.33,2.06,.86c.53,.53,.86,1.26,.86,2.06s-.33,1.53-.86,2.06c-.53,.53-1.26,.86-2.06,.86s-1.53-.33-2.06-.86c-.53-.53-.86-1.26-.86-2.06s.33-1.53,.86-2.06h0Zm1.18,2.94c.23,.23,.54,.37,.88,.37s.64-.13,.87-.35l.02-.02c.23-.23,.37-.54,.37-.88s-.14-.66-.37-.88c-.23-.23-.54-.37-.88-.37s-.64,.13-.87,.35l-.02,.02c-.23,.23-.37,.54-.37,.88s.14,.66,.37,.88h0ZM22.89,3.9l-3.33,8.73c-.05,.17-.21,.29-.4,.29H8.33c-.16,0-.32-.1-.39-.26L3.47,1.67H.42c-.23,0-.42-.19-.42-.42V.42c0-.23,.19-.42,.42-.42h3.75c.15,0,.3,.09,.37,.23l1.55,3.1H22.5s.1,0,.15,.03c.21,.08,.32,.32,.24,.54h0Zm-4.43,7.35l2.21-6.25H6.45l2.57,6.25h9.43Zm-9.68,3.77c.53-.53,1.26-.86,2.06-.86s1.53,.33,2.06,.86c.53,.53,.86,1.26,.86,2.06s-.33,1.53-.86,2.06c-.53,.53-1.26,.86-2.06,.86s-1.51-.32-2.04-.83l-.02-.02c-.53-.53-.86-1.26-.86-2.06s.33-1.53,.86-2.06h0Zm1.18,2.94c.23,.23,.54,.37,.88,.37s.64-.13,.87-.35l.02-.02c.23-.23,.37-.54,.37-.88s-.14-.66-.37-.88h0c-.23-.23-.54-.37-.88-.37s-.66,.14-.88,.37c-.23,.23-.37,.54-.37,.88s.14,.66,.37,.88Z" />
                 </svg>
-                <div class="flex h-5 w-5 items-center justify-center text-sm font-bold bg-green text-white rounded-full absolute -top-1.5 -right-1.5 opacity-0 transition-all" data-cart_counter>
+                <div class="flex h-5 w-5 items-center justify-center text-sm font-bold bg-green text-white rounded-full absolute -top-1.5 -right-1.5 opacity-0 transition-all"
+                    data-cart_counter>
                     1
                 </div>
             </a>
