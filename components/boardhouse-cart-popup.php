@@ -1,7 +1,7 @@
 <div data-cart_popup class="fixed top-0 left-0 flex w-full h-full items-center justify-center bg-dark/30 z-50 hidden">
-    <div class="bg-white max-w-2xl w-full">
+    <div class="bg-white max-w-2xl w-full overflow-y-auto max-h-screen">
         <div
-            class="py-6 px-20 border-b border-b-light-gray w-full relative text-center text-lg flex gap-3 items-center uppercase font-bold justify-center">
+            class="py-6 pl-6 pr-20 lg:pl-20 border-b border-b-light-gray w-full relative text-center text-lg flex gap-3 items-center uppercase font-bold justify-center">
             <svg class="w-5" id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                 <defs>
                     <style>

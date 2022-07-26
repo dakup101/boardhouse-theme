@@ -33,7 +33,7 @@ if ( post_password_required() ) {
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'mt-14', $product ); ?>>
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-1 lg:grid-cols-2">
         <div class="product-images">
             <?php
 			/**
@@ -45,8 +45,8 @@ if ( post_password_required() ) {
 			do_action( 'woocommerce_before_single_product_summary' );
 			?>
         </div>
-        <div class="summary entry-summary flex">
-            <div class="w-3/6 pr-20">
+        <div class="summary entry-summary flex flex-col lg:flex-row">
+            <div class="w-full lg:w-3/6 lg:pr-20">
                 <?php
 				/**
 				 * Hook: woocommerce_single_product_summary.
@@ -63,7 +63,7 @@ if ( post_password_required() ) {
 				do_action( 'woocommerce_single_product_summary' );
 				?>
             </div>
-            <div class="w-3/6">
+            <div class="w-full mt-10 lg:mt-0 lg:w-3/6">
                 <?php get_template_part('/components/product/we-recommend') ?>
                 <a href="#"><img src="<?php echo THEME_IMG . '/baner_product.png' ?>" alt="" class="mt-3 w-full"></a>
             </div>

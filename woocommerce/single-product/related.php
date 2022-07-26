@@ -22,10 +22,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $related_products ) : ?>
 
 	<section class="related products">
-        <div class="grid grid-cols-3 align-middle items-center my-12">
-            <div class=""></div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 items-center my-12">
+            <div class="hidden sm:block"></div>
             <h2 class="text-center font-medium uppercase tracking-wider text-2xl ">Do tego produktu Polecamy</h2>
-            <div class="flex justify-end">
+            <div class="flex justify-center sm:justify-end">
                 <a class="font-light underline text-orange hover:text-green transition-all"
                    href="<?php echo get_home_url() . '/sklep' ?>">Zobacz wszystkie produkty</a>
             </div>

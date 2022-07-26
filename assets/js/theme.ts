@@ -3,8 +3,8 @@ console.log('--- Site Loaded ---')
 import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 
-let ajaxUrl = 'http://localhost/boardhouse/wp-admin/admin-ajax.php'
-// let ajaxUrl = 'https://everywhere.pl/www/bh/wp-admin/admin-ajax.php'
+// let ajaxUrl = 'http://localhost/boardhouse/wp-admin/admin-ajax.php'
+let ajaxUrl = 'https://everywhere.pl/www/bh/wp-admin/admin-ajax.php'
 
 // Rendered
 window.addEventListener('DOMContentLoaded', ()=>{
@@ -13,7 +13,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
     handleAddToCart();
     handleQuantityInputs();
     cartStatusUpd();
-
+    cartCount();
+    handleMobileNav();
 
 
     // Main Slider
@@ -299,8 +300,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
         cartCount()
     })
 
-    cartCount()
-
     document.addEventListener('scroll', () => {
         console.log(window.scrollY)
         let stickyHeader = document.querySelector('[data-sticky_header]');
@@ -349,6 +348,8 @@ function cartStatusUpd(){
         }
         statusBar.style.width=status.percent+"%";
     }
+
+   
 }
 
 function handleQuantityInputs(){
@@ -498,3 +499,42 @@ function cartCount(){
         })
     }
 }
+
+function handleMobileNav(){
+    const mobileNav = {
+        wrapper: document.querySelector('[data-mobile_nav]'),
+        btnOpen: document.querySelectorAll('[data-open_mobile_nav]'),  
+        btnClose: document.querySelector('[data-close_mobile_nav]'),
+        items: document.querySelectorAll('[data-mobile_tab_for]')
+    }
+    mobileNav.btnClose.addEventListener('click', e => {
+        e.preventDefault();
+        console.log('zalupa');
+        mobileNav.wrapper.classList.toggle('-translate-x-full')
+    })
+    mobileNav.btnOpen.forEach((btn)=>{
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            mobileNav.wrapper.classList.toggle('-translate-x-full')
+        })
+    })
+    mobileNav.items.forEach((el) => {
+        let tabFor = el.getAttribute('data-mobile_tab_for')
+        let isParent = el.getAttribute('data-parent')
+        if (isParent){
+            el.addEventListener('click', e => {
+                e.preventDefault();
+                let target = e.currentTarget as HTMLAnchorElement;
+                target.classList.toggle('active');
+                let caret = target.querySelector('[data-caret]') as HTMLElement;
+                caret.classList.toggle('-rotate-90');
+                let isActive = target.classList.contains('active');
+                let child = document.querySelector('[data-mobile_tab="'+tabFor+'"]') as HTMLElement;
+                let childHeight = child.scrollHeight;
+                if (isActive) child.style.height = childHeight + "px";
+                else child.style.height = "0px";
+            })
+        }
+    })
+}
+

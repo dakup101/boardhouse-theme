@@ -1,6 +1,6 @@
 <div class="w-full sticky top-0 left-0 z-50 <?php echo is_front_page() ? '' : 'border-b border-dark/20' ?>">
     <div class="container mx-auto flex justify-between items-center gap-10 py-8">
-        <a href="#" class="block lg:none h-8 w-8 sm:w-10 sm:h-10">
+        <a href="#" class="block lg:hidden h-8 w-8 sm:w-10 sm:h-10" data-open_mobile_nav>
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list"
                 viewBox="0 0 16 16" class="w-8 h-8">
                 <path fill-rule="evenodd"

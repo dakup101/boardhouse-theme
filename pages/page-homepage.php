@@ -43,7 +43,7 @@
   <section class="mt-10">
       <?php get_template_part( '/components/boardhouse-cta' ); ?>
   </section>
-  <section class="my-28 container mx-auto">
+  <section class="mb-10 mt-10 lg:mt-28 mb:mb-28 container mx-auto">
       <?php get_template_part( '/components/boardhouse-icons-row' ); ?>
   </section>
 </main>

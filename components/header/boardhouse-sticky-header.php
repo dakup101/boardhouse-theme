@@ -2,16 +2,16 @@
     class="w-full fixed top-0 left-0 bg-white border-b border-dark/30 py-4 z-50 transition-all -translate-y-full">
     <div class="container mx-auto flex gap-10 justify-between">
         <div class="flex shrink-0 items-center gap-3">
-        <a href="#" class="block lg:none h-8 w-8 sm:w-10 sm:h-10">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16"
-                class="w-8 h-8">
-                <path fill-rule="evenodd"
-                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-            </svg>
-        </a>
-        <a href="<?php echo get_home_url(); ?>" class="w-auto h-8 lg:h-auto lg:w-16">
-            <img src="<?php echo THEME_IMG . '/small_logo.svg' ?>" alt="" class="w-auto h-full">
-        </a>
+            <a href="#" class="block lg:none h-8 w-8 sm:w-10 sm:h-10" data-open_mobile_nav>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16"
+                    class="w-8 h-8">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+            </a>
+            <a href="<?php echo get_home_url(); ?>" class="w-auto h-8 lg:h-auto lg:w-16">
+                <img src="<?php echo THEME_IMG . '/small_logo.svg' ?>" alt="" class="w-auto h-full">
+            </a>
         </div>
         <div class="hidden lg:flex items-center justify-start gap-10 w-full" data-nav>
             <?php

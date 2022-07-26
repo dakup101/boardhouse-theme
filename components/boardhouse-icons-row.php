@@ -1,6 +1,6 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-    <div class="flex gap-8 items-start jusitfy-center">
-        <img src="<?php echo THEME_IMG . '/lorry.svg' ?>" alt="" class="h-16 w-auto" >
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="flex gap-8 items-center justify-start  lg:justify-center">
+        <img src="<?php echo THEME_IMG . '/lorry.svg' ?>" alt="" class="h-20 w-auto" >
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
                 Darmowa dostawa od 200 zł
@@ -10,8 +10,8 @@
             </div>
         </div>
     </div>
-    <div class="flex gap-8 items-start justify-center">
-        <img src="<?php echo THEME_IMG . '/smartphone.svg' ?>" alt="" class="h-16 w-auto" >
+    <div class="flex gap-8 items-center justify-start  lg:justify-center">
+        <img src="<?php echo THEME_IMG . '/smartphone.svg' ?>" alt="" class="h-20 w-auto" >
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
                 MONITORUJ SWOJE ZAMÓWIENIE
@@ -21,8 +21,8 @@
             </div>
         </div>
     </div>
-    <div class="flex gap-8 items-start justify-center">
-        <img src="<?php echo THEME_IMG . '/return.svg' ?>" alt="" class="h-16 w-auto" >
+    <div class="flex gap-8 items-center justify-start  lg:justify-center">
+        <img src="<?php echo THEME_IMG . '/return.svg' ?>" alt="" class="h-20 w-auto" >
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
                 MOŻLIWOŚĆ ZWROTU DO 14 DNi
@@ -32,8 +32,8 @@
             </div>
         </div>
     </div>
-    <div class="flex gap-8 items-start justify-center">
-        <img src="<?php echo THEME_IMG . '/fast.svg' ?>" alt="" class="h-16 w-auto" >
+    <div class="flex gap-8 items-center justify-start  lg:justify-center">
+        <img src="<?php echo THEME_IMG . '/fast.svg' ?>" alt="" class="h-20 w-auto" >
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
                 Szybka wysyłka

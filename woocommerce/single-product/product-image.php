@@ -34,8 +34,8 @@ $wrapper_classes   = apply_filters(
 		'woocommerce-product-gallery--' . ( $post_thumbnail_id ? 'with-images' : 'without-images' ),
 		'woocommerce-product-gallery--columns-' . absint( $columns ),
 		'images',
-        ' ' . ( $attachment_ids ? 'flex' : 'block' ),
-		' ' . ( $attachment_ids ? 'flex-row-reverse' : 'block' )
+        ' ' . ( $attachment_ids ? 'lg:flex' : 'block' ),
+		' ' . ( $attachment_ids ? 'lg:flex-row-reverse' : 'block' )
 
 	)
 );

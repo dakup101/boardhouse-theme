@@ -1,4 +1,7 @@
 <div class="product-promo relative py-24 bg-light-gray overflow-hidden">
+<img src="<?php echo THEME_IMG . '/banner.png'?>"
+         class="md:min-h-full min-w-full md:absolute md:top-0 md:left-0 md:object-cover z-10"
+         alt="">
     <div class="container mx-auto relative flex z-20 text-white">
         <div class="w-2/5 mt-10 flex justify-end items-center">
             <div class="max-w-fit flex flex-col items-center gap-2 justify-center">
@@ -37,7 +40,4 @@
         </div>
         <div class="w-1/5 py-10"></div>
     </div>
-    <img src="<?php echo THEME_IMG . '/banner.png'?>"
-         class="min-h-full min-w-full absolute top-0 left-0 object-cover z-10"
-         alt="">
 </div>

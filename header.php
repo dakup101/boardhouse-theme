@@ -12,3 +12,4 @@
 
 <?php get_template_part('/components/boardhouse-header'); ?>
 <?php get_template_part('/components/header/boardhouse-sticky-header'); ?>
+<?php get_template_part('/components/header/boardhouse-nav-mobile'); ?>

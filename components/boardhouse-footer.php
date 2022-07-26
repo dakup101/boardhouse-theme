@@ -1,5 +1,5 @@
-<div class="container mx-auto py-12 flex">
-	<div class="w-1/4 flex flex-col items-start justify-center gap-2">
+<div class="container mx-auto py-12 flex flex-col lg:flex-row">
+	<div class="w-full lg:w-1/4 flex flex-col items-start justify-center gap-2">
 		<img src="<?php echo THEME_IMG . '/logo.svg' ?>" alt="BOARDHOUSE" class="h-14">
 		<span class="font-bold text-lg mt-4 block">Skontaktuj się z nami</span>
 		<div class="flex items-center shrink-0 gap-4">
@@ -10,12 +10,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="w-3/4 relative flex justify-between gap-6">
+	<div class="mt-10 lg:mt-0 w-full lg:w-3/4 relative flex justify-between gap-6">
         <div class="w-fit">
             <div class="text-lg font-bold mb-3">
                 Dane Adresowe
             </div>
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
                 <div class="flex text-sm flex-col gap-2">
                     <span class="font-light block">Boardhouse</span>
                     <span class="font-light block">ul. Malborska 96</span>

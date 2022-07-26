@@ -1,10 +1,11 @@
-<div class="relative overflow-hidden pt-20 pb-64">
+<div class="relative overflow-hidden pt-10 lg:pt-20 pb-20 lg:pb-64">
 	<div class="container relative z-20 mx-auto flex">
 		<div class="xl:w-1/12"></div>
-		<div class="w-6/12 ">
-            <div class=" lg:w-10/12 2xl:w-9/12 flex flex-col gap-2 mb-20">
-                <span class="text-4xl font-bold">Curabitur vitae molestie! Nibh phasellus.</span>
-                <span>Sed tempor massa id lorem sollicitudin, eleifend iaculis nunc tempor</span>
+		<div class="w-full lg:w-6/12 ">
+            <img src="<?php echo THEME_IMG . '/babeczki_small.png' ?>" alt="" class="block lg:hidden w-full">
+            <div class=" lg:w-10/12 2xl:w-9/12 flex flex-col gap-2 mt-10 mb-10 lg:mt-0 lg:mb-20">
+                <span class="text-center lg:text-left text-4xl font-bold">Curabitur vitae molestie! Nibh phasellus.</span>
+                <span class="text-center lg:text-left">Sed tempor massa id lorem sollicitudin, eleifend iaculis nunc tempor</span>
             </div>
 			<div class="w-full flex bg-white gap-1 relative">
                 <img src="<?php echo THEME_IMG . '/1.png' ?>" alt="" class="w-1/3 h-auto shrink-0">
@@ -22,5 +23,5 @@
             </div>
 		</div>
 	</div>
-    <img src="<?php echo THEME_IMG . '/babeczki.jpg' ?>" alt="" class="min-w-full min-h-full absolute object-cover left-0 top-0 z-10">
+    <img src="<?php echo THEME_IMG . '/babeczki.jpg' ?>" alt="" class="hidden lg:block min-w-full min-h-full absolute object-cover left-0 top-0 z-10">
 </div>

@@ -8,7 +8,7 @@ function show_cart_html(){
     <div class="flex flex-col">
         <?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
-        <div class="flex flex-col cart-content-popup mt-6 px-20">
+        <div class="flex flex-col cart-content-popup mt-6 px-6 lg:px-20">
             <?php
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
@@ -86,13 +86,22 @@ function show_cart_html(){
 			}
 			?>
         </div>
-        <div class="px-20 py-6">
+        <div class="px-6 lg:px-20 py-6">
         <?php get_template_part( '/components/boardhouse-cart-status'); ?>
         </div>
         <div
-            class="cart_totals py-6 px-20 bg-light-gray/50 <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
+            class="cart_totals py-6 px-6 lg:px-20 bg-light-gray/50 <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
-            <?php do_action( 'woocommerce_before_cart_totals' ); ?>
+            <div class="grid lg:hidden grid-cols-1 mb-2 sm:grid-cols-2 sm:gap-5">
+                <div>
+                <a href="<?php echo get_permalink( wc_get_page_id( 'shop' )) ?>" class="mt-5 bg-none border-2 border-dark hover:text-white hover:bg-orange hover:border-orange transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase wc-forward">
+                    <?php esc_html_e( 'Kontynuj zakupy', 'woocommerce' ); ?>
+                </a>
+                </div>
+                <div class="wc-proceed-to-checkout">
+                    <?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
+                </div>
+            </div>
 
             <table class="w-full px-6 py-3 flex gap-6 flex-col font-light text-lg">
 
@@ -169,7 +178,7 @@ function show_cart_html(){
 
             </table>
 
-            <div class="grid grid-cols-2 gap-5">
+            <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-5">
                 <div>
                 <a href="<?php echo get_permalink( wc_get_page_id( 'shop' )) ?>" class="mt-5 bg-none border-2 border-dark hover:text-white hover:bg-orange hover:border-orange transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase wc-forward">
                     <?php esc_html_e( 'Kontynuj zakupy', 'woocommerce' ); ?>
