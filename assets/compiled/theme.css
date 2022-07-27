@@ -772,4 +772,10 @@ select {
   display: none;
 }
 
+.icons-row-wrapper img {
+  height: 5rem;
+  max-width: unset;
+  width: auto;
+}
+
 /*# sourceMappingURL=theme.css.map */

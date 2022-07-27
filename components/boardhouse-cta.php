@@ -16,7 +16,7 @@
                 <div
                     class="absolute -bottom-16 left-1/2 -translate-x-1/2 w-full flex items-center justify-center flex-col gap-3">
                     <a href="#"
-                        class="flex items-center justify-center gap-3 uppercase bg-dark font-bold text-white px-5 text-lg py-3 w-3/5 hover:bg-green transition-all">
+                        class="flex items-center justify-center gap-3 uppercase bg-dark font-bold text-white px-5 text-lg py-3 w-10/12 sm:w-3/5 hover:bg-green transition-all">
                         Dodaj do koszyka
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-caret-right-fill" viewBox="0 0 16 16">

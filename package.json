@@ -4,9 +4,13 @@
   "description": "Board House WooCommerce Theme",
   "main": "/assets/js/theme.ts",
   "scripts": {
-    "dev": "npm-run-all --parallel webpack tailwind-watch scss",
+    "dev": "npm-run-all --parallel webpack-watch tailwind-watch scss-watch",
+    "build" : "npm-run-all webpack tailwind scss",
     "webpack": "webpack",
-    "scss": "sass ./assets/sass/theme.scss ./assets/compiled/theme.css -w",
+    "webpack-watch" : "webpack watch",
+    "scss" : "sass ./assets/sass/theme.scss ./assets/compiled/theme.css",
+    "scss-watch": "sass ./assets/sass/theme.scss ./assets/compiled/theme.css -w",
+    "tailwind" : "tailwind -i ./assets/sass/tailwind.css -o ./assets/compiled/tailwind.css",
     "tailwind-watch": "tailwind -i ./assets/sass/tailwind.css -o ./assets/compiled/tailwind.css --watch"
   },
   "author": "Danylo Kupriienko (Everywhere Studio)",

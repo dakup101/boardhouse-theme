@@ -903,3 +903,9 @@ select {
 .pswp__caption__center, .pswp__caption{
   display: none;
 }
+
+.icons-row-wrapper img {
+  height: 5rem;
+  max-width: unset;
+  width: auto;
+}

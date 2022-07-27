@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 icons-row-wrapper">
     <div class="flex gap-8 items-center justify-start  lg:justify-center">
         <img src="<?php echo THEME_IMG . '/lorry.svg' ?>" alt="" class="h-20 w-auto" >
         <div class="flex flex-col gap-1">

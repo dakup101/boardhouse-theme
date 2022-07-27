@@ -5,7 +5,6 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
     entry: './assets/js/theme',
     mode: "development",
-    watch: true,
     watchOptions: {
         poll: true,
         ignored: /node_modules/
@@ -33,8 +32,8 @@ module.exports = {
         ]
     },
     optimization: {
-        // minimize: true,
-        // minimizer: [new TerserPlugin()],
+        minimize: true,
+        minimizer: [new TerserPlugin()],
       },
     output: {
         filename: 'theme.js',
