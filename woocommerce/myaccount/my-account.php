@@ -24,18 +24,18 @@ defined( 'ABSPATH' ) || exit;
  */
 ?>
 <div class="mt-8 mb-12">
-	<?php  woocommerce_breadcrumb() ?>
+    <?php  woocommerce_breadcrumb() ?>
 </div>
 
-<section class="w-10/12 mx-auto mb-10">
-	<h1 class="text-5xl my-10 w-full font-bold text-center">Twoje Konto</h1>
-	<div class="flex">
-		<div class="w-2/12 pr-3 border-r border-gray">
-		<?php do_action( 'woocommerce_account_navigation' ); ?>
-		</div>
-		<div class="w-1/12"></div>
-		<div class="w-6/12">
-		<?php
+<section class="xl:w-10/12 mx-auto mb-10">
+    <h1 class="text-5xl my-10 w-full font-bold text-center">Twoje Konto</h1>
+    <div class="flex">
+        <div class="w-2/12 pr-3 border-r border-gray">
+            <?php do_action( 'woocommerce_account_navigation' ); ?>
+        </div>
+        <div class="w-1/12"></div>
+        <div class="w-6/12">
+            <?php
 		/**
 		 * My Account content.
 		 *
@@ -43,8 +43,8 @@ defined( 'ABSPATH' ) || exit;
 		 */
 		do_action( 'woocommerce_account_content' );
 	?>
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 
 

@@ -2,7 +2,7 @@
     <?php  woocommerce_breadcrumb() ?>
 </div>
 
-<section class="w-10/12 mx-auto">
+<section class="xl:w-10/12 mx-auto">
     <?php
 	/**
 	 * Cart Page
@@ -25,7 +25,7 @@
     ?>
 
     <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
-        
+
         <h1 class="text-5xl my-10 w-full font-bold text-center">Twój Koszyk</h1>
         <div class="flex flex-col border-t border-light-gray">
             <?php do_action( 'woocommerce_before_cart_contents' ); ?>
@@ -104,7 +104,8 @@
                         <p class="w-32 text-sm font-light">czas dostawy wydłuży się o 3-4 dni</p>
                     </div>
                     <?php endif;?>
-                    <div class="product-quantity product quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
+                    <div class="product-quantity product quantity"
+                        data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
                         <?php
 								if ( $_product->is_sold_individually() ) {
 									$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -181,7 +182,9 @@
                         <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
                     </div>
                     <div>
-                        <button type="submit" class="h-12 border-2 border-dark hover:bg-green hover:text-white hover:border-green uppercase w-full transition-all cursor-pointer" name="update_cart"
+                        <button type="submit"
+                            class="h-12 border-2 border-dark hover:bg-green hover:text-white hover:border-green uppercase w-full transition-all cursor-pointer"
+                            name="update_cart"
                             value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
                     </div>
                     <?php do_action( 'woocommerce_after_cart_contents' ); ?>

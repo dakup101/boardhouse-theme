@@ -7,7 +7,9 @@
         </div>
     </section>
     <section class="container mx-auto">
-        <?php echo get_field('text'); ?>
+        <div class="w-full lg:10/12 xl:w-8/12 mx-auto">
+            <?php echo get_field('text'); ?>
+        </div>
     </section>
 </main>
 <?php get_footer() ?>

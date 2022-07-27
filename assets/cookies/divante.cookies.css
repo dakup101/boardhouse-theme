@@ -1,0 +1,86 @@
+#cookiesBar {
+    color: #666;
+    bottom: 0;
+    left: 0;
+    padding: 5px 20px;
+    position: fixed;
+    z-index: 9999999;
+    background: #000;
+    text-align:center;
+    font-family: 'Lato', sans-serif;
+    
+}
+
+
+
+#cookiesBar a {
+    color: #000;
+    transition: all .2s ease-out;
+    font-family: 'Lato', sans-serif;
+}
+
+#cookiesBar p {
+    margin: 20px 0;
+	font-weight: 400;
+    font-size: 14px;
+	text-align: center;
+	line-height: 17px;
+    display: inline-block;
+    color: #fff; 
+    font-family: 'Lato', sans-serif;
+    
+}
+
+#cookiesBarWrap {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+#cookiesBarClose {
+    width: 80px;
+    height: 30px;
+    background: #fff;
+	text-align: center;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 30px;
+    margin: 5px auto;
+	cursor: pointer;
+	text-transform: uppercase;
+	border-radius: 5px;
+	display: inline-block;
+    border: 1px solid #fff;
+    transition: all .2s ease-out;
+}
+
+#cookiesBarClose:hover { 
+    background: #000;
+    transition: all .2s ease-in;
+    
+}
+
+#cookiesBarClose:hover a { 
+    color: #fff;
+    transition: all .2s ease-in;
+}
+
+@media screen and (min-width: 960px) {
+    #cookiesBar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;  
+        left: auto;
+        width: 100%;
+        max-width: 400px;
+        padding: 30px; 
+        border-radius: 10px;
+    }
+    #cookiesBarClose {
+        width: 120px;
+        margin: 15px auto 0px auto;
+    }
+    #cookiesBar p {
+        margin: 5px 0;
+    }
+}

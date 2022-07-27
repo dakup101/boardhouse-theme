@@ -1,5 +1,5 @@
 <div class="mt-8 mb-12">
-	<?php  woocommerce_breadcrumb() ?>
+    <?php  woocommerce_breadcrumb() ?>
 </div>
 
 <?php
@@ -23,9 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<section class="hidden w-10/12 mx-auto">
+<section class="hidden xl:w-10/12 mx-auto">
 
-	<?php
+    <?php
 	do_action( 'woocommerce_before_checkout_form', $checkout );
 
 	// If checkout registration is disabled and not logged in, the user cannot checkout.
@@ -39,17 +39,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 </section>
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout mb-10"
-      action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
-    <section class="w-10/12 mx-auto">
+    action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+    <section class="xl:w-10/12 mx-auto">
         <h2 class="text-5xl font-bold text-center mb-20" data_title_addr>Adres do wysyłki</h2>
         <h2 class="hidden text-5xl font-bold text-center mb-20" data_title_pay>Dostawa i płatność</h2>
         <div class="flex justify-between">
             <div class="w-7/12">
-				<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
+                <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
                 <div class="grid grid-cols-2 gap-6" data-customer_info>
                     <div class="lefty flex flex-col">
                         <div>
-							<?php woocommerce_form_field( 'billing_first_name', array(
+                            <?php woocommerce_form_field( 'billing_first_name', array(
 								'placeholder' => 'wpisz imię',
 								'required'    => true,
 								'label'       => 'Imię',
@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							), $checkout->get_value( 'billing_first_name' ) ); ?>
                         </div>
                         <div>
-							<?php woocommerce_form_field( 'billing_last_name', array(
+                            <?php woocommerce_form_field( 'billing_last_name', array(
 								'placeholder' => 'wpisz nazwisko',
 								'required'    => true,
 								'label'       => 'Nazwisko',
@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							), $checkout->get_value( 'billing_last_name' ) ); ?>
                         </div>
                         <div>
-							<?php woocommerce_form_field( 'billing_phone', array(
+                            <?php woocommerce_form_field( 'billing_phone', array(
 								'placeholder' => 'wpisz numer telefonu',
 								'required'    => true,
 								'label'       => 'Numer telefonu',
@@ -74,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							), $checkout->get_value( 'billing_phone' ) ); ?>
                         </div>
                         <div>
-							<?php woocommerce_form_field( 'billing_email', array(
+                            <?php woocommerce_form_field( 'billing_email', array(
 								'placeholder' => 'wpisz adres e-mail',
 								'required'    => true,
 								'label'       => 'Adres e-mail',
@@ -83,14 +83,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 							), $checkout->get_value( 'billing_email' ) ); ?>
                         </div>
                         <div class="hidden">
-							<?php woocommerce_form_field( 'billing_country', array(
+                            <?php woocommerce_form_field( 'billing_country', array(
 								'placeholder' => 'wpisz adres e-mail',
 								'required'    => true
 							), 'PL' ); ?>
                         </div>
                     </div>
                     <div class="righty flex flex-col">
-						<?php woocommerce_form_field( 'billing_address_1', array(
+                        <?php woocommerce_form_field( 'billing_address_1', array(
 							'placeholder' => 'wpisz nazwę ulicy',
 							'required'    => true,
 							'label'       => 'Ulica',
@@ -98,7 +98,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						), $checkout->get_value( 'billing_address_1' ) ); ?>
                         <div class="flex gap-6">
                             <div class="w-3/5">
-								<?php woocommerce_form_field( 'billing_city', array(
+                                <?php woocommerce_form_field( 'billing_city', array(
 									'placeholder' => 'wpisz miasto',
 									'required'    => true,
 									'label'       => 'Miasto',
@@ -106,7 +106,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								), $checkout->get_value( 'billing_city' ) ); ?>
                             </div>
                             <div class="w-2/5">
-								<?php woocommerce_form_field( 'billing_postcode', array(
+                                <?php woocommerce_form_field( 'billing_postcode', array(
 									'placeholder' => 'kod pocztowy',
 									'required'    => true,
 									'label'       => 'Kod pocztowy',
@@ -124,62 +124,60 @@ if ( ! defined( 'ABSPATH' ) ) {
                         </div>
                     </div>
                 </div>
-				<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+                <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
                 <div class="payment-and-shipping hidden" id="paymentShipping" data-payment_shipping>
                     <p class="text-xl font-bold">Wybierz najwygodniejszy dla Ciebie sposób dostawy</p>
                     <div class="relative">
                         <div class="shipping-boxes my-3 shipping grid grid-cols-3 gap-10">
                             <label for="#"
-                                   class="shipping-box my-5 relative border border-light-gray pb-4 pt-10 px-2 flex flex-col items-center ">
+                                class="shipping-box my-5 relative border border-light-gray pb-4 pt-10 px-2 flex flex-col items-center ">
                                 <img data-box_img src="<?php echo THEME_IMG . '/lorry.svg' ?>" class="h-full mb-5"
-                                     alt="">
+                                    alt="">
                                 <p data-box_text>Ładowanie...</p>
                                 <div class="absolute -top-4 right-5 p-1.5 bg-white">
-                                    <div class="shipping-box__cehck relative w-5 h-5  border border-light-gray rounded-full relative  bg-white">
+                                    <div
+                                        class="shipping-box__cehck relative w-5 h-5  border border-light-gray rounded-full relative  bg-white">
                                         <svg class="w-4 h-4 fill-light-gray absolute -right-0.5"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 46.1 40.72"
-                                        >
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.1 40.72">
                                             <path class="cls-1"
-                                                  d="M44.08,.31c-2.08-1.12-4.4,1.04-5.76,2.32-3.12,3.04-5.76,6.56-8.72,9.76-3.28,3.52-6.32,7.04-9.68,10.48-1.92,1.92-4,4-5.28,6.4-2.88-2.8-5.36-5.84-8.56-8.32C3.76,19.19-.08,17.91,0,22.15c.16,5.52,5.04,11.44,8.64,15.2,1.52,1.6,3.52,3.28,5.84,3.36,2.8,.16,5.68-3.2,7.36-5.04,2.96-3.2,5.36-6.8,8.08-10.08,3.52-4.32,7.12-8.56,10.56-12.96,2.16-2.72,8.96-9.44,3.6-12.32h0ZM3.52,21.83c-.08,0-.16,0-.32,.08-.32-.08-.56-.16-.88-.32,.24-.16,.64-.08,1.2,.24h0Zm0,0"/>
+                                                d="M44.08,.31c-2.08-1.12-4.4,1.04-5.76,2.32-3.12,3.04-5.76,6.56-8.72,9.76-3.28,3.52-6.32,7.04-9.68,10.48-1.92,1.92-4,4-5.28,6.4-2.88-2.8-5.36-5.84-8.56-8.32C3.76,19.19-.08,17.91,0,22.15c.16,5.52,5.04,11.44,8.64,15.2,1.52,1.6,3.52,3.28,5.84,3.36,2.8,.16,5.68-3.2,7.36-5.04,2.96-3.2,5.36-6.8,8.08-10.08,3.52-4.32,7.12-8.56,10.56-12.96,2.16-2.72,8.96-9.44,3.6-12.32h0ZM3.52,21.83c-.08,0-.16,0-.32,.08-.32-.08-.56-.16-.88-.32,.24-.16,.64-.08,1.2,.24h0Zm0,0" />
                                         </svg>
                                     </div>
                                 </div>
                             </label>
                         </div>
                         <div data-boxes_overlau
-                             class="hidden transition-all absolute w-full h-full bg-white/60 top-0 left-0"></div>
+                            class="hidden transition-all absolute w-full h-full bg-white/60 top-0 left-0"></div>
                     </div>
 
                     <p class="text-xl font-bold">Wybierz najwygodniejszy dla Ciebie sposób zapłaty</p>
                     <div class="relative">
                         <div class="shipping-boxes my-3 payment grid grid-cols-3 gap-10">
                             <label for="#"
-                                   class="shipping-box my-5 relative border border-light-gray pb-4 pt-10 px-2 flex flex-col items-center ">
+                                class="shipping-box my-5 relative border border-light-gray pb-4 pt-10 px-2 flex flex-col items-center ">
                                 <img data-box_img src="<?php echo THEME_IMG . '/ccard.svg' ?>" class="h-full mb-5"
-                                     alt="">
+                                    alt="">
                                 <p data-box_text>Ładowanie...</p>
                                 <div class="absolute -top-4 right-5 p-1.5 bg-white">
-                                    <div class="shipping-box__cehck relative w-5 h-5  border border-light-gray rounded-full relative  bg-white">
+                                    <div
+                                        class="shipping-box__cehck relative w-5 h-5  border border-light-gray rounded-full relative  bg-white">
                                         <svg class="w-4 h-4 fill-light-gray absolute -right-0.5"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 46.1 40.72"
-                                        >
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.1 40.72">
                                             <path class="cls-1"
-                                                  d="M44.08,.31c-2.08-1.12-4.4,1.04-5.76,2.32-3.12,3.04-5.76,6.56-8.72,9.76-3.28,3.52-6.32,7.04-9.68,10.48-1.92,1.92-4,4-5.28,6.4-2.88-2.8-5.36-5.84-8.56-8.32C3.76,19.19-.08,17.91,0,22.15c.16,5.52,5.04,11.44,8.64,15.2,1.52,1.6,3.52,3.28,5.84,3.36,2.8,.16,5.68-3.2,7.36-5.04,2.96-3.2,5.36-6.8,8.08-10.08,3.52-4.32,7.12-8.56,10.56-12.96,2.16-2.72,8.96-9.44,3.6-12.32h0ZM3.52,21.83c-.08,0-.16,0-.32,.08-.32-.08-.56-.16-.88-.32,.24-.16,.64-.08,1.2,.24h0Zm0,0"/>
+                                                d="M44.08,.31c-2.08-1.12-4.4,1.04-5.76,2.32-3.12,3.04-5.76,6.56-8.72,9.76-3.28,3.52-6.32,7.04-9.68,10.48-1.92,1.92-4,4-5.28,6.4-2.88-2.8-5.36-5.84-8.56-8.32C3.76,19.19-.08,17.91,0,22.15c.16,5.52,5.04,11.44,8.64,15.2,1.52,1.6,3.52,3.28,5.84,3.36,2.8,.16,5.68-3.2,7.36-5.04,2.96-3.2,5.36-6.8,8.08-10.08,3.52-4.32,7.12-8.56,10.56-12.96,2.16-2.72,8.96-9.44,3.6-12.32h0ZM3.52,21.83c-.08,0-.16,0-.32,.08-.32-.08-.56-.16-.88-.32,.24-.16,.64-.08,1.2,.24h0Zm0,0" />
                                         </svg>
                                     </div>
                                 </div>
                             </label>
                         </div>
                         <div data-boxes_overlau
-                             class="hidden transition-all absolute w-full h-full bg-white/60 top-0 left-0"></div>
+                            class="hidden transition-all absolute w-full h-full bg-white/60 top-0 left-0"></div>
                     </div>
 
                     <div class="hidden">
-						<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
-						<?php wc_cart_totals_shipping_html(); ?>
-						<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+                        <?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
+                        <?php wc_cart_totals_shipping_html(); ?>
+                        <?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
                     </div>
                 </div>
             </div>
@@ -204,19 +202,19 @@ if ( ! defined( 'ABSPATH' ) ) {
                         koszyk</a>
                 </div>
                 <div id="order_review" class="woocommerce-checkout-review-order">
-					<?php do_action( 'woocommerce_checkout_order_review' ); ?>
+                    <?php do_action( 'woocommerce_checkout_order_review' ); ?>
                 </div>
             </div>
         </div>
         <div class="flex justify-between flex-wrap gap-6">
             <a href="<?php echo get_home_url() . '/sklep' ?>"
-               class="bg-white w-60 border-dark border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Kontynuj
+                class="bg-white w-60 border-dark border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Kontynuj
                 zakupy</a>
             <a data-go_to_payment href="#"
-               class="bg-green w-60 border-green text-white border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Przejdź
+                class="bg-green w-60 border-green text-white border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Przejdź
                 dalej</a>
             <a data-place_order href="#"
-               class="hidden bg-green w-60 border-green text-white border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Kupuję
+                class="hidden bg-green w-60 border-green text-white border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Kupuję
                 i płacę</a>
         </div>
     </section>

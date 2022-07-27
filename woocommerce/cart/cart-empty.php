@@ -25,9 +25,9 @@ defined( 'ABSPATH' ) || exit;
     <?php  woocommerce_breadcrumb() ?>
 </div>
 
-<section class="w-10/12 mx-auto">
+<section class="xl:w-10/12 mx-auto">
     <h1 class="text-5xl my-10 w-full font-bold text-center">Twój Koszyk</h1>
-	<p class="text-center text-xl font-light">Twój koszyk jest aktualnie pusty</p>
+    <p class="text-center text-xl font-light">Twój koszyk jest aktualnie pusty</p>
     <?php 
 if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
     <p class="return-to-shop text-center">

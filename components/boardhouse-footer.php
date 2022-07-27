@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="mt-10 lg:mt-0 w-full lg:w-3/4 relative flex justify-between gap-6">
+    <div class="mt-10 lg:mt-0 w-full lg:w-3/4 relative flex flex-col lg:flex-row justify-between gap-6">
         <div class="w-fit">
             <div class="text-lg font-bold mb-3">
                 Dane Adresowe

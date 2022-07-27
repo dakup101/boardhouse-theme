@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .btn-green{
+        @apply 
+        bg-green 
+        hover:bg-orange 
+        hover:text-white 
+        transition-all 
+        text-white 
+        flex 
+        items-center 
+        justify-center 
+        font-bold 
+        w-full 
+        h-12 
+        uppercase
+        cursor-pointer;
+    }
+}
