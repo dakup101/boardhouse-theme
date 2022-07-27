@@ -2,7 +2,7 @@
     class="w-full fixed top-0 left-0 bg-white border-b border-dark/30 py-4 z-50 transition-all -translate-y-full">
     <div class="container mx-auto flex gap-10 justify-between">
         <div class="flex shrink-0 items-center gap-3">
-            <a href="#" class="block lg:none h-8 w-8 sm:w-10 sm:h-10" data-open_mobile_nav>
+            <a href="#" class="block lg:hidden h-8 w-8 sm:w-10 sm:h-10" data-open_mobile_nav>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16"
                     class="w-8 h-8">
                     <path fill-rule="evenodd"

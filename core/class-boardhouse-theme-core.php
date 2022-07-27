@@ -49,6 +49,14 @@ final class BoardhouseThemeCore
 		require THEME_DIR . 'core/wc-fields-validation.php';
 		require THEME_DIR . 'core/wc-profile-menu.php';
 		
+		// Disable block editor
+		add_filter('use_block_editor_for_post','__return_false');
+		// Disable text editor on Pages and Posts
+		add_action( 'init', function() {
+			remove_post_type_support( 'post', 'editor' );
+			remove_post_type_support( 'page', 'editor' );
+		}, 99);
+		
 		// Not actions functions
 
 		require THEME_DIR . 'core/global/count-cart.php';

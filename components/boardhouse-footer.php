@@ -1,16 +1,16 @@
 <div class="container mx-auto py-12 flex flex-col lg:flex-row">
-	<div class="w-full lg:w-1/4 flex flex-col items-start justify-center gap-2">
-		<img src="<?php echo THEME_IMG . '/logo.svg' ?>" alt="BOARDHOUSE" class="h-14">
-		<span class="font-bold text-lg mt-4 block">Skontaktuj się z nami</span>
-		<div class="flex items-center shrink-0 gap-4">
-			<img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
-			<div class="flex flex-col">
-				<a href="tel:+48733797093" class="font-bold text-lg">500 600 700</a>
-				<span>(Dzwońcie 8:00 - 17:00)</span>
-			</div>
-		</div>
-	</div>
-	<div class="mt-10 lg:mt-0 w-full lg:w-3/4 relative flex justify-between gap-6">
+    <div class="w-full lg:w-1/4 flex flex-col items-start justify-center gap-2">
+        <img src="<?php echo THEME_IMG . '/logo.svg' ?>" alt="BOARDHOUSE" class="h-14">
+        <span class="font-bold text-lg mt-4 block">Skontaktuj się z nami</span>
+        <div class="flex items-center shrink-0 gap-4">
+            <img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
+            <div class="flex flex-col">
+                <a href="tel:+48733797093" class="font-bold text-lg">500 600 700</a>
+                <span>(Dzwońcie 8:00 - 17:00)</span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-10 lg:mt-0 w-full lg:w-3/4 relative flex justify-between gap-6">
         <div class="w-fit">
             <div class="text-lg font-bold mb-3">
                 Dane Adresowe
@@ -32,5 +32,47 @@
                 </div>
             </div>
         </div>
-	</div>
+        <div>
+            <div class="text-lg font-bold mb-3">
+                Produkty
+            </div>
+            <div class="flex text-sm flex-col gap-2">
+                <?php
+                $menu = wp_get_menu_array( 'footer-1' );
+                ?>
+                <?php foreach ( $menu['menus'] as $value ) : ?>
+                <a href="<?php echo $value['url']; ?>"
+                    class="font-light block hover:text-green"><?php echo $value['title']; ?></a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div>
+            <div class="text-lg font-bold mb-3">
+                Obsługa Klienta
+            </div>
+            <div class="flex text-sm flex-col gap-2">
+                <?php
+                $menu = wp_get_menu_array( 'footer-2' );
+                ?>
+                <?php foreach ( $menu['menus'] as $value ) : ?>
+                <a href="<?php echo $value['url']; ?>"
+                    class="font-light block hover:text-green"><?php echo $value['title']; ?></a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div>
+            <div class="text-lg font-bold mb-3">
+                Konto
+            </div>
+            <div class="flex text-sm flex-col gap-2">
+                <?php
+                $menu = wp_get_menu_array( 'footer-3' );
+                ?>
+                <?php foreach ( $menu['menus'] as $value ) : ?>
+                <a href="<?php echo $value['url']; ?>"
+                    class="font-light block hover:text-green"><?php echo $value['title']; ?></a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
 </div>
