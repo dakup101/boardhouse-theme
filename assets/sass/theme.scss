@@ -909,3 +909,12 @@ select {
   max-width: unset;
   width: auto;
 }
+
+.woocommerce-breadcrumb{
+	flex-wrap: wrap !important;
+}
+@media(max-width: 568px){
+	.woocommerce-breadcrumb{
+		font-size: 11px;
+	}
+}

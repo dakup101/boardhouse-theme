@@ -19,4 +19,9 @@
         uppercase
         cursor-pointer;
     }
+    .gallery-lg-class{
+        @apply
+        lg:flex
+        lg:flex-row-reverse;
+    }
 }

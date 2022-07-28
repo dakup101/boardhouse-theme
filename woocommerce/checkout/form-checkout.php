@@ -43,10 +43,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     <section class="xl:w-10/12 mx-auto">
         <h2 class="text-5xl font-bold text-center mb-20" data_title_addr>Adres do wysyłki</h2>
         <h2 class="hidden text-5xl font-bold text-center mb-20" data_title_pay>Dostawa i płatność</h2>
-        <div class="flex justify-between">
-            <div class="w-7/12">
+        <div class="flex flex-col lg:flex-row  lg:justify-between">
+            <div class="w-full lg:w-7/12">
                 <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
-                <div class="grid grid-cols-2 gap-6" data-customer_info>
+                <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-6 mb-5" data-customer_info>
                     <div class="lefty flex flex-col">
                         <div>
                             <?php woocommerce_form_field( 'billing_first_name', array(
@@ -128,7 +128,8 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="payment-and-shipping hidden" id="paymentShipping" data-payment_shipping>
                     <p class="text-xl font-bold">Wybierz najwygodniejszy dla Ciebie sposób dostawy</p>
                     <div class="relative">
-                        <div class="shipping-boxes my-3 shipping grid grid-cols-3 gap-10">
+                        <div
+                            class="shipping-boxes my-3 shipping grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 lg:gap-10">
                             <label for="#"
                                 class="shipping-box my-5 relative border border-light-gray pb-4 pt-10 px-2 flex flex-col items-center ">
                                 <img data-box_img src="<?php echo THEME_IMG . '/lorry.svg' ?>" class="h-full mb-5"
@@ -152,7 +153,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
                     <p class="text-xl font-bold">Wybierz najwygodniejszy dla Ciebie sposób zapłaty</p>
                     <div class="relative">
-                        <div class="shipping-boxes my-3 payment grid grid-cols-3 gap-10">
+                        <div
+                            class="shipping-boxes my-3 payment grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 lg:gap-10">
                             <label for="#"
                                 class="shipping-box my-5 relative border border-light-gray pb-4 pt-10 px-2 flex flex-col items-center ">
                                 <img data-box_img src="<?php echo THEME_IMG . '/ccard.svg' ?>" class="h-full mb-5"
@@ -181,7 +183,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </div>
                 </div>
             </div>
-            <div class="w-4/12">
+            <div class="w-full lg:w-4/12">
                 <div data-delivery_addr class="mb-6 hidden">
                     <div class="flex justify-between align-middle mb-4">
                         <p class="text-xl font-bold">Adres dostawy</p>
@@ -206,15 +208,15 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
             </div>
         </div>
-        <div class="flex justify-between flex-wrap gap-6">
+        <div class="flex justify-between flex-wrap gap-6 w-full lg:w-fit">
             <a href="<?php echo get_home_url() . '/sklep' ?>"
-                class="bg-white w-60 border-dark border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Kontynuj
+                class="bg-white w-full lg:w-60 border-dark border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Kontynuj
                 zakupy</a>
             <a data-go_to_payment href="#"
-                class="bg-green w-60 border-green text-white border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Przejdź
+                class="bg-green w-full lg:w-60 border-green text-white border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Przejdź
                 dalej</a>
             <a data-place_order href="#"
-                class="hidden bg-green w-60 border-green text-white border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Kupuję
+                class="hidden bg-green w-full lg:w-60 border-green text-white border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold h-12 uppercase">Kupuję
                 i płacę</a>
         </div>
     </section>

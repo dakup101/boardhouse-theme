@@ -83,5 +83,5 @@ if ( post_password_required() ) {
 	?>
 </div>
 
-<?php get_template_part( '/components/boardhouse-cart-popup', name ) ?>
+<?php get_template_part( '/components/boardhouse-cart-popup') ?>
 <?php //do_action( 'woocommerce_after_single_product' ); ?>

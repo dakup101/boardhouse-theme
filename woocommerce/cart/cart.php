@@ -47,8 +47,8 @@
 					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 					?>
             <div
-                class="flex py-3 mb-3 items-center justify-between border-b border-light-gray woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
-                <div class="flex gap-4 items-center">
+                class="flex flex-col lg:flex-row py-3 mb-3 items-center justify-between border-b border-light-gray woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+                <div class="flex gap-4 w-full lg:w-fit items-center">
                     <div class="product-img w-32">
                         <?php
 		                        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'single-post-thumbnail' );
@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <div class="flex gap-10 items-center">
+                <div class="flex flex-col lg:flex-row gap-5 lg:gap-10 items-center w-full lg:w-fit">
                     <?php 
 						$stock = $_product ->get_stock_quantity();
 						$stock < 0 ? $instkoc = false : $instkoc = true;
@@ -136,18 +136,21 @@
 
                     <div class="product-remove">
                         <?php
-								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-									'woocommerce_cart_item_remove_link',
-									sprintf(
-										'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
-										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
-										esc_html__( 'Remove this item', 'woocommerce' ),
-										esc_attr( $product_id ),
-										esc_attr( $_product->get_sku() )
-									),
-									$cart_item_key
-								);
-								?>
+                            echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                'woocommerce_cart_item_remove_link',
+                                sprintf(
+                                    '<a href="%s" class="flex gap-2 hover:underline transition-all" aria-label="%s" data-product_id="%s" data-product_sku="%s">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.67 20"><defs><style>.b{fill:#1e1e1f;fill-rule:evenodd;}</style></defs><path class="b" d="M14.17,20H2.5c-.92,0-1.67-.75-1.67-1.67V4.17H0v-1.67H5V1.25c0-.69,.56-1.25,1.25-1.25h4.17c.69,0,1.25,.56,1.25,1.25v1.25h5v1.67h-.83v14.17c0,.92-.75,1.67-1.67,1.67Zm0-15.83H2.5v13.75c0,.23,.19,.42,.42,.42H13.75c.23,0,.42-.19,.42-.42V4.17Zm-7.5,3.33c0-.46-.37-.83-.83-.83s-.83,.37-.83,.83v7.5c0,.46,.37,.83,.83,.83s.83-.37,.83-.83V7.5Zm5,0c0-.46-.37-.83-.83-.83s-.83,.37-.83,.83v7.5c0,.46,.37,.83,.83,.83s.83-.37,.83-.83V7.5Zm-1.67-5.83h-3.33v.83h3.33v-.83Z"/></svg>
+                                    Usuń produkt
+                                    </a>',
+                                    esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+                                    esc_html__( 'Remove this item', 'woocommerce' ),
+                                    esc_attr( $product_id ),
+                                    esc_attr( $_product->get_sku() )
+                                ),
+                                $cart_item_key
+                            );
+                        ?>
                     </div>
                 </div>
             </div>
@@ -156,11 +159,11 @@
 			}
 			?>
             <?php do_action( 'woocommerce_cart_contents' ); ?>
-            <div class="flex justify-between gap-4">
+            <div class="flex flex-col lg:flex-row justify-between gap-4">
                 <div class="w-full my-5 max-w-sm self-start">
                     <?php get_template_part( '/components/boardhouse-cart-status'); ?>
                 </div>
-                <div class="flex flex-col gap-5 w-96 self-end my-5">
+                <div class="flex flex-col gap-5 w-full lg:w-96 self-end my-5">
                     <div class="actions">
 
                         <?php if ( wc_coupons_enabled() ) { ?>
@@ -196,14 +199,14 @@
 
     <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
-    <div class="flex justify-between items-end mb-10">
-        <div class="w-96">
+    <div class="flex flex-col-reverse lg:flex-row justify-between items-end mb-10">
+        <div class="w-full lg:w-96">
             <a href="<?php echo get_home_url() ?>"
                 class="bg-white border-dark border-2 hover:bg-orange hover:border-orange hover:text-white transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase">
                 Kontynuj zakupy
             </a>
         </div>
-        <div class="w-96">
+        <div class="w-full mb-5 lg:mb-0 lg:w-96">
             <?php
 			/**
 			 * Cart collaterals hook.

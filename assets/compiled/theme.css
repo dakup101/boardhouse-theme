@@ -778,4 +778,14 @@ select {
   width: auto;
 }
 
+.woocommerce-breadcrumb {
+  flex-wrap: wrap !important;
+}
+
+@media (max-width: 568px) {
+  .woocommerce-breadcrumb {
+    font-size: 11px;
+  }
+}
+
 /*# sourceMappingURL=theme.css.map */

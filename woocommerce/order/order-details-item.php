@@ -23,13 +23,14 @@ if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 	return;
 }
 ?>
-<tr class="border-b border-light-gray py-3 flex  justify-between items-center <?php echo esc_attr( apply_filters( 'woocommerce_order_item_class', 'woocommerce-table__line-item order_item', $item, $order ) ); ?>">
+<tr
+    class="border-b border-light-gray py-3 flex  justify-between items-center <?php echo esc_attr( apply_filters( 'woocommerce_order_item_class', 'woocommerce-table__line-item order_item', $item, $order ) ); ?>">
 
-	<td class="flex gap-3 items-center">
-		<?php
+    <td class="flex gap-3 items-center">
+        <?php
 		$is_visible        = $product && $product->is_visible();
 		$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
-		if ($product->get_type() == 'variable'){
+		if ($product->get_type() == 'variable' || $product->get_type() == 'variation'){
 			
 			$variation = wc_get_product($product->get_id());
 			$product = wc_get_product($variation->get_parent_id()) ;
@@ -62,15 +63,17 @@ if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
                 <div class="font-light mb-3">
                     <?php wc_display_item_meta( $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
                 </div>
-                <p class="font-light">Ilość: <?php echo apply_filters( 'woocommerce_order_item_quantity_html', ' <span class="product-quantity">' . sprintf( '%s', $qty_display ) . '</span>', $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>
+                <p class="font-light">Ilość:
+                    <?php echo apply_filters( 'woocommerce_order_item_quantity_html', ' <span class="product-quantity">' . sprintf( '%s', $qty_display ) . '</span>', $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
+                </p>
             </div>
 
         </div>
-	</td>
+    </td>
 
-	<td class="woocommerce-table__product-total product-total text-right font-bold text-xl">
-		<?php echo $order->get_formatted_line_subtotal( $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-	</td>
+    <td class="woocommerce-table__product-total product-total text-right font-bold text-xl">
+        <?php echo $order->get_formatted_line_subtotal( $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+    </td>
 
 </tr>
 
@@ -78,7 +81,9 @@ if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 
 <tr class="woocommerce-table__product-purchase-note product-purchase-note">
 
-	<td colspan="2"><?php echo wpautop( do_shortcode( wp_kses_post( $purchase_note ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></td>
+    <td colspan="2">
+        <?php echo wpautop( do_shortcode( wp_kses_post( $purchase_note ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+    </td>
 
 </tr>
 
