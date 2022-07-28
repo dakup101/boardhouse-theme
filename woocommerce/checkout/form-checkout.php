@@ -118,9 +118,27 @@ if ( ! defined( 'ABSPATH' ) ) {
                         </div>
                         <div class="my-2 custom-checkbox">
                             <input type="checkbox" id="wantFV">
-                            <label for="wantFV" class="" style="color: #c6c6c6">
+                            <label for="wantFV">
                                 Chcę otrzymać fakturę VAT
                             </label>
+                        </div>
+                        <div class="mb-2 hidden" data-fv_fields>
+                            <div>
+                                <?php woocommerce_form_field( 'billing_company', array(
+								'placeholder' => 'wpisz nazwię firmy',
+								'required'    => false,
+								'label'       => 'Firma',
+								'type'        => 'text',
+							    )); ?>
+                            </div>
+                            <div>
+                                <?php woocommerce_form_field( 'billing_tax_no', array(
+								'placeholder' => 'wpisz nazwię firmy',
+								'required'    => false,
+								'label'       => 'NIP',
+								'type'        => 'text',
+							    )); ?>
+                            </div>
                         </div>
                     </div>
                 </div>

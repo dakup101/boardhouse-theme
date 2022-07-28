@@ -3,8 +3,8 @@ console.log("--- Site Loaded ---");
 import Swiper, { Pagination, Navigation } from "swiper";
 import "swiper/css";
 
-let ajaxUrl = "http://localhost/boardhouse/wp-admin/admin-ajax.php";
-// let ajaxUrl = "https://everywhere.pl/www/bh/wp-admin/admin-ajax.php";
+// let ajaxUrl = "http://localhost/boardhouse/wp-admin/admin-ajax.php";
+let ajaxUrl = "https://everywhere.pl/www/bh/wp-admin/admin-ajax.php";
 
 // Rendered
 window.addEventListener("DOMContentLoaded", () => {
@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
   cartStatusUpd();
   cartCount();
   handleMobileNav();
-
+  fv_fields();
   // Main Slider
   const hero = new Swiper(".hero", {
     modules: [Pagination, Navigation],
@@ -581,5 +581,15 @@ function handleMobileNav() {
         else child.style.height = "0px";
       });
     }
+  });
+}
+
+function fv_fields() {
+  let fvInput = document.querySelector("#wantFV") as HTMLInputElement;
+  if (!fvInput) return;
+  fvInput.addEventListener("change", () => {
+    let fvFields = document.querySelector("[data-fv_fields]");
+    if (fvInput.checked) fvFields.classList.remove("hidden");
+    else fvFields.classList.add("hidden");
   });
 }
