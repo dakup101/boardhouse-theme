@@ -99,12 +99,6 @@ if ( $is_variable ) {
 ?>
 <div class="product-card border-light-gray relative border flex flex-col h-full">
     <div class="relative w-full h-80 shrink-0 bg-white overflow-hidden">
-        <a href="<?php echo $url ?>"
-            class="z-20 absolute w-full h-full bg-green/30 opacity-0 hover:opacity-100 transition-all flex items-center justify-center product-link">
-            <!-- <span
-                class="px-5 py-2 border-2 border-white text-white hover:bg-white hover:text-dark transition-all uppercase">Sprawdź
-                produkt</span> -->
-        </a>
         <?php
 		$rozmiar = $product->get_attribute('pa_rozmiar');
 		$rozmiar_deski = explode(',', $product->get_attribute('pa_rozmiar-deski'))
