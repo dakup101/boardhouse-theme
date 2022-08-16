@@ -1,17 +1,17 @@
 <div class="w-full sticky top-0 left-0 z-50 <?php echo is_front_page() ? '' : 'border-b border-dark/20' ?>">
-    <div class="container mx-auto flex justify-between items-center gap-10 py-8">
+    <div class="container mx-auto flex justify-between items-center gap-6 xl:gap-10 py-8">
         <a href="#" class="block lg:hidden h-8 w-8 sm:w-10 sm:h-10" data-open_mobile_nav>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list"
-                viewBox="0 0 16 16" class="w-8 h-8">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16"
+                class="w-8 h-8">
                 <path fill-rule="evenodd"
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
             </svg>
         </a>
-        <a href="<?php echo get_home_url();?>" class="block h-9 lg:h-10 xl:h-12 2xl:h-14 shrink-0">
+        <a href="<?php echo get_home_url();?>" class="block h-6  xl:h-9 2xl:h-14 shrink-0">
             <img src="<?php echo THEME_IMG . '/logo.svg' ?>" alt="BOARDHOUSE" class="h-full block shrink-0">
         </a>
         <!--  Site Nav  -->
-        <div class="hidden lg:flex items-center justify-start gap-10 w-full" data-nav>
+        <div class="hidden lg:flex items-center justify-start gap-5 2xl:gap-10 w-full" data-nav>
             <?php
 			$menu = wp_get_menu_array( 'primary' );
 			?>
@@ -41,8 +41,8 @@
         <div class="hidden lg:flex items-center shrink-0 gap-4">
             <img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
             <div class="flex flex-col">
-                <a href="tel:+48733797093" class="font-bold text-md 2xl:text-lg text-green">500 600 700</a>
-                <span class="text-sm 2xl:text-md">(Otwarte 8:00 - 17:00)</span>
+                <a href="tel:+48733797093" class="font-bold xl:text-md 2xl:text-lg text-green">500 600 700</a>
+                <span class="text-xs xl:text-sm 2xl:text-md">(Otwarte 8:00 - 17:00)</span>
             </div>
         </div>
         <!--  User Nav  -->

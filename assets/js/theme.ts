@@ -3,7 +3,7 @@ console.log("--- Site Loaded ---");
 import Swiper, { Pagination, Navigation } from "swiper";
 import "swiper/css";
 
-// let ajaxUrl = "http://localhost/boardhouse/wp-admin/admin-ajax.php";
+// let ajaxUrl = "/wp-admin/admin-ajax.php";
 let ajaxUrl = "https://everywhere.pl/www/bh/wp-admin/admin-ajax.php";
 
 // Rendered

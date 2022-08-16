@@ -626,6 +626,10 @@ video {
   }
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .pointer-events-auto {
   pointer-events: auto;
 }
@@ -699,6 +703,10 @@ video {
   right: 0px;
 }
 
+.bottom-3 {
+  bottom: 0.75rem;
+}
+
 .left-4 {
   left: 1rem;
 }
@@ -745,6 +753,10 @@ video {
 
 .z-30 {
   z-index: 30;
+}
+
+.m-1 {
+  margin: 0.25rem;
 }
 
 .mx-auto {
@@ -956,10 +968,6 @@ video {
 
 .h-0 {
   height: 0px;
-}
-
-.h-9 {
-  height: 2.25rem;
 }
 
 .h-28 {
@@ -1214,16 +1222,16 @@ video {
   gap: 2rem;
 }
 
+.gap-5 {
+  gap: 1.25rem;
+}
+
 .gap-0\.5 {
   gap: 0.125rem;
 }
 
 .gap-0 {
   gap: 0px;
-}
-
-.gap-5 {
-  gap: 1.25rem;
 }
 
 .self-start {
@@ -1370,8 +1378,8 @@ video {
   background-color: rgb(92 92 92 / 0.1);
 }
 
-.bg-gray\/30 {
-  background-color: rgb(92 92 92 / 0.3);
+.bg-green\/30 {
+  background-color: rgb(71 192 97 / 0.3);
 }
 
 .bg-white\/60 {
@@ -2005,16 +2013,12 @@ video {
     display: none;
   }
 
-  .lg\:h-10 {
-    height: 2.5rem;
-  }
-
   .lg\:h-auto {
     height: auto;
   }
 
-  .lg\:min-h-full {
-    min-height: 100%;
+  .lg\:h-full {
+    height: 100%;
   }
 
   .lg\:w-6\/12 {
@@ -2039,6 +2043,10 @@ video {
 
   .lg\:w-16 {
     width: 4rem;
+  }
+
+  .lg\:w-auto {
+    width: auto;
   }
 
   .lg\:w-3\/6 {
@@ -2069,10 +2077,6 @@ video {
 
   .lg\:w-3\/5 {
     width: 60%;
-  }
-
-  .lg\:min-w-full {
-    min-width: 100%;
   }
 
   .lg\:grid-cols-2 {
@@ -2115,11 +2119,6 @@ video {
     border-left-width: 2px;
   }
 
-  .lg\:object-cover {
-    -o-object-fit: cover;
-       object-fit: cover;
-  }
-
   .lg\:px-20 {
     padding-left: 5rem;
     padding-right: 5rem;
@@ -2151,8 +2150,8 @@ video {
 }
 
 @media (min-width: 1440px) {
-  .xl\:h-12 {
-    height: 3rem;
+  .xl\:h-9 {
+    height: 2.25rem;
   }
 
   .xl\:w-1\/12 {
@@ -2171,9 +2170,18 @@ video {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
+  .xl\:gap-10 {
+    gap: 2.5rem;
+  }
+
   .xl\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .xl\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -2196,6 +2204,10 @@ video {
 
   .\32xl\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .\32xl\:gap-10 {
+    gap: 2.5rem;
   }
 
   .\32xl\:p-3 {
