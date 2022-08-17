@@ -1378,16 +1378,16 @@ video {
   background-color: rgb(92 92 92 / 0.1);
 }
 
-.bg-green\/30 {
-  background-color: rgb(71 192 97 / 0.3);
-}
-
 .bg-white\/60 {
   background-color: rgb(255 255 255 / 0.6);
 }
 
 .bg-light-gray\/30 {
   background-color: rgb(219 220 221 / 0.3);
+}
+
+.bg-green\/30 {
+  background-color: rgb(71 192 97 / 0.3);
 }
 
 .bg-none {

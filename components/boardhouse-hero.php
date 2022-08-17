@@ -1,11 +1,12 @@
 <?php 
 $slider = get_field('Slider'); 
+if ($slider) :
 ?>
 
 <div class="hero overflow-hidden relative">
     <div class="swiper-wrapper z-10">
         <?php foreach ($slider as $slide) : ?>
-        <a href="#" class="swiper-slide">
+        <a href="<?php echo $slide['link']; ?>" class="swiper-slide">
             <img src="<?php echo $slide['desktop'] ?>" alt="" class="w-full hidden sm:block" loading="lazy">
             <img src="<?php echo $slide['mobile'] ?>" alt="" class="w-full block sm:hidden" loading="lazy">
         </a>
@@ -26,3 +27,5 @@ $slider = get_field('Slider');
         </button>
     </div>
 </div>
+
+<?php endif; ?>

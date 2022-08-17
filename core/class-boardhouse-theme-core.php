@@ -48,6 +48,7 @@ final class BoardhouseThemeCore
         require THEME_DIR . 'core/wc-shipping-icons.php';
 		require THEME_DIR . 'core/wc-fields-validation.php';
 		require THEME_DIR . 'core/wc-profile-menu.php';
+		require THEME_DIR . 'core/acf-options-page.php';
 		
 		// Disable block editor
 		add_filter('use_block_editor_for_post','__return_false');

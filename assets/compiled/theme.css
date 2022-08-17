@@ -425,7 +425,7 @@ input[type=text], input[type=tel], input[type=email], input[type=password], text
 
 .custom-checkbox {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 3px;
 }
 .custom-checkbox > input {
@@ -433,7 +433,7 @@ input[type=text], input[type=tel], input[type=email], input[type=password], text
 }
 .custom-checkbox > input + label {
   position: relative;
-  padding-left: 2em;
+  padding-left: 2.5em;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
 }
@@ -443,7 +443,7 @@ input[type=text], input[type=tel], input[type=email], input[type=password], text
   height: 1.5em;
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 0.6em;
   transform: translateY(-50%);
   border: 1px solid #c6c6c6;
   display: flex;
@@ -460,16 +460,31 @@ input[type=text], input[type=tel], input[type=email], input[type=password], text
 }
 
 .filters-container > form {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   width: 100% !important;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 1240) {
+  .filters-container > form {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 991px) {
+  .filters-container > form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .filters-container > form {
+    grid-template-columns: 1fr;
+  }
 }
 
 .filters-container > form > div {
   width: 100%;
-  max-width: 300px;
 }
 
 .boardhouse-sidebar {
@@ -825,6 +840,14 @@ select {
 }
 
 .woocommerce-product-details__short-description, .product_meta {
+  display: none;
+}
+
+.dgwt-wcas-preloader svg path {
+  fill: #47c061 !important;
+}
+
+.shipping-box p img {
   display: none;
 }
 

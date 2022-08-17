@@ -30,11 +30,12 @@ do_action( 'woocommerce_before_main_content' );
 
 ?>
 <header class="woocommerce-products-header ">
-	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-		<h1 class="woocommerce-products-header__title page-title font-light text-5xl my-10 w-full text-center"><?php woocommerce_page_title(); ?></h1>
-	<?php endif; ?>
+    <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
+    <h1 class="woocommerce-products-header__title page-title font-light text-5xl my-10 w-full text-center">
+        <?php woocommerce_page_title(); ?></h1>
+    <?php endif; ?>
 
-	<?php
+    <?php
 	/**
 	 * Hook: woocommerce_archive_description.
 	 *
@@ -44,8 +45,21 @@ do_action( 'woocommerce_before_main_content' );
 	do_action( 'woocommerce_archive_description' );
 	?>
 </header>
+<?php
+$alt_filters_for = array(42, 41, 107, 100, 102, 103);
+$cur_cat = get_queried_object_id();
+$alt_filters = false;
+foreach ($alt_filters_for as $cat) {
+	if($cat==$cur_cat) $alt_filters = true;
+}
+?>
 
-<?php echo do_shortcode( '[yith_wcan_filters slug="draft-preset"]') ?>
+<?php 
+
+if ($alt_filters || isset($_GET['s'])) echo do_shortcode( '[yith_wcan_filters slug="draft-preset-2"]');
+else  echo do_shortcode( '[yith_wcan_filters slug="draft-preset"]');
+
+?>
 
 <!-- <div class="boardhouse-sidebar">
 	<?php // dynamic_sidebar('sidebar'); 	do_action( 'woocommerce_before_shop_loop' );
@@ -74,7 +88,9 @@ do_action( 'woocommerce_before_main_content' );
         $current_page = max(1, get_query_var('paged'));
         global $wp_query;
         ?>
-        <div><p>Strona <?php echo $current_page ?> z <?php echo $wp_query->max_num_pages; ?> </p></div>
+        <div>
+            <p>Strona <?php echo $current_page ?> z <?php echo $wp_query->max_num_pages; ?> </p>
+        </div>
         <div class="nexty">
             <?php the_posts_pagination(); ?>
         </div>

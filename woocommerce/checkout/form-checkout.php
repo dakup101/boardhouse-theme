@@ -140,6 +140,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 							    )); ?>
                             </div>
                         </div>
+                        <div class="my-2 custom-checkbox">
+                            <input type="checkbox" id="privacy_policy" name="privacy_policy" value="1">
+                            <label for="privacy_policy">
+                                Zapoznałem się i akceptuję Politykę Prywatności i Regulaminem strony
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
