@@ -10,7 +10,7 @@
         <div class="flex items-center shrink-0 gap-4">
             <img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
             <div class="flex flex-col">
-                <a href="<?php echo $tel_sys ?>" class="font-bold text-lg"><?php echo $tel ?></a>
+                <a href="tel:<?php echo $tel_sys ?>" class="font-bold text-lg"><?php echo $tel ?></a>
                 <span><?php echo $tel_text ?></span>
             </div>
         </div>

@@ -7,7 +7,7 @@
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
             </svg>
         </a>
-        <a href="<?php echo get_home_url();?>" class="block h-6  xl:h-9 2xl:h-14 shrink-0">
+        <a href="<?php echo get_home_url();?>" class="block h-9  xl:h-9 2xl:h-14 shrink-0">
             <img src="<?php echo THEME_IMG . '/logo.svg' ?>" alt="BOARDHOUSE" class="h-full block shrink-0">
         </a>
         <!--  Site Nav  -->
@@ -46,8 +46,8 @@
             ?>
             <img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
             <div class="flex flex-col">
-                <a href="tel:<?php echo $tel ?>"
-                    class="font-bold xl:text-md 2xl:text-lg text-green"><?php echo $tel_text ?></a>
+                <a href="tel:<?php echo $tel_sys ?>"
+                    class="font-bold xl:text-md 2xl:text-lg text-green"><?php echo $tel ?></a>
                 <span class="text-xs xl:text-sm 2xl:text-md"><?php echo $tel_text ?></span>
             </div>
         </div>

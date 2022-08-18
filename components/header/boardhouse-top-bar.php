@@ -13,9 +13,9 @@ $tb3 = get_field('top_bar_3', 'options');
             <img src="<?php echo $tb1['icon'] ?>" alt="Boardhouse" class="h-4">
             <?php endif; ?>
             <span> <?php echo $tb1['text']; ?>
-                <?php if ($tb2['link']) : ?>
-                <a href="<?php echo $tb2['link'] ?>" target="_blank" class="text-orange decoration-0">
-                    <?php echo $tb2['link_text'] ?>
+                <?php if ($tb1['link']) : ?>
+                <a href="<?php echo $tb1['link'] ?>" target="_blank" class="text-orange decoration-0">
+                    <?php echo $tb1['link_text'] ?>
                 </a>
                 <?php endif; ?>
             </span>
