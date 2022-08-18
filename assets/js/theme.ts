@@ -17,6 +17,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	wishCount();
 	handleMobileNav();
 	fv_fields();
+	handleCouponTimer();
+	setInterval(handleCouponTimer, 60 * 1000);
 	// Main Slider
 	const hero = new Swiper(".hero", {
 		modules: [Pagination, Navigation],
@@ -641,4 +643,28 @@ function fv_fields() {
 		if (fvInput.checked) fvFields.classList.remove("hidden");
 		else fvFields.classList.add("hidden");
 	});
+}
+
+function handleCouponTimer() {
+	let timer = document.querySelector("[data-coupon_expires]") as HTMLElement;
+	if (!timer) return;
+	let expires = new Date(timer.dataset.coupon_expires);
+	let today = new Date();
+	// Return if Expired
+	if (expires.getTime() - today.getTime() < 0) {
+		timer.innerHTML = "WYGASŁ";
+		return;
+	}
+	// Continue
+	let delta = Math.abs(expires.getTime() - today.getTime()) / 1000;
+	let days = Math.floor(delta / 86400);
+	delta -= days * 86400;
+	let hours = Math.floor(delta / 3600) % 24;
+	delta -= hours * 3600;
+	let minutes = Math.floor(delta / 60) % 60;
+
+	//Show Time
+	timer.querySelector("[data-coupon_days]").innerHTML = days + " dni";
+	timer.querySelector("[data-coupon_hours]").innerHTML = hours + " godzin";
+	timer.querySelector("[data-coupon_minutes]").innerHTML = minutes + " minut";
 }

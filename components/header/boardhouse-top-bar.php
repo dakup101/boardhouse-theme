@@ -1,26 +1,65 @@
+<?php
+$tb1 = get_field('top_bar_1', 'options');
+$tb2 = get_field('top_bar_2', 'options');
+$tb3 = get_field('top_bar_3', 'options');
+?>
+
 <div class="bg-dark" data-top_bar>
     <div class="container flex justify-center lg:justify-between items-center gap-2 mx-auto text-white text-sm py-3.5">
+        <!-- Kolumna 1 -->
+        <?php if ($tb1['text']) : ?>
         <div class="hidden lg:flex flex-row items-center justify-between gap-3 text-xs 2xl:text-sm">
-            <svg class="fill-current  h-6" id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.28 24.32">
-                <path
-                    d="M11.14,.16L.14,6.16v12.13l11,5.87,11-5.87V6.23L11.14,.16Zm7.91,6.65l-7.91,4.22L3.27,6.73,11.14,2.44l7.92,4.36ZM2.14,8.39l8,4.36v8.61L2.14,17.09V8.39Zm10,12.97V12.76l8-4.27v8.6l-8,4.27Z" />
-            </svg>
-            <span>Darmowa dostawa od 200zł i zwrot. <a href="#" class="text-orange decoration-0">Sprawdź!</a></span>
-        </div>
-        <div class="flex flex-row items-center justify-between gap-3 text-xs 2xl:text-sm ">
-            <span class="text-green text-xs 2xl:text-sm font-medium uppercase text-center sm:text-left">-15% ZIMOWA
-                PROMOCJA</span>
-            <span class="text-center sm:text-left">Wpisz kod promocojny “Board2022”</span>
-            <span data-promo_timer class="text-sm text-center sm:text-left">
-                <span class="font-medium text-xs 2xl:text-sm">5 dni</span>
-                <span class="font-medium text-xs 2xl:text-sm">12 godzin</span>
-                <span class="font-medium text-xs 2xl:text-sm">35 minut</span>
+            <?php if ($tb1['icon']) : ?>
+            <img src="<?php echo $tb1['icon'] ?>" alt="Boardhouse" class="h-4">
+            <?php endif; ?>
+            <span> <?php echo $tb1['text']; ?>
+                <?php if ($tb2['link']) : ?>
+                <a href="<?php echo $tb2['link'] ?>" target="_blank" class="text-orange decoration-0">
+                    <?php echo $tb2['link_text'] ?>
+                </a>
+                <?php endif; ?>
             </span>
         </div>
-        <div class="hidden lg:flex items-center flex-row justify-between gap-3 text-xs 2xl:text-sm">
-            <img src="<?php echo THEME_URI.'/assets/img/paypo_white.svg'; ?>" alt="PayPo" class="h-4">
-            <span>Kupujesz teraz, płacisz za 30 dni. <a href="#" class="text-orange decoration-0">Dowiedz się
-                    więcej</a></span>
+        <?php endif; ?>
+        <!-- Kolumna 2 -->
+        <?php
+        $coupon = new WC_coupon($tb2['kupon']->post_title);
+        $coupon->get_date_expires() ? $expires = $coupon->get_date_expires() : $expires = null; 
+        $tb2['show'] == "1" ? $show_coupon = true : $show_coupon = false;
+        if ($show_coupon):
+        ?>
+        <div class="flex flex-row items-center justify-between gap-3 text-xs 2xl:text-sm ">
+            <span class="text-green text-xs 2xl:text-sm font-medium uppercase text-center sm:text-left">
+                <?php echo $tb2['text'] ?>
+            </span>
+            <span class="text-center sm:text-left">
+                <?php echo $tb2['text_2'] . ' "' . $coupon->get_code() . '"'; ?>
+            </span>
+            <?php if ($expires) : ?>
+            <span data-promo_timer class="text-sm text-center sm:text-left"
+                data-coupon_expires="<?php echo date("D M d Y H:i:s O", strtotime($expires)) ?>">
+                <span data-coupon_days class="font-medium text-xs 2xl:text-sm"></span>
+                <span data-coupon_hours class="font-medium text-xs 2xl:text-sm"></span>
+                <span data-coupon_minutes class="font-medium text-xs 2xl:text-sm"></span>
+            </span>
+            <?php endif; ?>
         </div>
+        <?php endif; ?>
+        <!-- Kolumna 3 -->
+        <?php if ($tb3['text']) : ?>
+        <div class="hidden lg:flex flex-row items-center justify-between gap-3 text-xs 2xl:text-sm">
+            <?php if ($tb3['icon']) : ?>
+            <img src="<?php echo $tb3['icon'] ?>" alt="Boardhouse" class="h-4">
+            <?php endif; ?>
+            <span> <?php echo $tb3['text']; ?>
+                <?php if ($tb3['link']) : ?>
+                <a href="<?php echo $tb3['link'] ?>" target="_blank" class="text-orange decoration-0">
+                    <?php echo $tb3['link_text'] ?>
+                </a>
+                <?php endif; ?>
+                <?php?>
+            </span>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
