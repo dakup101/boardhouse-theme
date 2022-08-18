@@ -4,8 +4,8 @@
             <p>© <?php echo date("Y");?> Boardhouse Wszystkie prawa zastrzeżone</p>
         </div>
         <div class="flex items-center justify-center gap-6">
-            <figure class="h-4">
-                <img src="<?php echo THEME_IMG . '/paypo.svg' ?>" alt="PayPo" class="w-auto h-full">
+            <figure class="h-6">
+                <img src="<?php echo THEME_IMG . '/przelewy24_logo.svg' ?>" alt="PayPo" class="w-auto h-full">
             </figure>
             <figure class="h-6">
                 <img src="<?php echo THEME_IMG . '/mastercard.svg' ?>" alt="PayPo" class="w-auto h-full">

@@ -39,10 +39,16 @@
         </div>
         <!--  Nav Tel  -->
         <div class="hidden lg:flex items-center shrink-0 gap-4">
+            <?php
+            $tel_sys = get_field('tel_sys', 'options');
+            $tel = get_field('tel', 'options');
+            $tel_text = get_field('tel_text', 'options');
+            ?>
             <img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
             <div class="flex flex-col">
-                <a href="tel:+48733797093" class="font-bold xl:text-md 2xl:text-lg text-green">500 600 700</a>
-                <span class="text-xs xl:text-sm 2xl:text-md">(Otwarte 8:00 - 17:00)</span>
+                <a href="tel:<?php echo $tel ?>"
+                    class="font-bold xl:text-md 2xl:text-lg text-green"><?php echo $tel_text ?></a>
+                <span class="text-xs xl:text-sm 2xl:text-md"><?php echo $tel_text ?></span>
             </div>
         </div>
         <!--  User Nav  -->

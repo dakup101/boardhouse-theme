@@ -2,11 +2,16 @@
     <div class="w-full lg:w-1/4 flex flex-col items-start justify-center gap-2">
         <img src="<?php echo THEME_IMG . '/logo.svg' ?>" alt="BOARDHOUSE" class="h-14">
         <span class="font-bold text-lg mt-4 block">Skontaktuj się z nami</span>
+        <?php
+            $tel_sys = get_field('tel_sys', 'options');
+            $tel = get_field('tel', 'options');
+            $tel_text = get_field('tel_text', 'options');
+        ?>
         <div class="flex items-center shrink-0 gap-4">
             <img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
             <div class="flex flex-col">
-                <a href="tel:+48733797093" class="font-bold text-lg">500 600 700</a>
-                <span>(Dzwońcie 8:00 - 17:00)</span>
+                <a href="<?php echo $tel_sys ?>" class="font-bold text-lg"><?php echo $tel ?></a>
+                <span><?php echo $tel_text ?></span>
             </div>
         </div>
     </div>

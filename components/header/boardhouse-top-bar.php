@@ -57,7 +57,6 @@ $tb3 = get_field('top_bar_3', 'options');
                     <?php echo $tb3['link_text'] ?>
                 </a>
                 <?php endif; ?>
-                <?php?>
             </span>
         </div>
         <?php endif; ?>
