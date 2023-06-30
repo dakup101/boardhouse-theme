@@ -31,10 +31,8 @@ $wrapper_classes   = apply_filters(
 	'woocommerce_single_product_image_gallery_classes',
 	array(
 		'woocommerce-product-gallery',
-		'woocommerce-product-gallery--' . ( $post_thumbnail_id ? 'with-images' : 'without-images' ),
-		'woocommerce-product-gallery--columns-' . absint( $columns ),
-		'images',
-        ' ' . ( $attachment_ids ? 'gallery-lg-class' : 'block' ),
+		// 'woocommerce-product-gallery--columns-' . absint( $columns ),
+		// 'images',
 	)
 );
 ?>

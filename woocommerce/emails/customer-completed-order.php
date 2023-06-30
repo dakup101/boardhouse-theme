@@ -24,19 +24,22 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<?php /* translators: %s: Customer first name */ ?>
-<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
-<p><?php esc_html_e( 'We have finished processing your order.', 'woocommerce' ); ?></p>
+<div class="email-title" style="text-align: center">
+	<h1 style="text-align: center">Cześć <?php echo $order->get_billing_first_name()?>!</h1>
+    <h2 style="text-align: center">Ukończyliśmy realizację<br>Twojego zamówienia</h2>
+</div>
+<div style="text-align: center">
+    <img src="<?php echo THEME_IMG . 'mailing-icon.png' ?>" alt="">
+</div>
+<div class="email-order-info" style="text-align: center; margin: 25px 0">
+    <p><strong>Numer Twojego zamówienia:</strong> <?php echo $order->get_order_number() ?></p>
+    <p><strong>Data zamówienia:</strong> <?php echo date('d.m.Y',  strtotime($order->get_date_created())) ?></p>
+</div>
+<div class="email-order">
+    <h3 style="color: #333"><strong>Twoje zamówienie</strong></h3>
+    <?php do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email ); ?>
+</div>
 <?php
-
-/*
- * @hooked WC_Emails::order_details() Shows the order details table.
- * @hooked WC_Structured_Data::generate_order_data() Generates structured data.
- * @hooked WC_Structured_Data::output_structured_data() Outputs structured data.
- * @since 2.5.0
- */
-do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
-
 /*
  * @hooked WC_Emails::order_meta() Shows order meta data.
  */

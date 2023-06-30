@@ -45,21 +45,7 @@ do_action( 'woocommerce_before_main_content' );
 	do_action( 'woocommerce_archive_description' );
 	?>
 </header>
-<?php
-$alt_filters_for = array(42, 41, 107, 100, 102, 103);
-$cur_cat = get_queried_object_id();
-$alt_filters = false;
-foreach ($alt_filters_for as $cat) {
-	if($cat==$cur_cat) $alt_filters = true;
-}
-?>
 
-<?php 
-
-if ($alt_filters || isset($_GET['s'])) echo do_shortcode( '[yith_wcan_filters slug="draft-preset-2"]');
-else  echo do_shortcode( '[yith_wcan_filters slug="draft-preset"]');
-
-?>
 
 <!-- <div class="boardhouse-sidebar">
 	<?php // dynamic_sidebar('sidebar'); 	do_action( 'woocommerce_before_shop_loop' );
@@ -129,6 +115,38 @@ if ( woocommerce_product_loop() ) {
 	 * @hooked woocommerce_pagination - 10
 	 */
 	do_action( 'woocommerce_after_shop_loop' );
+	?>
+<div class="before-products grid grid-cols-3 items-center mb-10 mt-10">
+    <div>
+        <?php
+        $result = woocommerce_result_count();
+        global $wp_query;
+        $totalproducts = wc_get_loop_prop('total') ? wc_get_loop_prop('total') : $wp_query->post_count;
+        echo $result;
+        $paged_maxnum = $GLOBALS['wp_query']->max_num_pages;
+
+        ?>
+    </div>
+    <div class="text-center pages-dots">
+        <?php the_posts_pagination(); ?>
+    </div>
+    <div class="text-right pages-shop ">
+        <div class="prevy">
+            <?php the_posts_pagination(); ?>
+        </div>
+        <?php
+        $current_page = max(1, get_query_var('paged'));
+        global $wp_query;
+        ?>
+        <div>
+            <p>Strona <?php echo $current_page ?> z <?php echo $wp_query->max_num_pages; ?> </p>
+        </div>
+        <div class="nexty">
+            <?php the_posts_pagination(); ?>
+        </div>
+    </div>
+</div>
+<?php
 } else {
 	/**
 	 * Hook: woocommerce_no_products_found.
@@ -150,4 +168,7 @@ do_action( 'woocommerce_after_main_content' );
  *
  * @hooked woocommerce_get_sidebar - 10
  */
+?>
+
+<?php
 get_footer( 'shop' );

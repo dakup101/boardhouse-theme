@@ -1,5 +1,5 @@
 <?php
-global $product;
+$product = wc_get_product($post->ID);
 $product->get_type() == 'variable' ? $is_variable = true : $is_variable = false;
 $is_sale      = false;
 $sale         = null;
@@ -68,15 +68,12 @@ if ( $is_variable ) {
 <div class="border-light-gray relative border flex flex-col h-full p-5">
     <div class="flex items-center gap-6">
         <div class="w-4/5 flex flex-col gap-1">
-		<span class="text-left block w-full text-dark-gray font-bold text-xs tracking-wider"><?php echo $manufacturer ?></span>
-
-            <span class="font-bold text-lg"><?php echo $name ?></span>
-            <div class="font-bold text-lg text-orange"><?php echo $price_string ?></div>
-            <a target="_blank" class="underline text-green font-light" href="<?php echo $url ?>">specyfikacja</a>
+            <a href="<?php echo $product->get_permalink(); ?>" class="font-bold text-lg hover:text-green"><?php echo $name ?></a>
+            <div class="font-bold text-lg text-orange"><?php echo str_replace(',', '', $price_string); ?></div>
         </div>
-        <div class="w-28 h-28 overflow-hidden relative">
+        <a href="<?php echo $product->get_permalink(); ?>" class="w-28 h-28 overflow-hidden relative">
             <?php echo $img ?>
-        </div>
+        </a>
     </div>
     <?php if ($is_variable) : ?>
     <div class="flex flex-wrap gap-3 mt-5">
@@ -84,17 +81,18 @@ if ( $is_variable ) {
         <?php foreach ($variations as $variation_id) : ?>
             <?php
             $variation = wc_get_product($variation_id);
-            $name = $variation->get_name();
+        	$stock = $variation->get_stock_quantity();    
+		$name = $variation->get_name();
             $term = explode(' - ', $name)[1];
             $variation_url = $variation->get_permalink();
-            ?>
+            if ($stock>0 || $variation->backorders_allowed()):
+			?>
             <a class="px-4 py-2 border border-light-gray hover:border-green hover:bg-green hover:text-white transition-all"
                 href="<?php echo $variation_url ?>"
-                target="_blank"
             >
                 <?php echo $term ?>
             </a>
-        <?php endforeach; ?>
+        <?php endif; endforeach; ?>
     </div>
     <?php endif; ?>
 </div>

@@ -1,15 +1,26 @@
 // Loaded
 console.log("--- Site Loaded ---");
-import Swiper, { Pagination, Navigation } from "swiper";
+import Swiper, { Pagination, Navigation, Autoplay } from "swiper";
 import "swiper/css";
-
-// let ajaxUrl = "/wp-admin/admin-ajax.php";
-let ajaxUrl = "https://everywhere.pl/www/bh/wp-admin/admin-ajax.php";
+let ajaxUrl = "/wp-admin/admin-ajax.php";
+// let ajaxUrl = "https://everywhere.pl/www/bh/wp-admin/admin-ajax.php";
 
 // Rendered
+// document.addEventListener("click", (ev) => {
+// 	let target = ev.target as HTMLElement;
+
+// 	if (
+// 		!target.classList.contains("bapf_hascolarr") ||
+// 		target.classList.contains("bapf_button") ||
+// 		!target.getAttribute("data-name") ||
+// 		!target.classList.contains("bapf_ccolaps")
+// 	)
+// 		console.log("TARGET");
+// 	console.log(target);
+// 	deselectFilters();
+// });
 window.addEventListener("DOMContentLoaded", () => {
 	console.log("--- Site Rendered ---");
-
 	handleAddToCart();
 	handleQuantityInputs();
 	cartStatusUpd();
@@ -18,11 +29,31 @@ window.addEventListener("DOMContentLoaded", () => {
 	handleMobileNav();
 	fv_fields();
 	handleCouponTimer();
+	deselectFilters();
+	changeFilters();
+	hadleOtherAddr();
 	setInterval(handleCouponTimer, 60 * 1000);
+	fvNameAction();
+
+	if (window.innerWidth > 1200) {
+		let searchBtnTest = document.querySelector(
+			"[data-make_search]"
+		) as HTMLAnchorElement;
+		let searchers = document.querySelectorAll(".dgwt-wcas-search-input");
+		Array.from(searchers).forEach((el) => {
+			el.addEventListener("focusout", (ev) => {
+				searchBtnTest.click();
+			});
+		});
+	}
+
 	// Main Slider
 	const hero = new Swiper(".hero", {
-		modules: [Pagination, Navigation],
+		modules: [Pagination, Navigation, Autoplay],
 		direction: "horizontal",
+		autoplay: {
+			delay: 4000,
+		},
 		pagination: {
 			el: ".hero__pagination",
 			clickable: true,
@@ -42,14 +73,16 @@ window.addEventListener("DOMContentLoaded", () => {
 		let carouselId = el.dataset.slider;
 		let container = ".product-carousel-" + carouselId;
 		let paginationContainer = ".carousel-pagination-" + carouselId;
-		console.log(container);
 		const carousel = new Swiper(container, {
-			modules: [Pagination, Navigation],
+			modules: [Pagination, Navigation, Autoplay],
 			direction: "horizontal",
 			slidesPerView: 1,
 			slidesPerGroup: 1,
-			loop: false,
+			loop: true,
 			spaceBetween: 30,
+			autoplay: {
+				delay: 5000,
+			},
 			hashNavigation: {
 				watchState: true,
 			},
@@ -137,6 +170,14 @@ window.addEventListener("DOMContentLoaded", () => {
 	let payTitle = document.querySelector("[data_title_pay]");
 	let deliveryAddr = document.querySelector("[data-delivery_addr]");
 	let backToAddr = document.querySelector("[data-back_to_cust]");
+	let paymentImgsCount = {
+		count: 0,
+		imgSrc: "https://boardhouse.pl/wp-content/themes/bh-prod-1/assets/img/",
+
+		// imgSrc:
+		// "https://everywhere.pl/www/bh/wp-content/themes/boardhouse-theme/assets/img/",
+		imgs: ["przelew.svg", "pobranie.svg", "Przelewy24_logo.svg"],
+	};
 
 	if (goToPaymet) {
 		goToPaymet.addEventListener("click", (e) => {
@@ -203,16 +244,32 @@ window.addEventListener("DOMContentLoaded", () => {
 		document.addEventListener("updated_checkout", () => {
 			updateCheckoutProps();
 			renderCheckoutItems();
+			checkShippingMethod();
+			paymentImgsCount.count = 0;
 			boxesOverlay.forEach((overlay) => {
 				overlayToggleHidden(overlay);
 			});
 		});
 		document.addEventListener("payment_method_selected", () => {
 			renderCheckoutItems();
+			paymentImgsCount.count = 0;
 		});
 
 		function overlayToggleHidden(overlay) {
 			overlay.classList.toggle("hidden");
+		}
+
+		function checkShippingMethod() {
+			let paczkomat = document.querySelector(
+				"#shipping_method_0_flexible_shipping_single5"
+			) as HTMLInputElement;
+			if (!paczkomat) return;
+
+			if (paczkomat.checked) {
+				document.querySelector(".inPost-wrapper").classList.remove("hidden");
+				return;
+			}
+			document.querySelector(".inPost-wrapper").classList.add("hidden");
 		}
 
 		function updateCheckoutProps() {
@@ -256,6 +313,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 			console.log("--- Props Updated ---");
 			console.log(checkout);
+			paymentImgsCount.count = 0;
 		}
 
 		function renderCheckoutItems() {
@@ -271,12 +329,6 @@ window.addEventListener("DOMContentLoaded", () => {
 			renderLabels(paymentRadios, ".shipping-boxes.payment", paymentTemplate);
 		}
 
-		let paymentImgsCount = {
-			count: 0,
-			imgSrc: "/wp-content/themes/boardhouse-theme/assets/img/",
-			imgs: ["Przelewy24_logo.svg", "przelew.svg"],
-		};
-
 		function renderLabels(
 			radios: any,
 			wrapperClassList: string,
@@ -286,23 +338,23 @@ window.addEventListener("DOMContentLoaded", () => {
 			wrapper.innerHTML = "";
 			radios.forEach((radio: HTMLInputElement) => {
 				let template = labelTemplate.cloneNode(true) as HTMLLabelElement;
-				console.log(radio);
-				let i = 0;
 				let rFor = radio.id;
 				let rLable = radio.parentNode.children[1].innerHTML;
 				let rImg = (radio.parentNode.children[2] as HTMLElement).dataset
 					.shipping_img;
 				if (wrapperClassList === ".shipping-boxes.payment") {
-					rImg = paymentImgsCount.imgSrc + paymentImgsCount.imgs[0];
+					let someNumber = paymentImgsCount.count;
+					rImg =
+						paymentImgsCount.imgSrc +
+						paymentImgsCount.imgs[paymentImgsCount.count];
 					paymentImgsCount.count++;
+					console.log(paymentImgsCount.count + " -- COUNT");
 				}
 				if (radio.checked) template.classList.add("active");
 				template.setAttribute("for", rFor);
 				template.querySelector("[data-box_text]").innerHTML = rLable;
 				template.querySelector("[data-box_img]").setAttribute("src", rImg);
-				if (i === 0) wrapper.appendChild(template);
-				i++;
-				console.log(wrapper.children);
+				wrapper.appendChild(template);
 			});
 		}
 
@@ -363,14 +415,97 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	document.addEventListener("scroll", () => {
-		console.log(window.scrollY);
 		let stickyHeader = document.querySelector("[data-sticky_header]");
-		console.log(stickyHeader);
 		if (window.scrollY > 300)
 			stickyHeader.classList.remove("-translate-y-full");
 		else stickyHeader.classList.add("-translate-y-full");
 	});
 });
+
+function hadleOtherAddr() {
+	let addrGroups = document.querySelectorAll("[data-other-address]");
+	let addrTrigger = document.querySelector(
+		"#ship-to-different-address-checkbox"
+	);
+	console.log("chuj");
+	if (!addrGroups || !addrTrigger) return;
+
+	addrTrigger.addEventListener("input", (ev) => {
+		let target = ev.currentTarget as HTMLInputElement;
+		if (target.checked) {
+			Array.from(addrGroups).forEach((el) => {
+				el.classList.remove("hidden");
+			});
+		} else {
+			Array.from(addrGroups).forEach((el) => {
+				el.classList.add("hidden");
+			});
+		}
+	});
+}
+
+function deselectFilters() {
+	let activeFilers = document.querySelectorAll(".bapf_ccolaps");
+	console.log(activeFilers);
+	if (!activeFilers) return;
+	Array.from(activeFilers).forEach((el) => {
+		console.log(el);
+		(el.querySelector(".bapf_hascolarr") as HTMLElement).click();
+	});
+}
+
+function changeFilters() {
+	let selects = document.querySelectorAll(".bapf_hascolarr");
+	if (!selects) return;
+
+	Array.from(selects).forEach((el) => {
+		el.addEventListener("click", (ev) => {
+			if (
+				!(
+					(ev.currentTarget as HTMLElement).parentNode.parentNode as HTMLElement
+				).classList.contains("bapf_ccolaps")
+			)
+				deselectFilters();
+		});
+	});
+}
+
+function ajaxRemoveFromCartEvts() {
+	let productRemove = document.querySelectorAll('[aria-label="Usuń element"]');
+	console.log(productRemove);
+	Array.from(productRemove).forEach((el) => {
+		el.addEventListener("click", (ev) => {
+			ev.preventDefault();
+			let target = ev.currentTarget as HTMLAnchorElement;
+			let product_id = target.getAttribute("data-product_id");
+			let parent = target.parentNode.parentNode.parentNode;
+			console.log(product_id);
+			ajaxRemoveFromCart(product_id, parent);
+		});
+	});
+}
+
+function ajaxRemoveFromCart(product_id, row) {
+	let data = new FormData();
+	data.append("action", "cart_remove");
+	data.append("product_id", product_id);
+	row.style.opacity = "0.3";
+	fetch(ajaxUrl, {
+		method: "POST",
+		body: data,
+		credentials: "same-origin",
+	})
+		.then((response) => response.json())
+		.then((json) => {
+			console.log(json);
+			if (json == "Remove success") {
+				row.innerHTML = "Usunięto produkt";
+				row.style.opacity = "1";
+				cartCount();
+				cartStatusUpd();
+			}
+		});
+}
 
 function cartStatusUpd() {
 	let statusWrapper = document.querySelector("[data_cart-status]");
@@ -492,41 +627,84 @@ function addVariableProduct(product_id, variation_id, quantity, btn) {
 		body: data,
 		credentials: "same-origin",
 	})
-		.then((response) => response.json())
+		.then((response) => {
+			return response.json();
+		})
 		.then((json) => {
 			handleCartPopup(json, quantity, btn);
+			cartCount();
 		});
 }
 function addProduct(add_to_cart, quantity, btn) {
 	console.log("--- Add Simple Product to Cart ---");
-	console.log(add_to_cart, quantity);
 	btn.textContent = "Dodaję produkt...";
 	const data = new FormData();
 	data.append("action", "add_variable");
 	data.append("product_id", add_to_cart);
+	data.append("quantity", quantity);
 	fetch(ajaxUrl, {
 		method: "POST",
 		body: data,
 		credentials: "same-origin",
 	})
-		.then((response) => response.json())
+		.then((response) => {
+			return response.json();
+		})
 		.then((json) => {
 			handleCartPopup(json, quantity, btn);
+			cartCount();
+		})
+		.catch((err) => {
+			console.log(err);
 		});
 }
+function showCartMessage(msg) {
+	alert(msg);
+}
 function handleCartPopup(add_response, quantity, btn) {
-	if (!add_response[0]) {
-		console.log("--- Product NOT added to cart ");
+	let addToCartPopup = document.querySelector("[data-cart_popup]");
+	let popupCart = addToCartPopup.querySelector("[data-cp_cart]");
+
+	let cpIcon = addToCartPopup.querySelector("[data-cp_icon]");
+	let cpSuccess = addToCartPopup.querySelector("[data-cp_success]");
+	let cpFail = addToCartPopup.querySelector("[data-cp_fail]");
+
+	cpFail.classList.add("hidden");
+
+	if (add_response.err) {
 		btn.textContent = "Dodaj do koszyka";
+		btn.blur();
+		// showCartMessage(add_response.msg);
+		addToCartPopup.classList.remove("hidden");
+		cpFail.classList.remove("hidden");
+		cpIcon.classList.add("hidden");
+		cpSuccess.classList.add("hidden");
+		popupCart.innerHTML =
+			"<div class='text-center py-10 px-10'>" + add_response.msg + "</div>";
+
 		return;
 	}
+	if (!add_response[0]) {
+		btn.textContent = "Dodaj do koszyka";
+		btn.blur();
+		addToCartPopup.classList.remove("hidden");
+		popupCart.innerHTML =
+			"<div class='text-center py-10 px-10'>" +
+			"Prawdopodobnie już posiadasz maksymalną ilość tego produktu w swoim koszyku. Sprawdź i spróbuj jeszcze raz." +
+			"</div>";
+		cpFail.classList.remove("hidden");
+		cpIcon.classList.add("hidden");
+		cpSuccess.classList.add("hidden");
+		return;
+	}
+	cpFail.classList.add("hidden");
+	cpIcon.classList.remove("hidden");
+	cpSuccess.classList.remove("hidden");
 	console.log("--- Product Added To Cart ---");
 	btn.textContent = "Dodano produkt";
 	btn.blur();
 	console.log("--- Handle Cart PopUp ---");
-	let addToCartPopup = document.querySelector("[data-cart_popup]");
 	addToCartPopup.classList.remove("hidden");
-	let popupCart = addToCartPopup.querySelector("[data-cp_cart]");
 	popupCart.classList.add("loading");
 	document.querySelector("[data-cp_amount]").textContent = quantity;
 	const data = new FormData();
@@ -539,6 +717,12 @@ function handleCartPopup(add_response, quantity, btn) {
 		.then((response) => response.text())
 		.then((text) => {
 			popupCart.innerHTML = text;
+			ajaxRemoveFromCartEvts();
+			let popupProceed = popupCart.querySelector("[data-close-pop-up-proceed]");
+			popupProceed.addEventListener("click", (ev) => {
+				ev.preventDefault();
+				document.querySelector("[data-cart_popup]").classList.add("hidden");
+			});
 			popupCart.classList.remove("loading");
 			cartStatusUpd();
 		});
@@ -548,6 +732,7 @@ function getUserCartItems() {
 }
 
 function wishCount() {
+	console.log("--- Update Wish Count ---");
 	let cartCounter = document.querySelectorAll("[data-wish_counter]");
 	if (!cartCounter) return;
 
@@ -558,16 +743,23 @@ function wishCount() {
 		body: data,
 		credentials: "same-origin",
 	})
-		.then((response) => response.json())
+		.then((response) => {
+			console.log(JSON);
+			return response.json();
+		})
 		.then((json) => {
+			console.log(json);
 			renderWishCount(json);
 		});
 
 	function renderWishCount(count) {
-		cartCounter.forEach((counter) => {
-			counter.classList.remove("opacity-0");
-			counter.innerHTML = count.count;
-		});
+		if (parseInt(count.count) > 0) {
+			cartCounter.forEach((counter) => {
+				console.log(counter);
+				counter.classList.remove("opacity-0");
+				counter.innerHTML = count.count;
+			});
+		}
 	}
 }
 
@@ -588,10 +780,12 @@ function cartCount() {
 		});
 
 	function renderCount(count) {
-		cartCounter.forEach((counter) => {
-			counter.classList.remove("opacity-0");
-			counter.innerHTML = count;
-		});
+		if (parseInt(count) > 0) {
+			cartCounter.forEach((counter) => {
+				counter.classList.remove("opacity-0");
+				counter.innerHTML = count;
+			});
+		}
 	}
 }
 
@@ -604,7 +798,6 @@ function handleMobileNav() {
 	};
 	mobileNav.btnClose.addEventListener("click", (e) => {
 		e.preventDefault();
-		console.log("zalupa");
 		mobileNav.wrapper.classList.toggle("-translate-x-full");
 	});
 	mobileNav.btnOpen.forEach((btn) => {
@@ -616,7 +809,7 @@ function handleMobileNav() {
 	mobileNav.items.forEach((el) => {
 		let tabFor = el.getAttribute("data-mobile_tab_for");
 		let isParent = el.getAttribute("data-parent");
-		if (isParent) {
+		if (isParent !== "0") {
 			el.addEventListener("click", (e) => {
 				e.preventDefault();
 				let target = e.currentTarget as HTMLAnchorElement;
@@ -667,4 +860,22 @@ function handleCouponTimer() {
 	timer.querySelector("[data-coupon_days]").innerHTML = days + " dni";
 	timer.querySelector("[data-coupon_hours]").innerHTML = hours + " godzin";
 	timer.querySelector("[data-coupon_minutes]").innerHTML = minutes + " minut";
+}
+
+function fvNameAction() {
+	let fvName = document.querySelectorAll("input[name='fv_name']");
+	if (!fvName) return;
+
+	let nipField = document.querySelector(".nip-wrapper");
+	console.log(fvName);
+	Array.from(fvName).forEach((el) => {
+		el.addEventListener("change", (ev) => {
+			let target = ev.currentTarget as HTMLInputElement;
+			if (target.checked && target.id == "fvPrivate") {
+				nipField.classList.add("hidden");
+				return;
+			}
+			nipField.classList.remove("hidden");
+		});
+	});
 }

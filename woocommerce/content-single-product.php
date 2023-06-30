@@ -32,10 +32,11 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'mt-14', $product ); ?>>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div class="product-images">
-            <?php
+<div class="single-product">
+    <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'mt-14', $product ); ?>>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="product-images">
+                <?php
 			/**
 			 * Hook: woocommerce_before_single_product_summary.
 			 *
@@ -44,10 +45,10 @@ if ( post_password_required() ) {
 			 */
 			do_action( 'woocommerce_before_single_product_summary' );
 			?>
-        </div>
-        <div class="summary entry-summary flex flex-col lg:flex-row">
-            <div class="w-full lg:w-3/6 lg:pr-20">
-                <?php
+            </div>
+            <div class="summary entry-summary flex flex-col lg:flex-row">
+                <div class="w-full lg:w-3/6 lg:pr-20">
+                    <?php
 				/**
 				 * Hook: woocommerce_single_product_summary.
 				 *
@@ -62,16 +63,15 @@ if ( post_password_required() ) {
 				 */
 				do_action( 'woocommerce_single_product_summary' );
 				?>
-            </div>
-            <div class="w-full mt-10 lg:mt-0 lg:w-3/6">
-                <?php get_template_part('/components/product/we-recommend') ?>
-                <a href="#"><img src="<?php echo THEME_IMG . '/baner_product.png' ?>" alt="" class="mt-3 w-full"></a>
+                </div>
+                <div class="hidden sm:block w-full mt-10 lg:mt-0 lg:w-3/6">
+                    <?php get_template_part('/components/product/we-recommend') ?>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <?php
+        <?php
 	/**
 	 * Hook: woocommerce_after_single_product_summary.
 	 *
@@ -81,6 +81,7 @@ if ( post_password_required() ) {
 	 */
 	do_action( 'woocommerce_after_single_product_summary' );
 	?>
+    </div>
 </div>
 
 <?php get_template_part( '/components/boardhouse-cart-popup') ?>

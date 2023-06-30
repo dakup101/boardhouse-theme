@@ -2,7 +2,7 @@
     <div class="bg-white max-w-2xl w-full overflow-y-auto max-h-screen">
         <div
             class="py-6 pl-6 pr-20 lg:pl-20 border-b border-b-light-gray w-full relative text-center text-lg flex gap-3 items-center uppercase font-bold justify-center">
-            <svg class="w-5" id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <svg class="w-5" id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-cp_icon>
                 <defs>
                     <style>
                     .b {
@@ -17,7 +17,9 @@
                 <path class="c" d="M8,0C3.58,0,0,3.58,0,8s3.58,8,8,8,8-3.58,8-8S12.42,0,8,0Z" />
                 <polygon class="b" points="6.69 11.33 3.69 8.45 4.62 7.5 6.68 9.46 11.36 4.67 12.31 5.61 6.69 11.33" />
             </svg>
-            <span class="mt-1">Dodano <span data-cp_amount></span> produkty do koszyka</span>
+            <span class="mt-1" data-cp_success>Dodano <span data-cp_amount></span> produkty do koszyka</span>
+            <span class="mt-1" data-cp_fail>Nie udało się dodać produkt</span>
+
             <a href="#" class="flex absolute right-6 top-1/2 -translate-y-1/2" data-close_cart_popup>
                 <svg id="a" class="w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                     <defs>

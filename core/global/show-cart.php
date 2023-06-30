@@ -87,16 +87,17 @@ function show_cart_html(){
 			?>
         </div>
         <div class="px-6 lg:px-20 py-6">
-        <?php get_template_part( '/components/boardhouse-cart-status'); ?>
+            <?php get_template_part( '/components/boardhouse-cart-status'); ?>
         </div>
         <div
             class="cart_totals py-6 px-6 lg:px-20 bg-light-gray/50 <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
             <div class="grid lg:hidden grid-cols-1 mb-2 sm:grid-cols-2 sm:gap-5">
                 <div>
-                <a href="<?php echo get_permalink( wc_get_page_id( 'shop' )) ?>" class="mt-5 bg-none border-2 border-dark hover:text-white hover:bg-orange hover:border-orange transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase wc-forward">
-                    <?php esc_html_e( 'Kontynuj zakupy', 'woocommerce' ); ?>
-                </a>
+                    <a href="<?php echo get_permalink( wc_get_page_id( 'shop' )) ?>"
+                        class="mt-5 bg-none border-2 border-dark hover:text-white hover:bg-orange hover:border-orange transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase wc-forward">
+                        <?php esc_html_e( 'Powrót do sklepu', 'woocommerce' ); ?>
+                    </a>
                 </div>
                 <div class="wc-proceed-to-checkout">
                     <?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
@@ -180,9 +181,10 @@ function show_cart_html(){
 
             <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-5">
                 <div>
-                <a href="<?php echo get_permalink( wc_get_page_id( 'shop' )) ?>" class="mt-5 bg-none border-2 border-dark hover:text-white hover:bg-orange hover:border-orange transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase wc-forward">
-                    <?php esc_html_e( 'Kontynuj zakupy', 'woocommerce' ); ?>
-                </a>
+                    <a data-close-pop-up-proceed href="<?php echo get_permalink( wc_get_page_id( 'shop' )) ?>"
+                        class="mt-5 bg-none border-2 border-dark hover:text-white hover:bg-orange hover:border-orange transition-all text-dark flex items-center justify-center font-bold w-full h-12 uppercase wc-forward">
+                        <?php esc_html_e( 'Powrót do sklepu', 'woocommerce' ); ?>
+                    </a>
                 </div>
                 <div class="wc-proceed-to-checkout">
                     <?php do_action( 'woocommerce_proceed_to_checkout' ); ?>

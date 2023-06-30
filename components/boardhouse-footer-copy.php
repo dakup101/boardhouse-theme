@@ -5,7 +5,7 @@
         </div>
         <div class="flex items-center justify-center gap-6">
             <figure class="h-6">
-                <img src="<?php echo THEME_IMG . '/przelewy24_logo.svg' ?>" alt="PayPo" class="w-auto h-full">
+                <img src="<?php echo THEME_IMG . '/Przelewy24_logo.svg' ?>" alt="PayPo" class="w-auto h-full">
             </figure>
             <figure class="h-6">
                 <img src="<?php echo THEME_IMG . '/mastercard.svg' ?>" alt="PayPo" class="w-auto h-full">

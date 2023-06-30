@@ -6,14 +6,27 @@
             $tel_sys = get_field('tel_sys', 'options');
             $tel = get_field('tel', 'options');
             $tel_text = get_field('tel_text', 'options');
+            $email = get_field('footer_email', 'options')
         ?>
         <div class="flex items-center shrink-0 gap-4">
             <img src="<?php echo THEME_IMG . '/tel.svg'; ?>" alt="Telefon" class="h-5">
             <div class="flex flex-col">
-                <a href="tel:<?php echo $tel_sys ?>" class="font-bold text-lg"><?php echo $tel ?></a>
+                <a href="tel:<?php echo $tel_sys ?>"
+                    class="font-bold text-lg transition-all hover:text-orange"><?php echo $tel ?></a>
                 <span><?php echo $tel_text ?></span>
             </div>
         </div>
+        <div class="flex items-center shrink-0 gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24">
+                <path
+                    d="M12.042 23.648c-7.813 0-12.042-4.876-12.042-11.171 0-6.727 4.762-12.125 13.276-12.125 6.214 0 10.724 4.038 10.724 9.601 0 8.712-10.33 11.012-9.812 6.042-.71 1.108-1.854 2.354-4.053 2.354-2.516 0-4.08-1.842-4.08-4.807 0-4.444 2.921-8.199 6.379-8.199 1.659 0 2.8.876 3.277 2.221l.464-1.632h2.338c-.244.832-2.321 8.527-2.321 8.527-.648 2.666 1.35 2.713 3.122 1.297 3.329-2.58 3.501-9.327-.998-12.141-4.821-2.891-15.795-1.102-15.795 8.693 0 5.611 3.95 9.381 9.829 9.381 3.436 0 5.542-.93 7.295-1.948l1.177 1.698c-1.711.966-4.461 2.209-8.78 2.209zm-2.344-14.305c-.715 1.34-1.177 3.076-1.177 4.424 0 3.61 3.522 3.633 5.252.239.712-1.394 1.171-3.171 1.171-4.529 0-2.917-3.495-3.434-5.246-.134z" />
+            </svg>
+            <div class="flex flex-col">
+                <a href="mailto:<?php echo $email ?>"
+                    class="font-bold text-lg transition-all hover:text-orange"><?php echo $email ?></a>
+            </div>
+        </div>
+
     </div>
     <div class="mt-10 lg:mt-0 w-full lg:w-3/4 relative flex flex-col lg:flex-row justify-between gap-6">
         <div class="w-fit">
@@ -21,19 +34,21 @@
                 Dane Adresowe
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2">
+				<?php $info = get_field('footer_info', 'options'); ?>
                 <div class="flex text-sm flex-col gap-2">
-                    <span class="font-light block">Boardhouse</span>
-                    <span class="font-light block">ul. Malborska 96</span>
-                    <span class="font-light block">30-624</span>
-                    <span class="mt-5 font-light block">Sklep jest czynny:</span>
-                    <span class="font-light block">pon-pt: 10:00-18:00</span>
+                    <span class="font-light block"><?php echo $info['text_1']; ?></span>
+                    <span class="font-light block"><?php echo $info['text_2']; ?></span>
+                    <span class="font-light block"><?php echo $info['text_3']; ?></span>
+                    <span class="mt-5 font-light block"><?php echo $info['text_4']; ?></span>
+                    <span class="font-light block"><?php echo $info['text_5']; ?></span>
                 </div>
+				<?php $info = get_field('footer_info_2', 'options'); ?>
                 <div class="flex text-sm flex-col gap-2">
-                    <span class="font-light block">REGION: 122464469</span>
-                    <span class="font-light block">NIP: 6792848009</span>
-                    <span class="mt-5 font-light block">Nr. konta do wpłat</span>
-                    <span class="font-light block">Santander Bank Polska</span>
-                    <span class="font-light block">53109020530000000115283469</span>
+                    <span class="font-light block"><?php echo $info['text_1']; ?></span>
+                    <span class="font-light block"><?php echo $info['text_2']; ?></span>
+                    <span class="mt-5 font-light block"><?php echo $info['text_3']; ?></span>
+                    <span class="font-light block"><?php echo $info['text_4']; ?></span>
+                    <span class="font-light block"><?php echo $info['text_5']; ?></span>
                 </div>
             </div>
         </div>

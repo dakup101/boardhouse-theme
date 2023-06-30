@@ -18,29 +18,19 @@
 defined( 'ABSPATH' ) || exit;
 
 $text_align = is_rtl() ? 'right' : 'left';
-
-do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plain_text, $email ); ?>
-
-<h2>
-	<?php
-	if ( $sent_to_admin ) {
-		$before = '<a class="link" href="' . esc_url( $order->get_edit_order_url() ) . '">';
-		$after  = '</a>';
-	} else {
-		$before = '';
-		$after  = '';
-	}
-	/* translators: %s: Order ID. */
-	echo wp_kses_post( $before . sprintf( __( '[Order #%s]', 'woocommerce' ) . $after . ' (<time datetime="%s">%s</time>)', $order->get_order_number(), $order->get_date_created()->format( 'c' ), wc_format_datetime( $order->get_date_created() ) ) );
-	?>
-</h2>
+?>
 
 <div style="margin-bottom: 40px;">
-	<table class="td" style="width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;">
-		<thead>
-		</thead>
-		<tbody>
-			<?php
+    <table
+        style="width: 100%; position: relative; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;">
+        <thead style="display: flex; width: 100%">
+            <tr style="display: flex; padding: 10px 15px; border-bottom: 1px solid #333333; width: 100%;">
+                <th style=" width: 70%; text-align: left;">Produkt</th>
+                <th style="width: 30%; text-align: left">Cena</th>
+            </tr>
+        </thead>
+        <tbody style="width: 100% border-bottom: 1px solid #333333">
+            <?php
 			echo wc_get_email_order_items( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				$order,
 				array(
@@ -52,9 +42,9 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 				)
 			);
 			?>
-		</tbody>
-		<tfoot>
-			<?php
+        </tbody>
+        <tfoot style="width: 100%">
+            <?php
 			$item_totals = $order->get_order_item_totals();
 
 			if ( $item_totals ) {
@@ -62,24 +52,34 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 				foreach ( $item_totals as $total ) {
 					$i++;
 					?>
-					<tr>
-						<th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['label'] ); ?></th>
-						<td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['value'] ); ?></td>
-					</tr>
-					<?php
+            <tr style="width: 100%; display: flex; padding: 10px 15px; border-bottom: 1px solid #dbdbdb">
+                <th class="td" scope="row" colspan="2"
+                    style="width: 50%; text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>">
+                    <?php echo wp_kses_post( $total['label'] ); ?></th>
+                <td class="td"
+                    style="width: 50%; text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>">
+                    <?php echo wp_kses_post( $total['value'] ); ?></td>
+            </tr>
+            <?php
 				}
 			}
 			if ( $order->get_customer_note() ) {
 				?>
-				<tr>
-					<th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
-					<td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
-				</tr>
-				<?php
+            <tr style="width: 100%; display: flex; padding: 10px 15px; border-bottom: 1px solid #dbdbdb">
+                <th class="td" scope="row" colspan="2"
+                    style="width: 50%; text-align:<?php echo esc_attr( $text_align ); ?>;">
+                    <?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
+                <td class="td" style="width: 50%; text-align:<?php echo esc_attr( $text_align ); ?>;">
+                    <?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
+            </tr>
+            <?php
 			}
 			?>
-		</tfoot>
-	</table>
+        </tfoot>
+    </table>
+    <style>
+    table {
+        flex-direction: column;
+    }
+    </style>
 </div>
-
-<?php do_action( 'woocommerce_email_after_order_table', $order, $sent_to_admin, $plain_text, $email ); ?>

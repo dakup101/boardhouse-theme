@@ -1,46 +1,15 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 icons-row-wrapper">
+	<?php foreach(get_field('footer_icons', 'options') as $icon) : ?>
     <div class="flex gap-8 items-center justify-start  lg:justify-center">
-        <img src="<?php echo THEME_IMG . '/lorry.svg' ?>" alt="" class="h-20 w-auto" >
+        <img src="<?php echo $icon['icon'] ?>" alt="" class="h-20 w-auto" >
         <div class="flex flex-col gap-1">
             <div class="text-lg font-medium uppercase">
-                Darmowa dostawa od 200 zł
+                <?php echo $icon['text_bold']; ?>
             </div>
             <div class="font-light">
-                do 72 godzin (dni robocze)
+                <?php echo $icon['text']; ?>
             </div>
         </div>
     </div>
-    <div class="flex gap-8 items-center justify-start  lg:justify-center">
-        <img src="<?php echo THEME_IMG . '/smartphone.svg' ?>" alt="" class="h-20 w-auto" >
-        <div class="flex flex-col gap-1">
-            <div class="text-lg font-medium uppercase">
-                MONITORUJ SWOJE ZAMÓWIENIE
-            </div>
-            <div class="font-light">
-                otrzymasz mail z linkiem
-            </div>
-        </div>
-    </div>
-    <div class="flex gap-8 items-center justify-start  lg:justify-center">
-        <img src="<?php echo THEME_IMG . '/return.svg' ?>" alt="" class="h-20 w-auto" >
-        <div class="flex flex-col gap-1">
-            <div class="text-lg font-medium uppercase">
-                MOŻLIWOŚĆ ZWROTU DO 14 DNi
-            </div>
-            <div class="font-light">
-                100% zadowolenia z zakupów!
-            </div>
-        </div>
-    </div>
-    <div class="flex gap-8 items-center justify-start  lg:justify-center">
-        <img src="<?php echo THEME_IMG . '/fast.svg' ?>" alt="" class="h-20 w-auto" >
-        <div class="flex flex-col gap-1">
-            <div class="text-lg font-medium uppercase">
-                Szybka wysyłka
-            </div>
-            <div class="font-light">
-                produkty dostępne w naszym sklepie
-            </div>
-        </div>
-    </div>
+	<?php endforeach; ?>
 </div>

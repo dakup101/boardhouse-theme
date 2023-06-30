@@ -1,4 +1,2 @@
-**/nodue_modules
-**/.idea
-**/assets/compiled
-/nodue_modules
+nodue_modules
+assets/compiled

@@ -21,34 +21,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( $related_products ) : ?>
 
-	<section class="related products">
-        <div class="grid grid-cols-1 sm:grid-cols-3 items-center my-12">
-            <div class="hidden sm:block"></div>
-            <h2 class="text-center font-medium uppercase tracking-wider text-2xl ">Do tego produktu Polecamy</h2>
-            <div class="flex justify-center sm:justify-end">
-                <a class="font-light underline text-orange hover:text-green transition-all"
-                   href="<?php echo get_home_url() . '/sklep' ?>">Zobacz wszystkie produkty</a>
-            </div>
+<section class="related products">
+    <div class="grid grid-cols-1 sm:grid-cols-3 items-center my-12">
+        <div class="hidden sm:block"></div>
+        <h2 class="text-center font-medium uppercase tracking-wider text-2xl ">Może ci się spodobać też</h2>
+        <div class="flex justify-center sm:justify-end">
+            <a class="font-light underline text-orange hover:text-green transition-all"
+                href="<?php echo get_home_url() . '/sklep' ?>">Zobacz wszystkie produkty</a>
         </div>
+    </div>
 
-        <?php woocommerce_product_loop_start(); ?>
-
-			<?php foreach ( $related_products as $related_product ) : ?>
-
-					<?php
+    <div class="overflow-hidden relative product-carousel product-carousel-4" data-slider="4">
+        <div class="swiper-wrapper">
+            <?php $data_count = 1 ?>
+            <?php foreach ( $related_products as $related_product ) : ?>
+            <div class="swiper-slide h-auto" data-hash="slide<?php echo $data_count; ?>">
+                <?php
 					$post_object = get_post( $related_product->get_id() );
-
 					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+				?>
+                <?php wc_get_template_part( 'content', 'product' ); ?>
+            </div>
+            <?php $data_count++; endforeach; ?>
+        </div>
+        <div class="swiper-pagination mt-10 flex items-center justify-center gap-3 carousel-pagination-4"></div>
+    </div>
 
-					wc_get_template_part( 'content', 'product' );
-					?>
-
-			<?php endforeach; ?>
-
-		<?php woocommerce_product_loop_end(); ?>
-
-	</section>
-	<?php
+</section>
+<?php
 endif;
 
 wp_reset_postdata();

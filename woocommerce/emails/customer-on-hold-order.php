@@ -22,39 +22,33 @@ defined( 'ABSPATH' ) || exit;
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<?php /* translators: %s: Customer first name */ ?>
-<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
-<p><?php esc_html_e( 'Thanks for your order. It’s on-hold until we confirm that payment has been received. In the meantime, here’s a reminder of what you ordered:', 'woocommerce' ); ?></p>
-
+<div class="email-title" style="text-align: center">
+	<h1 style="text-align: center">Cześć <?php echo $order->get_billing_first_name()?>!</h1>
+    <h2 style="text-align: center">Twoje zamówienie jest wstrzymane<br>do momentu opłaty</h2>
+</div>
+<div style="text-align: center">
+    <img src="<?php echo THEME_IMG . 'mailing-icon.png' ?>" alt="">
+</div>
+<div class="email-order-info" style="text-align: center; margin: 25px 0">
+    <p><strong>Numer Twojego zamówienia:</strong> <?php echo $order->get_order_number() ?></p>
+    <p><strong>Data zamówienia:</strong> <?php echo date('d.m.Y',  strtotime($order->get_date_created())) ?></p>
+</div>
+<div class="email-order">
 <?php
-
-/*
- * @hooked WC_Emails::order_details() Shows the order details table.
- * @hooked WC_Structured_Data::generate_order_data() Generates structured data.
- * @hooked WC_Structured_Data::output_structured_data() Outputs structured data.
- * @since 2.5.0
- */
-do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
-
-/*
- * @hooked WC_Emails::order_meta() Shows order meta data.
- */
+	
+	    if ( 'bacs' === $order->get_payment_method() ) {
+        echo '<h2>Konto do wpłat:</h2>';
+        echo '<p><b>Bank: Bank</b>: Santander Bank </p>';
+        echo '<p><b>Numer konta</b>: 53109020530000000115283469</p>';
+    }
+	?>
+    <h3 style="color: #333"><strong>Twoje zamówienie</strong></h3>
+    <?php do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email ); ?>
+</div>
+<?php
 do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, $email );
-
-/*
- * @hooked WC_Emails::customer_details() Shows customer details
- * @hooked WC_Emails::email_address() Shows email address
- */
 do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email );
-
-/**
- * Show user-defined additional content - this is set in each email's settings.
- */
 if ( $additional_content ) {
 	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );
 }
-
-/*
- * @hooked WC_Emails::email_footer() Output the email footer
- */
 do_action( 'woocommerce_email_footer', $email );

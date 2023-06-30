@@ -7,7 +7,7 @@
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
             </svg>
         </a>
-        <a href="<?php echo get_home_url();?>" class="block h-9  xl:h-9 2xl:h-14 shrink-0">
+        <a href="<?php echo get_home_url();?>" class="block h-12 2xl:h-14 shrink-0">
             <img src="<?php echo THEME_IMG . '/logo.svg' ?>" alt="BOARDHOUSE" class="h-full block shrink-0">
         </a>
         <!--  Site Nav  -->
@@ -54,7 +54,7 @@
         <!--  User Nav  -->
         <div class="flex gap-0.5 items-center lg:pl-5 lg:border-l-2 border-l-light-gray shrink-0 relative">
             <a href="#"
-                class="hidden lg:block p-2 2xl:p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark"
+                class="hidden lg:block p-2 2xl:p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark flex-shrink-0"
                 data-make_search>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" class="fill-current h4 w-4 2xl:h-5 2xl:w-5">
                     <path
@@ -62,7 +62,7 @@
                 </svg>
             </a>
             <a href="<?php echo get_home_url() . '/lista-zyczen/' ?>"
-                class="hidden lg:block p-2 2xl:p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark relative">
+                class="hidden lg:block p-2 2xl:p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark relative flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.2 18"
                     class="fill-current h4 w-4 2xl:h-5 2xl:w-5">
                     <path
@@ -74,7 +74,7 @@
                 </div>
             </a>
             <a href="<?php echo get_home_url() . '/moje-konto' ?>"
-                class="hidden lg:block p-2 2xl:p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark">
+                class="hidden lg:block p-2 2xl:p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.1 18.76"
                     class="fill-current h4 w-4 2xl:h-5 2xl:w-5">
                     <path
@@ -82,9 +82,9 @@
                 </svg>
             </a>
             <a href="<?php echo get_home_url() . '/koszyk'; ?>"
-                class="p-2 2xl:p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark relative">
+                class="p-2 2xl:p-3 rounded-full transition-all hover:text-white hover:bg-orange hover:shadow-light-gray hover:shadow-lg focus:bg-light-gray focus:text-dark relative flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.92 20"
-                    class="fill-current h-5 w-5 sm:h-7 sm:w-7 lg:h4 lg:w-4 2xl:h-5 2xl:w-5">
+                    class="fill-current h-5 w-5 sm:h-7 sm:w-7 lg:h-4 lg:w-4 2xl:h-5 2xl:w-5">
                     <path
                         d="M15.86,15.02c.53-.53,1.26-.86,2.06-.86s1.53,.33,2.06,.86c.53,.53,.86,1.26,.86,2.06s-.33,1.53-.86,2.06c-.53,.53-1.26,.86-2.06,.86s-1.53-.33-2.06-.86c-.53-.53-.86-1.26-.86-2.06s.33-1.53,.86-2.06h0Zm1.18,2.94c.23,.23,.54,.37,.88,.37s.64-.13,.87-.35l.02-.02c.23-.23,.37-.54,.37-.88s-.14-.66-.37-.88c-.23-.23-.54-.37-.88-.37s-.64,.13-.87,.35l-.02,.02c-.23,.23-.37,.54-.37,.88s.14,.66,.37,.88h0ZM22.89,3.9l-3.33,8.73c-.05,.17-.21,.29-.4,.29H8.33c-.16,0-.32-.1-.39-.26L3.47,1.67H.42c-.23,0-.42-.19-.42-.42V.42c0-.23,.19-.42,.42-.42h3.75c.15,0,.3,.09,.37,.23l1.55,3.1H22.5s.1,0,.15,.03c.21,.08,.32,.32,.24,.54h0Zm-4.43,7.35l2.21-6.25H6.45l2.57,6.25h9.43Zm-9.68,3.77c.53-.53,1.26-.86,2.06-.86s1.53,.33,2.06,.86c.53,.53,.86,1.26,.86,2.06s-.33,1.53-.86,2.06c-.53,.53-1.26,.86-2.06,.86s-1.51-.32-2.04-.83l-.02-.02c-.53-.53-.86-1.26-.86-2.06s.33-1.53,.86-2.06h0Zm1.18,2.94c.23,.23,.54,.37,.88,.37s.64-.13,.87-.35l.02-.02c.23-.23,.37-.54,.37-.88s-.14-.66-.37-.88h0c-.23-.23-.54-.37-.88-.37s-.66,.14-.88,.37c-.23,.23-.37,.54-.37,.88s.14,.66,.37,.88Z" />
                 </svg>

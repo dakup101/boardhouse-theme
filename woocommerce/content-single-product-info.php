@@ -10,14 +10,6 @@ if ($attrs['pa_dla-kogo']) $is_for = $attrs['pa_dla-kogo'] ;
 if ($attrs['pa_rocznik']) $is_for = $attrs['pa_rocznik'] ;
 ?>
 
-<div class="mb-2">
-    Przewidywana dostawa: <?php
-    $datetime = new DateTime();
-    $datetime->modify('+2 day');
-    echo '<strong>' . $datetime->format('d/m/Y') . '</strong>';
-    ?>
-</div>
-
 <?php if ($is_from || $is_for) : ?>
 <div>
 

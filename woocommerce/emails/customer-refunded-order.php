@@ -22,8 +22,10 @@ defined( 'ABSPATH' ) || exit;
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<?php /* translators: %s: Customer first name */ ?>
-<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
+<div class="email-title" style="text-align: center">
+	<h1 style="text-align: center">Cześć <?php echo $order->get_billing_first_name()?>!</h1>
+	<h2 style="text-align: center">Twoje zamówienie zostało zwrócone</h2>
+</div>
 
 <p>
 <?php
