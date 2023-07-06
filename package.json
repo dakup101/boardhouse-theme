@@ -27,10 +27,12 @@
   },
   "dependencies": {
     "@types/select2": "^4.0.55",
+    "archiver": "^5.3.1",
     "autoprefixer": "^10.4.7",
     "css-loader": "^6.7.1",
     "fetch": "^1.1.0",
     "form-data": "^4.0.0",
+    "fs": "^0.0.1-security",
     "node-fetch": "^3.2.10",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",

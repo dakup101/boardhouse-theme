@@ -368,3 +368,8 @@ function disable_cod_payment_gateway( $gateways ) {
 
     return $gateways;
 }
+
+add_action('init', 'restore_default_editor');
+function restore_default_editor() {
+    add_post_type_support('post', 'editor');
+}
